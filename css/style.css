@@ -471,20 +471,38 @@ p {
 }
 
 .skill-item i {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #FF4500;
-    transition: color 0.3s ease;
+    font-size: 1.85rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.skill-item:hover i {
-    color: white;
-}
+/* Software Development */
+.skill-item i.devicon-java-plain { color: #f89820; }
+.skill-item i.devicon-spring-plain { color: #6DB33F; }
+.skill-item i.devicon-mysql-plain { color: #4479A1; }
+.skill-item i.devicon-postgresql-plain { color: #336791; }
 
-.skill-item span {
-    font-weight: 500;
-    text-align: center;
-}
+/* Web Development */
+.skill-item i.devicon-react-original { color: #61DAFB; }
+.skill-item i.devicon-nodejs-plain { color: #339933; }
+.skill-item i.devicon-express-original { color: #ffffff; } /* neutral/default */
+.skill-item i.devicon-mongodb-plain { color: #47A248; }
+
+/* Mobile Development */
+.skill-item i.devicon-flutter-plain { color: #02569B; }
+.skill-item i.devicon-firebase-plain { color: #FFCA28; }
+.skill-item i.devicon-androidstudio-plain { color: #3DDC84; }
+.skill-item i.devicon-kotlin-plain { color: #7F52FF; }
+
+/* Other Skills */
+.skill-item i.devicon-git-plain { color: #F05032; }
+.skill-item i.devicon-linux-plain { color: #000000; }
+.skill-item i.devicon-docker-plain { color: #2496ED; }
+
+/* fallback icons */
+.skill-item i.fa-cloud { color: #6c757d; }
+.skill-item i.fa-bug { color: #dc3545; }
 
 /* Projects Section */
 .projects {
