@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Admin Dashboard — Project Manager | Tarek Parvez</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+
+  <!-- Devicon Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+  <!-- CSS Design System -->
+  <link rel="stylesheet" href="css/sketch-theme.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/pages.css">
+
+  <style>
+    .admin-grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    @media (max-width: 768px) {
+      .admin-grid-2col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Modal Backdrop */
+    .admin-modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(45, 45, 45, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Minimal Admin Header -->
+  <nav class="notebook-nav" aria-label="Admin Navigation">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-brand">
+          <span class="brand-title">TAREK PARVEZ<span class="accent-dot">.</span></span>
+          <span class="brand-subtitle">DevOps // Project Admin</span>
+        </a>
+
+        <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+          <a href="projects.html" target="_blank" class="btn btn-secondary btn-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            View Live Site
+          </a>
+          <button id="btn-change-creds" class="btn btn-secondary btn-sm" title="Change Username / Password">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+            Security / Password
+          </button>
+          <button id="logout-btn" class="btn btn-primary btn-sm" style="display: none;">
+            Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main style="padding: 3.5rem 0 5rem 0;">
+    <div class="container">
+
+      <!-- ==========================================
+           1. LOGIN SECTION (Client-Side Auth)
+           ========================================== -->
+      <section id="admin-login-section" style="padding: 2rem 0; max-width: 480px; margin: 0 auto;">
+        <div class="sketch-card accent-blue">
+          <span class="paper-tape">ADMIN ACCESS</span>
+          <div class="board-header">
+            <div class="board-dots">
+              <div class="board-dot red"></div>
+              <div class="board-dot yellow"></div>
+              <div class="board-dot green"></div>
+            </div>
+            <span>AUTHENTICATION REQUIRED</span>
+          </div>
+
+          <h2 style="font-size: 1.85rem; margin-bottom: 0.5rem; text-align: center;">Engineering Console</h2>
+          <p style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-bottom: 1.75rem;">
+            Sign in to manage projects and telemetry data.
+          </p>
+
+          <div id="login-error" class="sketch-card accent-coral" style="display: none; padding: 0.75rem 1rem; margin-bottom: 1.25rem; font-family: var(--font-mono); font-size: 0.8rem; background: var(--accent-coral-light); color: var(--accent-coral);"></div>
+
+          <form id="login-form">
+            <div class="form-group">
+              <label class="form-label" for="login-username">Username</label>
+              <input class="form-input" type="text" id="login-username" required placeholder="admin" autocomplete="username">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="login-password">Password</label>
+              <input class="form-input" type="password" id="login-password" required placeholder="••••••••" autocomplete="current-password">
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.85rem; font-size: 1rem; margin-top: 0.5rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+              Unlock Console
+            </button>
+          </form>
+
+          <div style="margin-top: 1.5rem; text-align: center; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); border-top: 1px dashed var(--grid-line); padding-top: 1rem;">
+            Default Credentials: <code>admin</code> / <code>tarek2026</code>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           2. DASHBOARD SECTION (Projects Manager)
+           ========================================== -->
+      <section id="admin-dashboard-section" style="display: none; padding: 0;">
+        
+        <!-- Header & Action Toolbar -->
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 2.5rem; border-bottom: 2px solid var(--border-ink); padding-bottom: 1.5rem;">
+          <div>
+            <div class="status-indicator" style="margin-bottom: 0.35rem;">
+              <span class="status-dot"></span> CONSOLE ACTIVE // CLIENT-PERSISTENCE
+            </div>
+            <h1 style="font-size: 2.25rem; margin: 0;">Portfolio Project Manager</h1>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 0.65rem; flex-wrap: wrap;">
+            <button id="btn-copy-code" class="btn btn-blue btn-sm" title="Copy JavaScript code to commit to GitHub repo">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              Copy Code for Git
+            </button>
+            <button id="btn-export-json" class="btn btn-secondary btn-sm" title="Export raw JSON">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              Export JSON
+            </button>
+            <button id="btn-import-json" class="btn btn-secondary btn-sm" title="Import JSON data">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+              Import JSON
+            </button>
+            <button id="btn-reset-defaults" class="btn btn-secondary btn-sm" style="color: var(--accent-coral);" title="Reset to initial projects catalog">
+              Reset
+            </button>
+          </div>
+        </div>
+
+        <!-- Add / Edit Project Form Card -->
+        <div class="sketch-card accent-coral" style="margin-bottom: 3.5rem;">
+          <span class="paper-tape left">PROJECT SPECIFICATION</span>
+          <div class="board-header">
+            <h2 id="form-mode-title" style="font-size: 1.5rem; margin: 0;">Add New Project</h2>
+            <span class="tech-tag coral">LIVE SYNC</span>
+          </div>
+
+          <form id="project-form">
+            <!-- Row 1: Title & ID -->
+            <div class="admin-grid-2col">
+              <div class="form-group">
+                <label class="form-label" for="proj-title">Project Title *</label>
+                <input class="form-input" type="text" id="proj-title" required placeholder="e.g. Cloud Telemetry Dashboard">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="proj-id">Project Slug ID (Unique URL identifier) *</label>
+                <input class="form-input" type="text" id="proj-id" required placeholder="e.g. cloud-telemetry-dashboard">
+              </div>
+            </div>
+
+            <!-- Row 2: Subtitle -->
+            <div class="form-group">
+              <label class="form-label" for="proj-subtitle">Subtitle / Technical Pitch *</label>
+              <input class="form-input" type="text" id="proj-subtitle" required placeholder="e.g. Real-time distributed microservices monitor with Docker & Prometheus">
+            </div>
+
+            <!-- Row 3: Category & Label -->
+            <div class="admin-grid-2col">
+              <div class="form-group">
+                <label class="form-label" for="proj-category">Category Filter *</label>
+                <select class="form-input" id="proj-category" required style="cursor: pointer;">
+                  <option value="backend enterprise">Backend & Enterprise (Java / Spring Boot / Node)</option>
+                  <option value="mobile">Mobile (Kotlin / Android / Flutter)</option>
+                  <option value="web">Full-Stack Web (React / MERN)</option>
+                  <option value="backend">Backend & Microservices</option>
+                  <option value="enterprise">Enterprise Platform</option>
+                  <option value="devops backend">DevOps & Infrastructure</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="proj-category-label">Badge Label (e.g. "Android / Kotlin" or "Java / Spring Boot")</label>
+                <input class="form-input" type="text" id="proj-category-label" placeholder="e.g. Java / Spring Boot">
+              </div>
+            </div>
+
+            <!-- Row 4: Role & Timeline -->
+            <div class="admin-grid-2col">
+              <div class="form-group">
+                <label class="form-label" for="proj-role">Your Role</label>
+                <input class="form-input" type="text" id="proj-role" placeholder="e.g. Lead Backend Engineer">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="proj-timeline">Timeline / Year</label>
+                <input class="form-input" type="text" id="proj-timeline" placeholder="e.g. 2025 or 2024–Present">
+              </div>
+            </div>
+
+            <!-- Row 5: Links & Hero Image -->
+            <div class="admin-grid-2col">
+              <div class="form-group">
+                <label class="form-label" for="proj-github">GitHub Repository URL</label>
+                <input class="form-input" type="url" id="proj-github" placeholder="https://github.com/mtarek47/...">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="proj-demo">Live Demo URL (Optional)</label>
+                <input class="form-input" type="url" id="proj-demo" placeholder="https://...">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="proj-image">Cover Image Path / URL</label>
+              <input class="form-input" type="text" id="proj-image" placeholder="assets/project-enterprise-1.jpg or https://image-url">
+            </div>
+
+            <!-- Row 6: Tech Stack & Architecture -->
+            <div class="form-group">
+              <label class="form-label" for="proj-tech">Tech Stack Tags (Comma separated) *</label>
+              <input class="form-input" type="text" id="proj-tech" required placeholder="e.g. Java, Spring Boot, Docker, PostgreSQL, REST API">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="proj-arch">Architecture Pattern / Blueprint</label>
+              <input class="form-input" type="text" id="proj-arch" placeholder="e.g. Clean Layered Architecture (Controller, Service, Repository, DTO)">
+            </div>
+
+            <!-- Row 7: Problem & Solution -->
+            <div class="form-group">
+              <label class="form-label" for="proj-problem">Problem Statement / Engineering Challenge</label>
+              <textarea class="form-textarea" id="proj-problem" style="min-height: 80px;" placeholder="What business problem or architectural challenge does this solve?"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="proj-solution">Technical Solution & Implementation</label>
+              <textarea class="form-textarea" id="proj-solution" style="min-height: 80px;" placeholder="How did you architect and implement the system?"></textarea>
+            </div>
+
+            <!-- Row 8: Key Features & Infra -->
+            <div class="form-group">
+              <label class="form-label" for="proj-features">Key Feature Highlights (One per line) *</label>
+              <textarea class="form-textarea" id="proj-features" style="min-height: 90px;" placeholder="Declarative modern UI with zero XML&#10;Stateless JWT authentication with RBAC&#10;Optimized relational SQL queries with indexing"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="proj-infra">Infrastructure & Automation Notes</label>
+              <input class="form-input" type="text" id="proj-infra" placeholder="e.g. Docker containerized microservice with automated GitHub Actions testing matrix.">
+            </div>
+
+            <!-- Featured Checkbox -->
+            <div style="margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.65rem;">
+              <input type="checkbox" id="proj-featured" style="width: 18px; height: 18px; accent-color: var(--accent-coral); cursor: pointer;">
+              <label for="proj-featured" style="font-family: var(--font-mono); font-size: 0.85rem; font-weight: 600; cursor: pointer;">
+                Feature this project prominently on the Home page
+              </label>
+            </div>
+
+            <!-- Actions -->
+            <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+              <button type="submit" class="btn btn-primary" style="padding: 0.85rem 1.75rem; font-size: 1rem;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                Save & Publish Project
+              </button>
+              <button type="button" id="proj-cancel-btn" class="btn btn-secondary">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Existing Projects List -->
+        <div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
+            <h2 style="font-size: 1.85rem; margin: 0;">Currently Published Projects</h2>
+            <span id="admin-project-count" class="tech-tag blue">0 Total</span>
+          </div>
+
+          <div id="admin-projects-list">
+            <!-- Rendered by admin.js -->
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==========================================
+       3. CHANGE CREDENTIALS MODAL
+       ========================================== -->
+  <div id="creds-modal" class="admin-modal-backdrop" style="display: none;">
+    <div class="sketch-card accent-blue" style="max-width: 460px; width: 100%;">
+      <span class="paper-tape">SECURITY SETTINGS</span>
+      <div class="board-header">
+        <h3 style="font-size: 1.35rem; margin: 0;">Change Login Credentials</h3>
+        <button id="creds-modal-close" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; line-height: 1;">&times;</button>
+      </div>
+
+      <div id="change-creds-msg" class="sketch-card" style="display: none; padding: 0.75rem 1rem; margin-bottom: 1rem; font-family: var(--font-mono); font-size: 0.8rem;"></div>
+
+      <form id="change-creds-form">
+        <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">
+          Current Username: <strong id="current-username-display" style="color: var(--text-ink);">admin</strong>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="change-current-pass">Current Password *</label>
+          <input class="form-input" type="password" id="change-current-pass" required placeholder="Enter current password">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="change-new-user">New Username</label>
+          <input class="form-input" type="text" id="change-new-user" placeholder="Enter new username (or leave blank to keep)">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="change-new-pass">New Password *</label>
+          <input class="form-input" type="password" id="change-new-pass" required placeholder="Enter new password (min 4 chars)">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="change-confirm-pass">Confirm New Password *</label>
+          <input class="form-input" type="password" id="change-confirm-pass" required placeholder="Re-enter new password">
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; margin-top: 1.5rem;">
+          <button type="submit" class="btn btn-primary" style="flex: 1;">Update Credentials</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/projects-store.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

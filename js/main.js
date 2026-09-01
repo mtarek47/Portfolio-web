@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileDrawer();
   initCopyButtons();
   initPipelineInteractions();
+  initHomeFeaturedProjects();
 });
 
 /**
@@ -120,4 +121,47 @@ function initPipelineInteractions() {
       step.style.borderColor = 'var(--accent-coral)';
     });
   });
+}
+
+/**
+ * Render featured projects on Home page if on index.html
+ */
+function initHomeFeaturedProjects() {
+  const isHomePage = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '';
+  const container = document.querySelector('.hero-section ~ section .projects-grid');
+  if (!isHomePage || !container || !window.ProjectsStore) return;
+
+  const allProjects = window.ProjectsStore.getProjects();
+  const featured = allProjects.filter(p => p.featured);
+  const displayProjects = featured.length > 0 ? featured.slice(0, 3) : allProjects.slice(0, 3);
+
+  container.innerHTML = displayProjects.map(p => {
+    const techStack = Array.isArray(p.techStack) ? p.techStack.slice(0, 4) : [];
+    const tagsHtml = techStack.map(t => `<span class="tech-tag">${t}</span>`).join('');
+
+    return `
+      <div class="project-card">
+        <div class="project-img-wrapper">
+          <img src="${p.heroImage || 'assets/project-enterprise-1.jpg'}" alt="${p.title}" loading="lazy" onerror="this.src='assets/project-enterprise-1.jpg'">
+          <span class="project-category-badge">${p.categoryLabel || p.category}</span>
+        </div>
+        <div class="project-body">
+          <h3 class="project-title">${p.title}</h3>
+          <div class="project-arch-tag">Architecture: ${p.architecture || 'Modular Design'}</div>
+          <p class="project-summary">${p.subtitle || p.problem || ''}</p>
+          <div class="project-tags">
+            ${tagsHtml}
+          </div>
+          <div class="project-footer-actions">
+            <a href="project-detail.html?id=${encodeURIComponent(p.id)}" class="btn btn-secondary btn-sm">Case Study</a>
+            ${p.github ? `
+              <a href="${p.github}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                <i class="devicon-github-original"></i> GitHub
+              </a>
+            ` : ''}
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
 }
