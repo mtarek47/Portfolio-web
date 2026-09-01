@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Engineering Skills & Stack Map — Tarek Parvez</title>
+  <meta name="title" content="Engineering Skills & Stack Map — Tarek Parvez">
+  <meta name="description" content="Technical skills dashboard and engineering stack map for Tarek Parvez: DevOps (Docker, Linux, CI/CD), Backend (Java Spring Boot, Node.js), Databases, and Mobile engineering.">
+  <meta name="author" content="Tarek Parvez">
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://tarekparvez.me/skills.html">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+
+  <!-- Devicon Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+  <!-- CSS Design System -->
+  <link rel="stylesheet" href="css/sketch-theme.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <!-- Sticky Global Navbar -->
+  <nav class="notebook-nav" aria-label="Main Navigation">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-brand">
+          <span class="brand-title">TAREK PARVEZ<span class="accent-dot">.</span></span>
+          <span class="brand-subtitle">DevOps // Software Engineer</span>
+        </a>
+
+        <ul class="nav-links">
+          <li class="nav-item"><a href="index.html">Home</a></li>
+          <li class="nav-item"><a href="about.html">About</a></li>
+          <li class="nav-item"><a href="skills.html" class="active">Skills</a></li>
+          <li class="nav-item"><a href="projects.html">Projects</a></li>
+          <li class="nav-item"><a href="experience.html">Experience</a></li>
+          <li class="nav-item"><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="nav-cta-group">
+          <a href="resume.html" class="btn btn-secondary btn-sm btn-resume">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            Resume
+          </a>
+          <button class="nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" aria-label="Mobile Navigation">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html" class="active">Skills & Stack Map</a></li>
+      <li><a href="projects.html">Projects Archive</a></li>
+      <li><a href="experience.html">Engineering Experience</a></li>
+      <li><a href="contact.html">Contact Me</a></li>
+      <li><a href="resume.html">View Resume</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <!-- PAGE HEADER -->
+    <section style="padding: 4rem 0 2.5rem 0; border-bottom: 2px solid var(--border-ink); background: var(--bg-card-muted);">
+      <div class="container">
+        <div class="section-header" style="margin-bottom: 0;">
+          <span class="section-label">Technical Competencies</span>
+          <h1 class="section-title">Skills & Architecture Map<span class="underline-sketch"></span></h1>
+          <p class="section-subtitle">
+            A comprehensive mapping of my technical toolkit, structured by domain and architectural layers—without arbitrary percentage ratings.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISUAL ENGINEERING STACK MAP -->
+    <section>
+      <div class="container">
+        <div class="section-header" style="margin-bottom: 2rem;">
+          <span class="section-label">System Architecture Schematic</span>
+          <h2 style="font-size: 1.85rem;">Interactive Stack Map</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">How my technical capabilities connect across the modern computing stack.</p>
+        </div>
+
+        <div class="stack-map-container">
+          <span class="paper-tape left">SYSTEM TOPOLOGY</span>
+          <div class="stack-map-diagram">
+            <!-- Node 1: Clients -->
+            <div class="map-node">
+              <div class="board-dots" style="justify-content: center; margin-bottom: 0.5rem;">
+                <div class="board-dot red"></div>
+                <div class="board-dot yellow"></div>
+                <div class="board-dot green"></div>
+              </div>
+              <h4>01. Client Tier</h4>
+              <p>User Interfaces & Native Apps</p>
+              <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+                <span class="tech-tag">React.js (Web)</span>
+                <span class="tech-tag green">Kotlin (Android)</span>
+                <span class="tech-tag blue">Flutter / Dart</span>
+              </div>
+            </div>
+
+            <!-- Connector -->
+            <div class="map-connector">
+              <span>⇄ REST / JSON ⇄</span>
+            </div>
+
+            <!-- Node 2: Backend & Logic -->
+            <div class="map-node" style="border-color: var(--accent-blue);">
+              <span class="paper-tape" style="top: -10px; font-size: 0.65rem;">CORE LOGIC</span>
+              <h4 style="color: var(--accent-blue);">02. Backend Services</h4>
+              <p>Domain Rules, APIs & Auth</p>
+              <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+                <span class="tech-tag green">Java Spring Boot</span>
+                <span class="tech-tag">Node.js / Express</span>
+                <span class="tech-tag blue">JWT Security & RBAC</span>
+              </div>
+            </div>
+
+            <!-- Connector -->
+            <div class="map-connector">
+              <span>⇄ SQL / Drivers ⇄</span>
+            </div>
+
+            <!-- Node 3: Persistence & Infra -->
+            <div class="map-node" style="border-color: var(--accent-coral);">
+              <span class="paper-tape" style="top: -10px; font-size: 0.65rem;">STORAGE & OPS</span>
+              <h4 style="color: var(--accent-coral);">03. Data & DevOps</h4>
+              <p>Persistence, Containers & Host</p>
+              <div style="display: flex; flex-direction: column; gap: 0.35rem;">
+                <span class="tech-tag">PostgreSQL / MySQL</span>
+                <span class="tech-tag coral">Docker Containers</span>
+                <span class="tech-tag">Linux Server Runtime</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DETAILED CATEGORIZED SKILLS -->
+    <section style="border-top: 2px solid var(--border-ink); background: var(--bg-card-muted);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Domain Clusters</span>
+          <h2 class="section-title">Categorized Technical Skills<span class="underline-sketch"></span></h2>
+          <p class="section-subtitle">Detailed breakdown of languages, frameworks, and infrastructure tools.</p>
+        </div>
+
+        <div class="focus-grid">
+          <!-- Cluster 1: DevOps & Infrastructure -->
+          <div class="sketch-card accent-coral">
+            <span class="paper-tape right">DEVOPS // INFRA</span>
+            <h3 style="font-size: 1.45rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="devicon-docker-plain colored"></i> DevOps & Infrastructure
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.25rem;">
+              Containerization, server orchestration, shell scripting, and automated deployment pipelines.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">Docker</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Multi-stage container builds, Docker Compose multi-container services.</div>
+              </div>
+              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">Linux System Administration</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Process management, permissions, systemd service units, cron automation.</div>
+              </div>
+              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">Git & CI/CD</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Branching strategies, automated test workflows, GitHub Actions pipelines.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cluster 2: Backend Engineering -->
+          <div class="sketch-card accent-blue">
+            <span class="paper-tape right">BACKEND // API</span>
+            <h3 style="font-size: 1.45rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="devicon-spring-plain colored"></i> Software & Backend
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.25rem;">
+              Enterprise Java backend architecture, REST API design, and asynchronous Node.js runtimes.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">Java & Spring Boot</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Spring Data JPA, Hibernate, Spring Security, DTO mapping, REST controllers.</div>
+              </div>
+              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">Node.js & Express.js</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Non-blocking I/O event loops, custom middleware, REST endpoints.</div>
+              </div>
+              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">System Design & OOP</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Layered architecture, SOLID principles, clean domain modeling.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cluster 3: Database Engineering -->
+          <div class="sketch-card">
+            <h3 style="font-size: 1.45rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="devicon-postgresql-plain colored"></i> Database Engineering
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.25rem;">
+              Relational and document database schema modeling, ACID transactions, and query optimization.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">PostgreSQL & MySQL</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Relational constraints, foreign keys, indexing, joins, stored procedures.</div>
+              </div>
+              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">MongoDB & NoSQL</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Mongoose ODM, flexible document schemas, aggregation pipelines.</div>
+              </div>
+              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">SQLite & Local Storage</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Embedded offline mobile persistence, ACID reliability on device.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cluster 4: Web Development -->
+          <div class="sketch-card">
+            <h3 style="font-size: 1.45rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="devicon-react-original colored"></i> Full-Stack Web
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.25rem;">
+              Modular component development, state management, and modern responsive layouts.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">React.js & Hooks</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Functional components, custom hooks, context state management.</div>
+              </div>
+              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">JavaScript (ES6+)</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Async/Await, Promises, array methods, modules, fetch API.</div>
+              </div>
+              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">HTML5 & CSS3 Architecture</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Semantic elements, Flexbox, CSS Grid, mobile-first responsiveness.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cluster 5: Mobile Development -->
+          <div class="sketch-card">
+            <h3 style="font-size: 1.45rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+              <i class="devicon-android-plain colored"></i> Mobile Development
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.25rem;">
+              Native Android engineering with Kotlin and cross-platform apps with Flutter.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">Kotlin & Jetpack Compose</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Declarative UI, StateFlow, Coroutines, MVVM architecture on Android.</div>
+              </div>
+              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">Flutter & Dart</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Cross-platform iOS and Android apps, Provider/BLoC state patterns.</div>
+              </div>
+              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">Firebase Suite</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Firebase Authentication, Firestore, Cloud Messaging push alerts.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cluster 6: Engineering Practices -->
+          <div class="sketch-card">
+            <h3 style="font-size: 1.45rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+              Engineering Tooling
+            </h3>
+            <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.6; margin-bottom: 1.25rem;">
+              Developer tooling, profiling, debugging, and continuous improvement practices.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">IntelliJ IDEA & Android Studio</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Advanced debugging, memory profiling, Gradle dependency resolution.</div>
+              </div>
+              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">Postman & API Testing</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Automated test collections, mock servers, payload contract validation.</div>
+              </div>
+              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+                <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">Git CLI & Workflow</div>
+                <div style="font-size: 0.8rem; color: var(--text-muted);">Interactive rebase, bisect debugging, squash merges, semantic tags.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="notebook-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>TAREK PARVEZ<span style="color: var(--accent-coral);">.</span></h3>
+          <p>
+            DevOps Engineer, Software Engineer & Full-Stack Developer specializing in reliable backend services, automation, and cross-platform applications.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="skills.html">Skills & Stack Map</a></li>
+            <li><a href="projects.html">Projects Archive</a></li>
+            <li><a href="experience.html">Experience Timeline</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Profiles</h4>
+          <ul class="footer-links">
+            <li>
+              <a href="https://github.com/mtarek47" target="_blank" rel="noopener noreferrer">
+                <i class="devicon-github-original"></i> GitHub
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/m-tarek-rahman-06068a349/" target="_blank" rel="noopener noreferrer">
+                <i class="devicon-linkedin-plain"></i> LinkedIn
+              </a>
+            </li>
+            <li>
+              <a href="mailto:tarekparvez47@gmail.com">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                Email
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-status-box">
+            <div class="footer-status-title">System Status</div>
+            <div class="footer-status-val">
+              <span class="status-dot"></span> ALL SYSTEMS OPERATIONAL
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Tarek Parvez. Built with code, curiosity, and a lot of debugging.</div>
+        <div class="footer-note">Handcrafted & Engineered</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Engineering Projects Archive — Tarek Parvez</title>
+  <meta name="title" content="Engineering Projects Archive — Tarek Parvez">
+  <meta name="description" content="Explore software engineering and DevOps projects by Tarek Parvez: Android applications, Java Spring Boot microservices, MERN full-stack web apps, and Flutter mobile systems.">
+  <meta name="author" content="Tarek Parvez">
+  <meta name="robots" content="index, follow">
+
+  <link rel="canonical" href="https://tarekparvez.me/projects.html">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+
+  <!-- Devicon Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+
+  <!-- CSS Design System -->
+  <link rel="stylesheet" href="css/sketch-theme.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+
+  <!-- Sticky Global Navbar -->
+  <nav class="notebook-nav" aria-label="Main Navigation">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-brand">
+          <span class="brand-title">TAREK PARVEZ<span class="accent-dot">.</span></span>
+          <span class="brand-subtitle">DevOps // Software Engineer</span>
+        </a>
+
+        <ul class="nav-links">
+          <li class="nav-item"><a href="index.html">Home</a></li>
+          <li class="nav-item"><a href="about.html">About</a></li>
+          <li class="nav-item"><a href="skills.html">Skills</a></li>
+          <li class="nav-item"><a href="projects.html" class="active">Projects</a></li>
+          <li class="nav-item"><a href="experience.html">Experience</a></li>
+          <li class="nav-item"><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <div class="nav-cta-group">
+          <a href="resume.html" class="btn btn-secondary btn-sm btn-resume">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            Resume
+          </a>
+          <button class="nav-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" aria-label="Mobile Navigation">
+    <ul class="mobile-nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="skills.html">Skills & Stack Map</a></li>
+      <li><a href="projects.html" class="active">Projects Archive</a></li>
+      <li><a href="experience.html">Engineering Experience</a></li>
+      <li><a href="contact.html">Contact Me</a></li>
+      <li><a href="resume.html">View Resume</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <!-- PAGE HEADER -->
+    <section style="padding: 4rem 0 2.5rem 0; border-bottom: 2px solid var(--border-ink); background: var(--bg-card-muted);">
+      <div class="container">
+        <div class="section-header" style="margin-bottom: 0;">
+          <span class="section-label">Software Portfolio</span>
+          <h1 class="section-title">Engineering Projects Archive<span class="underline-sketch"></span></h1>
+          <p class="section-subtitle">
+            A technical repository of production-grade mobile applications, backend services, enterprise platforms, and full-stack systems.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section>
+      <div class="container">
+        <!-- Client-Side Category Filter Bar -->
+        <div class="projects-filter-bar">
+          <button class="filter-btn active" data-filter="all">All Projects (7)</button>
+          <button class="filter-btn" data-filter="backend">Backend & Java</button>
+          <button class="filter-btn" data-filter="mobile">Mobile (Android/Flutter)</button>
+          <button class="filter-btn" data-filter="web">Full-Stack Web</button>
+          <button class="filter-btn" data-filter="enterprise">Enterprise Systems</button>
+        </div>
+
+        <!-- Project Cards Grid -->
+        <div class="projects-grid">
+          <!-- 1. Weather & Prayer -->
+          <div class="project-card" data-category="mobile">
+            <div class="project-img-wrapper">
+              <img src="assets/Weather and prayer.png" alt="Weather and Prayer Times App" loading="lazy">
+              <span class="project-category-badge">Android / Kotlin</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Weather & Prayer Times System</h3>
+              <div class="project-arch-tag">Architecture: Jetpack Compose + MVVM + Coroutines</div>
+              <p class="project-summary">
+                Native Android app integrating OpenWeather, USGS seismic telemetry, interactive Windy Doppler radar maps, and astronomical calculation algorithms.
+              </p>
+              <ul class="project-highlights">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Jetpack Compose declarative UI with zero XML</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Real-time global earthquake feeds via USGS API</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Hardware-accelerated radar map rendering</li>
+              </ul>
+              <div class="project-tags">
+                <span class="tech-tag">Android SDK</span>
+                <span class="tech-tag green">Kotlin</span>
+                <span class="tech-tag blue">Jetpack Compose</span>
+                <span class="tech-tag">Weather API</span>
+              </div>
+              <div class="project-footer-actions">
+                <a href="project-detail.html?id=weather-prayer" class="btn btn-secondary btn-sm">Case Study</a>
+                <a href="https://github.com/mtarek47/Weather_and_prayer" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                  <i class="devicon-github-original"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Blood Connect -->
+          <div class="project-card" data-category="mobile backend">
+            <div class="project-img-wrapper">
+              <img src="assets/blood_connect.jpg" alt="Blood Connect" loading="lazy">
+              <span class="project-category-badge">Mobile / Full-Stack</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Blood Connect Emergency Dispatch</h3>
+              <div class="project-arch-tag">Architecture: Android SDK + Node.js/Express + MySQL + FCM</div>
+              <p class="project-summary">
+                Emergency mobile platform connecting critical blood recipients with nearby donors using geospatial proximity queries and high-priority push notifications.
+              </p>
+              <ul class="project-highlights">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Sub-second FCM push notifications for urgent requests</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Spatial MySQL queries for radius matching</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Express.js REST API with connection pooling</li>
+              </ul>
+              <div class="project-tags">
+                <span class="tech-tag green">Kotlin / Java</span>
+                <span class="tech-tag">Android</span>
+                <span class="tech-tag blue">Express.js</span>
+                <span class="tech-tag">MySQL</span>
+                <span class="tech-tag coral">Firebase FCM</span>
+              </div>
+              <div class="project-footer-actions">
+                <a href="project-detail.html?id=blood-connect" class="btn btn-secondary btn-sm">Case Study</a>
+                <a href="https://github.com/mtarek47/flutter-snake-game" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                  <i class="devicon-github-original"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Enterprise E-Learning -->
+          <div class="project-card" data-category="backend enterprise">
+            <div class="project-img-wrapper">
+              <img src="assets/project-enterprise-1.jpg" alt="E-Learning Platform" loading="lazy">
+              <span class="project-category-badge">Enterprise / Java</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Enterprise E-Learning Platform</h3>
+              <div class="project-arch-tag">Architecture: Spring Boot REST API + JPA/Hibernate + MySQL</div>
+              <p class="project-summary">
+                Comprehensive course engine supporting Student, Instructor, and Admin roles with automated quiz evaluation pipelines and transactional enrollments.
+              </p>
+              <ul class="project-highlights">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Spring Security stateless JWT authentication with RBAC</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Transaction-isolated course enrollment operations</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Normalized relational database schema in MySQL</li>
+              </ul>
+              <div class="project-tags">
+                <span class="tech-tag">Java</span>
+                <span class="tech-tag green">Spring Boot</span>
+                <span class="tech-tag blue">MySQL</span>
+                <span class="tech-tag">Hibernate</span>
+                <span class="tech-tag">REST API</span>
+              </div>
+              <div class="project-footer-actions">
+                <a href="project-detail.html?id=elearning-platform" class="btn btn-secondary btn-sm">Case Study</a>
+                <a href="https://github.com/mtarek47/E-Learning-Platform" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                  <i class="devicon-github-original"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Project Management System -->
+          <div class="project-card" data-category="backend enterprise web">
+            <div class="project-img-wrapper">
+              <img src="assets/project-enterprise-2.jpg" alt="Project Management System" loading="lazy">
+              <span class="project-category-badge">Full-Stack / Spring Boot</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Project Management & Sprint System</h3>
+              <div class="project-arch-tag">Architecture: React.js SPA + Spring Boot + PostgreSQL</div>
+              <p class="project-summary">
+                Team workflow and sprint planning platform with interactive drag-and-drop Kanban boards, sprint velocity calculations, and PostgreSQL relational backplane.
+              </p>
+              <ul class="project-highlights">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Interactive Kanban board with optimistic UI state</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> High-performance PostgreSQL queries for team metrics</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Clean layered controller/service/repository boundaries</li>
+              </ul>
+              <div class="project-tags">
+                <span class="tech-tag">Java</span>
+                <span class="tech-tag green">Spring Boot</span>
+                <span class="tech-tag blue">PostgreSQL</span>
+                <span class="tech-tag">React.js</span>
+              </div>
+              <div class="project-footer-actions">
+                <a href="project-detail.html?id=project-management" class="btn btn-secondary btn-sm">Case Study</a>
+                <a href="https://github.com/mtarek47/Project-Management-System" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                  <i class="devicon-github-original"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. E-commerce Web -->
+          <div class="project-card" data-category="web">
+            <div class="project-img-wrapper">
+              <img src="assets/project-web-1.jpg" alt="Online Shopping Website" loading="lazy">
+              <span class="project-category-badge">Web / MERN</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Modern E-Commerce Web Platform</h3>
+              <div class="project-arch-tag">Architecture: React.js + Node.js + Express.js + MongoDB</div>
+              <p class="project-summary">
+                Full-featured online shopping platform with dynamic multi-attribute product catalog, local-storage synchronized cart state, and JWT authenticated checkout.
+              </p>
+              <ul class="project-highlights">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> React state management for cart synchronization</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Express REST API with MongoDB aggregation queries</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Secure password hashing and token-based auth</li>
+              </ul>
+              <div class="project-tags">
+                <span class="tech-tag blue">React.js</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Express.js</span>
+                <span class="tech-tag green">MongoDB</span>
+              </div>
+              <div class="project-footer-actions">
+                <a href="project-detail.html?id=ecommerce-web" class="btn btn-secondary btn-sm">Case Study</a>
+                <a href="https://github.com/mtarek47/SHOP.CO" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                  <i class="devicon-github-original"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6. E-commerce Mobile -->
+          <div class="project-card" data-category="mobile">
+            <div class="project-img-wrapper">
+              <img src="assets/ecommerce.jpg" alt="E-commerce Mobile App" loading="lazy">
+              <span class="project-category-badge">Mobile / Flutter</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">E-Commerce Mobile Application</h3>
+              <div class="project-arch-tag">Architecture: Flutter + Firebase Firestore + Payment Gateway</div>
+              <p class="project-summary">
+                Cross-platform mobile shopping application built in Flutter featuring real-time inventory streams, payment gateway integration, and user profile management.
+              </p>
+              <ul class="project-highlights">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Real-time Firestore stream listeners for instant stock updates</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Cross-platform responsive layout for iOS and Android</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Firebase authentication and user profile storage</li>
+              </ul>
+              <div class="project-tags">
+                <span class="tech-tag blue">Flutter</span>
+                <span class="tech-tag">Dart</span>
+                <span class="tech-tag coral">Firebase</span>
+                <span class="tech-tag">Payments</span>
+              </div>
+              <div class="project-footer-actions">
+                <a href="project-detail.html?id=ecommerce-mobile" class="btn btn-secondary btn-sm">Case Study</a>
+                <a href="https://github.com/mtarek47/flutter-ecommerce-app" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                  <i class="devicon-github-original"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 7. Task Management App -->
+          <div class="project-card" data-category="mobile">
+            <div class="project-img-wrapper">
+              <img src="assets/project2.jpg" alt="Task Management App" loading="lazy">
+              <span class="project-category-badge">Mobile / SQLite</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Productivity Task Management App</h3>
+              <div class="project-arch-tag">Architecture: Flutter + SQLite (sqflite) + Local Notifications</div>
+              <p class="project-summary">
+                Offline-first productivity mobile app engineered for instant responsiveness, task categorization, custom recurrence scheduling, and local notification triggers.
+              </p>
+              <ul class="project-highlights">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 100% offline-first functionality with embedded SQLite</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Scheduled local OS background notification alarms</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Fast indexed queries for task filtering by priority</li>
+              </ul>
+              <div class="project-tags">
+                <span class="tech-tag blue">Flutter</span>
+                <span class="tech-tag">Dart</span>
+                <span class="tech-tag">SQLite</span>
+                <span class="tech-tag">Notifications</span>
+              </div>
+              <div class="project-footer-actions">
+                <a href="project-detail.html?id=task-management-mobile" class="btn btn-secondary btn-sm">Case Study</a>
+                <a href="https://github.com/mtarek47/flutter-task-management" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                  <i class="devicon-github-original"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="notebook-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>TAREK PARVEZ<span style="color: var(--accent-coral);">.</span></h3>
+          <p>
+            DevOps Engineer, Software Engineer & Full-Stack Developer specializing in reliable backend services, automation, and cross-platform applications.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="skills.html">Skills & Stack Map</a></li>
+            <li><a href="projects.html">Projects Archive</a></li>
+            <li><a href="experience.html">Experience Timeline</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Profiles</h4>
+          <ul class="footer-links">
+            <li>
+              <a href="https://github.com/mtarek47" target="_blank" rel="noopener noreferrer">
+                <i class="devicon-github-original"></i> GitHub
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/m-tarek-rahman-06068a349/" target="_blank" rel="noopener noreferrer">
+                <i class="devicon-linkedin-plain"></i> LinkedIn
+              </a>
+            </li>
+            <li>
+              <a href="mailto:tarekparvez47@gmail.com">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                Email
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-status-box">
+            <div class="footer-status-title">System Status</div>
+            <div class="footer-status-val">
+              <span class="status-dot"></span> ALL SYSTEMS OPERATIONAL
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 Tarek Parvez. Built with code, curiosity, and a lot of debugging.</div>
+        <div class="footer-note">Handcrafted & Engineered</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script src="js/projects-filter.js"></script>
+</body>
+</html>
