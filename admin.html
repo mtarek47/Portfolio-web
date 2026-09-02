@@ -62,7 +62,7 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
             View Live Site
           </a>
-          <button id="btn-change-creds" class="btn btn-secondary btn-sm" title="Change Username / Password">
+          <button id="btn-change-creds" class="btn btn-secondary btn-sm" title="Change Username / Password" style="display: none;">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
             Security / Password
           </button>
@@ -102,12 +102,12 @@
           <form id="login-form">
             <div class="form-group">
               <label class="form-label" for="login-username">Username</label>
-              <input class="form-input" type="text" id="login-username" required placeholder="admin" autocomplete="username">
+              <input class="form-input" type="text" id="login-username" required placeholder="Enter username" autocomplete="username">
             </div>
 
             <div class="form-group">
               <label class="form-label" for="login-password">Password</label>
-              <input class="form-input" type="password" id="login-password" required placeholder="••••••••" autocomplete="current-password">
+              <input class="form-input" type="password" id="login-password" required placeholder="Enter password" autocomplete="current-password">
             </div>
 
             <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.85rem; font-size: 1rem; margin-top: 0.5rem;">
@@ -115,10 +115,6 @@
               Unlock Console
             </button>
           </form>
-
-          <div style="margin-top: 1.5rem; text-align: center; font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); border-top: 1px dashed var(--grid-line); padding-top: 1rem;">
-            Default Credentials: <code>admin</code> / <code>tarek2026</code>
-          </div>
         </div>
       </section>
 

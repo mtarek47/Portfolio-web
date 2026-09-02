@@ -46,15 +46,18 @@ function initAuth() {
 
   function checkAuthState() {
     const isAuth = sessionStorage.getItem(AUTH_KEY) === 'true';
+    const changeCredsBtn = document.getElementById('btn-change-creds');
     if (isAuth) {
       if (loginSection) loginSection.style.display = 'none';
       if (dashboardSection) dashboardSection.style.display = 'block';
       if (logoutBtn) logoutBtn.style.display = 'inline-flex';
+      if (changeCredsBtn) changeCredsBtn.style.display = 'inline-flex';
       loadProjectsTable();
     } else {
       if (loginSection) loginSection.style.display = 'block';
       if (dashboardSection) dashboardSection.style.display = 'none';
       if (logoutBtn) logoutBtn.style.display = 'none';
+      if (changeCredsBtn) changeCredsBtn.style.display = 'none';
     }
   }
 

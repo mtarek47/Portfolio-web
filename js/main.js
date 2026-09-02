@@ -36,15 +36,29 @@ function initNavigation() {
 /**
  * Mobile Drawer Menu Open/Close Logic
  */
+/**
+ * Mobile Drawer Menu Open/Close Logic
+ */
 function initMobileDrawer() {
   const toggleBtn = document.querySelector('.nav-toggle');
   const drawer = document.querySelector('.mobile-drawer');
 
   if (!toggleBtn || !drawer) return;
 
+  const closeDrawer = () => {
+    drawer.classList.remove('open');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    const bars = toggleBtn.querySelectorAll('span');
+    bars[0].style.transform = 'none';
+    bars[1].style.opacity = '1';
+    bars[2].style.transform = 'none';
+  };
+
   toggleBtn.addEventListener('click', () => {
     const isOpen = drawer.classList.toggle('open');
     toggleBtn.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
     
     // Animate hamburger bars
     const bars = toggleBtn.querySelectorAll('span');
@@ -59,16 +73,23 @@ function initMobileDrawer() {
     }
   });
 
-  // Close drawer when clicking outside or on a link
+  // Close drawer when clicking on any navigation link
   drawer.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      drawer.classList.remove('open');
-      toggleBtn.setAttribute('aria-expanded', 'false');
-      const bars = toggleBtn.querySelectorAll('span');
-      bars[0].style.transform = 'none';
-      bars[1].style.opacity = '1';
-      bars[2].style.transform = 'none';
-    });
+    link.addEventListener('click', closeDrawer);
+  });
+
+  // Close drawer on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) {
+      closeDrawer();
+    }
+  });
+
+  // Automatically close drawer if window is resized to desktop viewport
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 992 && drawer.classList.contains('open')) {
+      closeDrawer();
+    }
   });
 }
 

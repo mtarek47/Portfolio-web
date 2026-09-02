@@ -387,3 +387,47 @@ code, pre, .mono-text {
   outline: 3px solid var(--accent-coral);
   outline-offset: 3px;
 }
+
+/* --- Global Responsive Component Utilities --- */
+@media (max-width: 640px) {
+  .btn {
+    min-height: 44px;
+    padding: 0.65rem 1.15rem;
+    font-size: 0.875rem;
+  }
+
+  .btn-sm {
+    min-height: 38px;
+    padding: 0.45rem 0.85rem;
+    font-size: 0.8rem;
+  }
+
+  .sketch-card {
+    padding: 1.35rem 1.1rem;
+  }
+
+  .paper-tape {
+    max-width: calc(100% - 24px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.7rem;
+    padding: 2px 10px;
+  }
+
+  .paper-tape.right {
+    right: 12px;
+  }
+
+  .paper-tape.left {
+    left: 12px;
+  }
+
+  .form-input, .form-textarea, select {
+    font-size: 16px !important; /* Prevents auto-zoom on iOS Safari */
+  }
+
+  .annotation {
+    font-size: 1.1rem;
+  }
+}
