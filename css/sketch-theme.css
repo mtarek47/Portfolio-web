@@ -63,6 +63,8 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-height) + 24px);
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -80,6 +82,8 @@ body {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  max-width: 100%;
+  width: 100%;
 }
 
 /* --- Selection --- */
