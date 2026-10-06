@@ -1,10 +1,11 @@
 /* ==========================================================================
-   PAGE-SPECIFIC STYLES & TECHNICAL SCHEMATICS
-   Hero, Architecture Boards, DevOps Lifecycle, Stack Map, Projects, Timeline, Form
+   PAGE-SPECIFIC STYLES — Industrial Skeuomorphism
+   Hero, Control Panel, DevOps Lifecycle, Stack Map, Projects, Timeline, Form
+   All components follow the physical law: light from top-left at 45°.
    ========================================================================== */
 
 /* ==========================================================================
-   1. HERO SECTION (Technical Engineering Notebook Workspace)
+   1. HERO SECTION — Engineering Control Console
    ========================================================================== */
 .hero-section {
   padding: 4.5rem 0 5rem 0;
@@ -18,110 +19,179 @@
   align-items: center;
 }
 
+/* --- Hero Badge Row --- */
 .hero-badge-group {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
   flex-wrap: wrap;
 }
 
 .hero-role-badge {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.68rem;
   font-weight: 700;
   color: var(--accent-blue);
   background: var(--accent-blue-light);
-  border: 1.5px solid var(--accent-blue);
-  border-radius: var(--radius-wobbly-sm);
-  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-sm);
+  padding: 0.25rem 0.85rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
+  box-shadow: 2px 2px 5px #babecc, -1px -1px 3px #ffffff;
 }
 
+/* --- Hero Heading --- */
 .hero-title {
-  font-size: 3.25rem;
-  line-height: 1.15;
-  margin-bottom: 1.25rem;
-  color: var(--text-ink);
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1.12;
+  margin-bottom: 1.35rem;
+  color: var(--text);
+  letter-spacing: -0.03em;
+  /* Embossed 3D stamp effect */
+  text-shadow: 0 1px 0 rgba(255,255,255,0.85);
 }
 
 .hero-title .highlight-coral {
-  color: var(--accent-coral);
-  position: relative;
-  display: inline-block;
+  color: var(--accent);
+  /* Glowing accent text */
+  text-shadow: 0 0 20px rgba(255,71,87,0.18), 0 1px 0 rgba(255,255,255,0.5);
 }
 
 .hero-title .highlight-blue {
   color: var(--accent-blue);
 }
 
+/* --- Hero Description --- */
 .hero-desc {
-  font-size: 1.125rem;
+  font-size: 1.05rem;
   color: var(--text-muted);
-  line-height: 1.7;
+  line-height: 1.75;
   margin-bottom: 2rem;
-  max-width: 580px;
+  max-width: 55ch;
 }
 
+/* --- Hero CTA Buttons --- */
 .hero-actions {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.85rem;
   flex-wrap: wrap;
   margin-bottom: 2rem;
 }
 
+/* --- Hero Social Icons --- */
 .hero-social-links {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
 }
 
+/* Neumorphic floating social icon housing */
 .social-btn {
-  width: 42px;
-  height: 42px;
-  border: 2px solid var(--border-ink);
-  background: var(--bg-card);
-  border-radius: var(--radius-wobbly-sm);
-  box-shadow: var(--shadow-sm);
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--background);
+  box-shadow: var(--shadow-card);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--text-ink);
-  transition: transform 0.15s ease, background 0.15s ease;
+  color: var(--text-muted);
+  transition:
+    box-shadow var(--duration-fast) var(--ease-mechanical),
+    color var(--duration-fast) ease,
+    transform var(--duration-fast) var(--ease-mechanical);
 }
 
 .social-btn:hover {
-  transform: translate(-2px, -2px);
-  background: var(--text-ink);
-  color: var(--bg-paper);
+  color: var(--accent);
+  box-shadow: var(--shadow-floating), 0 0 10px rgba(255,71,87,0.15);
+  transform: translateY(-2px);
 }
 
-/* --- Hero Architecture Board (Technical Visual) --- */
+.social-btn:active {
+  transform: translateY(1px);
+  box-shadow: var(--shadow-pressed);
+}
+
+/* ==========================================================================
+   2. ARCHITECTURE BOARD — The "Control Panel" Hero Visual
+   Inspired by spacecraft control panels and Braun synthesizers.
+   ========================================================================== */
 .hero-visual-board {
   position: relative;
 }
 
-.architecture-board {
-  background: var(--bg-card);
-  border: 2.5px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-md);
-  box-shadow: var(--shadow-lg);
-  padding: 1.75rem;
+/* Sticky note — now a dark sticker card */
+.sticky-note {
+  background: var(--dark-surface);
+  color: var(--accent-green);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  /* Push-pin effect at top center */
   position: relative;
 }
 
+.sticky-note::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  box-shadow: 0 0 6px 2px rgba(34,197,94,0.5);
+  flex-shrink: 0;
+  animation: led-pulse 2.2s ease-in-out infinite;
+}
+
+/* The main architecture control panel */
+.architecture-board {
+  background: var(--dark-surface);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  position: relative;
+  /* Outer neumorphic — the device sits on the chassis */
+  box-shadow:
+    12px 12px 28px #a3b1c6,
+    -6px -6px 16px #ffffff,
+    inset 0 1px 0 rgba(255,255,255,0.08);
+  /* Carbon fiber texture on dark bezel */
+  background-image:
+    radial-gradient(ellipse at 0% 0%, rgba(255,255,255,0.05) 0%, transparent 40%),
+    url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+  background-size: cover, auto;
+  background-blend-mode: normal, overlay;
+}
+
+/* 4px physical border/bezel rim */
+.architecture-board::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 3px solid rgba(255,255,255,0.06);
+  pointer-events: none;
+}
+
+/* Board header — window chrome bar */
 .board-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border-bottom: 2px dashed var(--grid-line);
-  padding-bottom: 0.85rem;
+  gap: 1rem;
   margin-bottom: 1.25rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
 
 .board-dots {
@@ -133,169 +203,251 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  border: 1.5px solid var(--border-ink);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.3);
 }
 
-.board-dot.red { background: var(--accent-coral); }
-.board-dot.yellow { background: var(--accent-yellow); }
-.board-dot.green { background: var(--accent-green); }
+.board-dot.red    { background: #ff5f56; box-shadow: 0 0 5px rgba(255,95,86,0.4); }
+.board-dot.yellow { background: #ffbd2e; box-shadow: 0 0 5px rgba(255,189,46,0.4); }
+.board-dot.green  { background: var(--accent-green); box-shadow: 0 0 5px rgba(34,197,94,0.5); animation: led-pulse 2.5s ease-in-out infinite; }
 
-/* Interactive Pipeline Visual */
+.board-header > span {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--dark-text-muted);
+}
+
+/* ==========================================================================
+   PIPELINE STEPS — LED-lit status indicators
+   ========================================================================== */
 .pipeline-flow {
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 0;
 }
 
 .pipeline-step {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--bg-paper);
-  border: 1.5px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-sm);
-  padding: 0.65rem 1rem;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  transition: transform 0.15s ease, background 0.15s ease;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 0;
+  cursor: pointer;
+  transition:
+    background var(--duration-fast) ease,
+    border-color var(--duration-fast) ease,
+    box-shadow var(--duration-fast) ease;
 }
 
 .pipeline-step:hover {
-  background: #FFF;
-  transform: translateX(4px);
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,71,87,0.4);
+  box-shadow: inset 0 0 12px rgba(255,71,87,0.06);
 }
 
 .pipeline-step-left {
   display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  font-weight: 600;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .step-badge {
-  font-size: 0.7rem;
-  padding: 0.15rem 0.45rem;
-  border: 1px solid var(--border-ink);
-  border-radius: 3px;
-  background: #FFF;
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+}
+
+.pipeline-step .pipeline-step-left > span:not(.step-badge) {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--dark-text);
 }
 
 .pipeline-arrow {
   text-align: center;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  line-height: 1;
-}
-
-/* Terminal Card Snippet */
-.terminal-snippet {
-  margin-top: 1.25rem;
-  background: #1E1E1E;
-  color: #D4D4D4;
-  border-radius: 6px;
-  border: 2px solid var(--border-ink);
-  padding: 0.85rem 1rem;
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  line-height: 1.5;
-  box-shadow: 2px 2px 0 var(--border-ink);
-}
-
-.terminal-prompt {
-  color: #569CD6;
-}
-
-.terminal-cmd {
-  color: #CE9178;
-}
-
-.terminal-success {
-  color: #6A9955;
-}
-
-/* Sticky Note Annotation */
-.sticky-note {
-  position: absolute;
-  top: -18px;
-  right: -15px;
-  background: #FFF9DB;
-  border: 2px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-sm);
-  padding: 0.65rem 1rem;
-  box-shadow: var(--shadow-sm);
-  transform: rotate(4deg);
-  font-family: var(--font-accent);
-  font-size: 1.15rem;
-  color: var(--text-ink);
-  z-index: 5;
-  max-width: 170px;
+  color: rgba(255,255,255,0.12);
+  font-size: 0.75rem;
+  padding: 0.1rem 0;
+  margin: 0 0.5rem;
 }
 
 /* ==========================================================================
-   2. ENGINEERING FOCUS AREAS
+   TERMINAL SNIPPET — CRT Screen Recessed Well
+   ========================================================================== */
+.terminal-snippet {
+  margin-top: 1.25rem;
+  background: #0d1117;
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  /* Recessed screen effect */
+  box-shadow:
+    inset 4px 4px 12px rgba(0,0,0,0.5),
+    inset -2px -2px 6px rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  position: relative;
+  overflow: hidden;
+  min-height: 90px;
+}
+
+/* CRT Scanlines overlay */
+.terminal-snippet::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(0,0,0,0.12) 2px,
+    rgba(0,0,0,0.12) 4px
+  );
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.terminal-snippet code {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.7;
+  display: block;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.terminal-prompt {
+  color: #58a6ff;
+  font-weight: 700;
+}
+
+.terminal-cmd {
+  color: #e6edf3;
+}
+
+.terminal-success {
+  color: var(--accent-green);
+  display: block;
+  text-shadow: 0 0 8px rgba(34,197,94,0.4);
+}
+
+/* ==========================================================================
+   3. ENGINEERING FOCUS SECTION — Bolted Module Cards
    ========================================================================== */
 .focus-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.75rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
 }
 
+/* Focus card — bolted panel module */
 .focus-card {
-  background: var(--bg-card);
-  border: 2.5px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-sm);
-  box-shadow: var(--shadow-md);
-  padding: 1.75rem;
+  background: var(--background);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.5rem;
+  box-shadow: var(--shadow-card);
   position: relative;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: flex;
-  flex-direction: column;
+  transition:
+    transform var(--duration-base) var(--ease-smooth),
+    box-shadow var(--duration-base) var(--ease-smooth);
+  overflow: visible;
+}
+
+/* Corner screws — radial gradient bolts */
+.focus-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 10px 10px, rgba(0,0,0,0.22) 2px, rgba(255,255,255,0.4) 2.5px, transparent 4px),
+    radial-gradient(circle at calc(100% - 10px) 10px, rgba(0,0,0,0.22) 2px, rgba(255,255,255,0.4) 2.5px, transparent 4px),
+    radial-gradient(circle at 10px calc(100% - 10px), rgba(0,0,0,0.22) 2px, rgba(255,255,255,0.4) 2.5px, transparent 4px),
+    radial-gradient(circle at calc(100% - 10px) calc(100% - 10px), rgba(0,0,0,0.22) 2px, rgba(255,255,255,0.4) 2.5px, transparent 4px);
+  z-index: 1;
+}
+
+/* Vent slots — top-right industrial ventilation */
+.focus-card::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  right: 28px;
+  width: 18px;
+  height: 8px;
+  /* 3 vertical pill slots */
+  background:
+    linear-gradient(90deg,
+      var(--muted) 0px,   var(--muted) 3px,
+      transparent 3px,   transparent 6px,
+      var(--muted) 6px,  var(--muted) 9px,
+      transparent 9px,   transparent 12px,
+      var(--muted) 12px, var(--muted) 15px,
+      transparent 15px,  transparent 18px
+    );
+  border-radius: var(--radius-full);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.15);
 }
 
 .focus-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-floating);
 }
 
 .focus-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
+/* Icon housing — circular recessed well */
 .focus-icon {
-  width: 44px;
-  height: 44px;
-  border: 2px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-sm);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--background);
+  box-shadow: var(--shadow-recessed);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--bg-paper);
-  box-shadow: var(--shadow-sm);
-  color: var(--text-ink);
-  font-size: 1.25rem;
+  font-size: 1.5rem;
+  transition: box-shadow var(--duration-base);
+}
+
+.focus-card:hover .focus-icon {
+  box-shadow: var(--shadow-card);
 }
 
 .focus-num {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   font-weight: 700;
-  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
 }
 
 .focus-title {
-  font-size: 1.45rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
   margin-bottom: 0.65rem;
+  letter-spacing: -0.01em;
 }
 
 .focus-desc {
+  font-size: 0.875rem;
   color: var(--text-muted);
-  font-size: 0.935rem;
-  line-height: 1.6;
-  margin-bottom: 1.25rem;
-  flex: 1;
+  line-height: 1.7;
+  margin-bottom: 1.15rem;
 }
 
 .focus-tags {
@@ -305,1026 +457,1280 @@
 }
 
 /* ==========================================================================
-   3. DEVOPS 8-STAGE LIFECYCLE SIGNATURE SECTION
+   4. DEVOPS LIFECYCLE SECTION — Dark Technical Panel
    ========================================================================== */
 .devops-lifecycle-section {
-  background: var(--bg-card-muted);
-  border-top: 2.5px solid var(--border-ink);
-  border-bottom: 2.5px solid var(--border-ink);
-  position: relative;
+  background: var(--dark-surface);
+  background-image:
+    radial-gradient(ellipse at 0% 0%, rgba(255,255,255,0.04) 0%, transparent 40%),
+    url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+  background-size: cover, auto;
+  background-blend-mode: normal, overlay;
 }
 
+.devops-lifecycle-section .section-label {
+  background: rgba(255,71,87,0.15);
+  border: none;
+  color: var(--accent);
+  box-shadow: none;
+}
+
+.devops-lifecycle-section .section-title {
+  color: var(--dark-text);
+  text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+}
+
+.devops-lifecycle-section .section-subtitle {
+  color: var(--dark-text-muted);
+}
+
+/* Lifecycle diagram container */
 .lifecycle-diagram {
-  background: var(--bg-card);
-  border: 2.5px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-lg);
-  box-shadow: var(--shadow-lg);
+  background: rgba(0,0,0,0.2);
+  border-radius: var(--radius-xl);
   padding: 2.5rem 2rem;
   position: relative;
+  box-shadow:
+    inset 6px 6px 16px rgba(0,0,0,0.35),
+    inset -3px -3px 8px rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.05);
 }
 
 .lifecycle-stages {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
+  gap: 1.5rem;
   position: relative;
+}
+
+/* Physical connector pipe between stages */
+.lifecycle-stages::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 12%;
+  right: 12%;
+  height: 3px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(255,255,255,0.06) 5%,
+    rgba(255,71,87,0.4) 50%,
+    rgba(255,255,255,0.06) 95%,
+    transparent 100%
+  );
+  /* Cylindrical pipe look */
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.06),
+    0 -1px 0 rgba(0,0,0,0.3),
+    inset 0 1px 2px rgba(0,0,0,0.2);
+  border-radius: var(--radius-full);
 }
 
 .lifecycle-stage {
-  background: var(--bg-paper);
-  border: 2px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-sm);
-  box-shadow: var(--shadow-sm);
-  padding: 1.25rem 1rem;
+  background: rgba(255,255,255,0.03);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1rem;
+  border: 1px solid rgba(255,255,255,0.06);
   text-align: center;
   position: relative;
-  transition: transform 0.15s ease;
+  transition: background var(--duration-base), border-color var(--duration-base);
 }
 
 .lifecycle-stage:hover {
-  transform: translateY(-3px);
-  background: #FFF;
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,71,87,0.3);
+}
+
+/* Stage node circle (sits on the connector pipe) */
+.lifecycle-stage::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(255,71,87,0.6);
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .stage-step-num {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.58rem;
   font-weight: 700;
-  color: var(--accent-coral);
-  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
   display: block;
+  margin-bottom: 0.65rem;
 }
 
 .stage-title {
-  font-family: var(--font-heading);
-  font-size: 1.25rem;
-  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--dark-text);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
 }
 
 .stage-desc {
-  font-family: var(--font-mono);
-  font-size: 0.775rem;
-  color: var(--text-muted);
+  font-size: 0.75rem;
+  color: var(--dark-text-muted);
+  line-height: 1.6;
 }
 
 .lifecycle-footer-note {
-  margin-top: 2rem;
-  text-align: center;
-  border-top: 1.5px dashed var(--grid-line);
-  padding-top: 1.25rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
   font-family: var(--font-mono);
-  font-size: 0.85rem;
-  color: var(--text-muted);
+  font-size: 0.75rem;
+  color: var(--dark-text-muted);
 }
 
 /* ==========================================================================
-   4. TECHNOLOGY SNAPSHOT & STACK MAP
+   5. TECHNOLOGY SNAPSHOT — Industrial Stack Map
    ========================================================================== */
 .tech-snapshot-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
   margin-bottom: 2.5rem;
 }
 
 .snapshot-category {
-  background: var(--bg-card);
-  border: 2px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-sm);
-  box-shadow: var(--shadow-sm);
+  background: var(--background);
+  border-radius: var(--radius-lg);
   padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  transition: box-shadow var(--duration-base), transform var(--duration-base);
+}
+
+.snapshot-category::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 8px 8px, rgba(0,0,0,0.18) 1.5px, rgba(255,255,255,0.3) 2px, transparent 3px),
+    radial-gradient(circle at calc(100% - 8px) 8px, rgba(0,0,0,0.18) 1.5px, rgba(255,255,255,0.3) 2px, transparent 3px);
+}
+
+.snapshot-category:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-floating);
 }
 
 .snapshot-category h3 {
-  font-size: 1.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text);
   margin-bottom: 1rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border-bottom: 1.5px dashed var(--grid-line);
-  padding-bottom: 0.4rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .snapshot-pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.45rem;
-}
-
-/* Engineering Stack Map (Schematic on /skills) */
-.stack-map-container {
-  background: var(--bg-card);
-  border: 2.5px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-lg);
-  box-shadow: var(--shadow-lg);
-  padding: 2.5rem 2rem;
-  margin-bottom: 3.5rem;
-  position: relative;
-}
-
-.stack-map-diagram {
-  display: grid;
-  grid-template-columns: 1fr auto 1.2fr auto 1fr;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.map-node {
-  background: var(--bg-paper);
-  border: 2px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-sm);
-  box-shadow: var(--shadow-sm);
-  padding: 1.5rem 1.25rem;
-  text-align: center;
-}
-
-.map-node h4 {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  color: var(--accent-blue);
-}
-
-.map-node p {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  margin-bottom: 0.75rem;
-}
-
-.map-connector {
-  font-family: var(--font-mono);
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--accent-coral);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: 0.4rem;
 }
 
 /* ==========================================================================
-   5. PROJECTS GRID & FILTER BAR
+   6. PROJECTS GRID — Engineering Case Study Cards
    ========================================================================== */
-.projects-filter-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  margin-bottom: 3rem;
-}
-
-.filter-btn {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 600;
-  padding: 0.5rem 1.15rem;
-  background: var(--bg-card);
-  border: 2px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-sm);
-  box-shadow: var(--shadow-sm);
-  cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
-}
-
-.filter-btn:hover {
-  transform: translateY(-2px);
-  background: var(--bg-card-muted);
-}
-
-.filter-btn.active {
-  background: var(--text-ink);
-  color: #FFFFFF;
-}
-
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .project-card {
-  background: var(--bg-card);
-  border: 2.5px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-sm);
-  box-shadow: var(--shadow-md);
+  background: var(--background);
+  border-radius: var(--radius-lg);
   overflow: hidden;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  transition:
+    transform var(--duration-base) var(--ease-smooth),
+    box-shadow var(--duration-base) var(--ease-smooth);
   display: flex;
   flex-direction: column;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Corner screws on project cards */
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  background:
+    radial-gradient(circle at 10px 10px, rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.4) 2.5px, transparent 4px),
+    radial-gradient(circle at calc(100% - 10px) 10px, rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.4) 2.5px, transparent 4px);
+  border-radius: inherit;
 }
 
 .project-card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-floating);
 }
 
+/* Project image — grayscale-to-color on hover */
 .project-img-wrapper {
   position: relative;
-  height: 210px;
-  border-bottom: 2px solid var(--border-ink);
+  height: 200px;
   overflow: hidden;
-  background: var(--bg-paper);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  /* Recessed bezel around image */
+  box-shadow: inset 0 -4px 12px rgba(0,0,0,0.1);
 }
 
 .project-img-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease;
+  /* Grayscale treatment — color activates on hover */
+  filter: grayscale(0.6) contrast(1.05);
+  transition: filter var(--duration-slow) ease, transform var(--duration-slow) ease;
 }
 
 .project-card:hover .project-img-wrapper img {
+  filter: grayscale(0) contrast(1);
   transform: scale(1.04);
 }
 
+/* Category badge — diagonal sticker on image */
 .project-category-badge {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: rgba(253, 251, 247, 0.95);
-  border: 1.5px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-sm);
+  bottom: 12px;
+  left: 12px;
   font-family: var(--font-mono);
-  font-size: 0.725rem;
+  font-size: 0.62rem;
   font-weight: 700;
-  padding: 0.2rem 0.65rem;
-  box-shadow: 1px 1px 0px var(--border-ink);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--dark-surface);
+  color: var(--accent);
+  padding: 0.25rem 0.7rem;
+  border-radius: var(--radius-sm);
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+  z-index: 2;
 }
 
 .project-body {
   padding: 1.5rem;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  flex: 1;
 }
 
 .project-title {
-  font-size: 1.45rem;
-  margin-bottom: 0.45rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.01em;
 }
 
+/* Architecture tag — technical label */
 .project-arch-tag {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: var(--accent-blue);
-  font-weight: 600;
-  margin-bottom: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.75rem;
 }
 
 .project-summary {
-  font-size: 0.925rem;
+  font-size: 0.875rem;
   color: var(--text-muted);
-  line-height: 1.6;
-  margin-bottom: 1.25rem;
+  line-height: 1.65;
+  margin-bottom: 1rem;
   flex: 1;
-}
-
-.project-highlights {
-  list-style: none;
-  margin-bottom: 1.25rem;
-  font-family: var(--font-mono);
-  font-size: 0.775rem;
-  color: var(--text-ink);
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.project-highlights li {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-}
-
-.project-highlights li svg {
-  color: var(--accent-coral);
-  flex-shrink: 0;
 }
 
 .project-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-bottom: 1.5rem;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
 }
 
 .project-footer-actions {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.6rem;
+  flex-wrap: wrap;
   margin-top: auto;
-  border-top: 1.5px dashed var(--grid-line);
-  padding-top: 1rem;
 }
 
 /* ==========================================================================
-   6. ENGINEERING TIMELINE (Experience Page)
+   7. CALL TO ACTION BANNER — Physical Panel CTA
    ========================================================================== */
-.timeline-tree {
-  position: relative;
+.cta-panel {
+  background: var(--background);
+  border-radius: var(--radius-2xl);
+  padding: 3rem 2.5rem;
+  text-align: center;
   max-width: 860px;
   margin: 0 auto;
-  padding-left: 2.5rem;
+  box-shadow: var(--shadow-floating);
+  position: relative;
 }
 
-/* Git Branch Trunk Line */
-.timeline-tree::before {
+/* Large corner screws on CTA */
+.cta-panel::before {
   content: '';
   position: absolute;
-  top: 10px;
-  bottom: 10px;
-  left: 10px;
-  width: 3px;
-  background: var(--border-ink);
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20px 20px, rgba(0,0,0,0.2) 3px, rgba(255,255,255,0.4) 3.5px, transparent 5px),
+    radial-gradient(circle at calc(100% - 20px) 20px, rgba(0,0,0,0.2) 3px, rgba(255,255,255,0.4) 3.5px, transparent 5px),
+    radial-gradient(circle at 20px calc(100% - 20px), rgba(0,0,0,0.2) 3px, rgba(255,255,255,0.4) 3.5px, transparent 5px),
+    radial-gradient(circle at calc(100% - 20px) calc(100% - 20px), rgba(0,0,0,0.2) 3px, rgba(255,255,255,0.4) 3.5px, transparent 5px);
 }
 
-.timeline-node {
-  position: relative;
-  margin-bottom: 3rem;
-}
-
-.timeline-node:last-child {
-  margin-bottom: 0;
-}
-
-/* Git Commit Node Dot */
-.timeline-dot {
-  position: absolute;
-  left: -2.5rem;
-  top: 18px;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--bg-paper);
-  border: 3px solid var(--border-ink);
-  box-shadow: var(--shadow-sm);
-  z-index: 2;
-}
-
-.timeline-node:hover .timeline-dot {
-  background: var(--accent-coral);
-}
-
-.timeline-card {
-  background: var(--bg-card);
-  border: 2.5px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-sm);
-  box-shadow: var(--shadow-md);
-  padding: 1.75rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.timeline-card:hover {
-  transform: translateX(4px);
-  box-shadow: var(--shadow-lg);
-}
-
-.timeline-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 0.65rem;
-}
-
-.timeline-period {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: var(--accent-coral);
-  background: var(--accent-coral-light);
-  border: 1px solid var(--accent-coral);
-  border-radius: 3px;
-  padding: 0.15rem 0.5rem;
-}
-
-.timeline-commit-hash {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
-
-.timeline-role {
-  font-size: 1.55rem;
-  margin-bottom: 0.35rem;
-}
-
-.timeline-org {
-  font-family: var(--font-mono);
-  font-size: 0.875rem;
-  color: var(--accent-blue);
-  font-weight: 600;
-  margin-bottom: 1rem;
-}
-
-.timeline-duties {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1.25rem;
-  font-size: 0.935rem;
-  color: var(--text-muted);
-}
-
-.timeline-duties li {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-}
-
-.timeline-duties li svg {
-  margin-top: 4px;
-  color: var(--accent-blue);
-  flex-shrink: 0;
+/* Existing sketch-card.accent-coral used for CTA — override with physical look */
+.sketch-card.accent-coral {
+  box-shadow: var(--shadow-floating);
+  border-radius: var(--radius-2xl);
 }
 
 /* ==========================================================================
-   7. ABOUT PAGE & PHILOSOPHY
+   8. ABOUT PAGE — Engineering Profile Layout
    ========================================================================== */
 .about-intro-grid {
   display: grid;
-  grid-template-columns: 1fr 1.35fr;
-  gap: 3.5rem;
-  align-items: center;
-  margin-bottom: 4.5rem;
+  grid-template-columns: 300px 1fr;
+  gap: 3rem;
+  align-items: start;
 }
 
+/* Photo card — neumorphic frame */
 .about-photo-card {
-  background: var(--bg-card);
-  border: 2.5px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-md);
-  box-shadow: var(--shadow-lg);
-  padding: 1.25rem;
-  position: relative;
+  background: var(--background);
+  border-radius: var(--radius-xl);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-card);
   text-align: center;
+  position: relative;
+  transition: box-shadow var(--duration-base);
+}
+
+.about-photo-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12px 12px, rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.4) 2.5px, transparent 4px),
+    radial-gradient(circle at calc(100% - 12px) 12px, rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.4) 2.5px, transparent 4px),
+    radial-gradient(circle at 12px calc(100% - 12px), rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.4) 2.5px, transparent 4px),
+    radial-gradient(circle at calc(100% - 12px) calc(100% - 12px), rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.4) 2.5px, transparent 4px);
+}
+
+.about-photo-card:hover {
+  box-shadow: var(--shadow-floating);
 }
 
 .about-photo-card img {
   width: 100%;
-  max-width: 380px;
-  border-radius: var(--radius-wobbly-sm);
-  border: 2px solid var(--border-ink);
-  display: block;
-  margin: 0 auto 1rem auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  /* Recessed image well */
+  box-shadow: var(--shadow-recessed);
+  filter: grayscale(0.15);
+  transition: filter var(--duration-slow);
 }
 
-.principles-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+.about-photo-card:hover img {
+  filter: grayscale(0);
+}
+
+/* About text block */
+.about-text-block {
+  display: flex;
+  flex-direction: column;
   gap: 1.5rem;
 }
 
-.principle-card {
-  background: var(--bg-card);
-  border: 2px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-sm);
-  box-shadow: var(--shadow-sm);
-  padding: 1.5rem;
-  position: relative;
+.about-text-block h2,
+.about-text-block h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.7);
 }
 
-.principle-verb {
+.about-text-block p {
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+
+/* Quick info row */
+.about-info-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+/* About page stat grid */
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-top: 1rem;
+}
+
+.stat-card {
+  background: var(--background);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  text-align: center;
+  position: relative;
+  transition: box-shadow var(--duration-base), transform var(--duration-base);
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-floating);
+}
+
+.stat-card h4,
+.stat-card .stat-num {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
+  font-size: 2rem;
   font-weight: 700;
-  color: var(--accent-coral);
+  color: var(--accent);
+  margin-bottom: 0.35rem;
+  text-shadow: 0 0 16px rgba(255,71,87,0.2);
+}
+
+.stat-card p,
+.stat-card .stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
+  color: var(--text-muted);
+}
+
+/* Generic .stat class compat */
+.stat {
+  background: var(--background);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  text-align: center;
+  transition: box-shadow var(--duration-base), transform var(--duration-base);
+}
+
+.stat:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-floating);
+}
+
+.stat h4 {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
   margin-bottom: 0.35rem;
 }
 
-.principle-title {
-  font-size: 1.35rem;
-  margin-bottom: 0.5rem;
+.stat p {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
 }
 
-.principle-desc {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  line-height: 1.55;
+/* Philosophy/principle cards */
+.principle-card {
+  background: var(--background);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  transition: box-shadow var(--duration-base), transform var(--duration-base);
+}
+
+.principle-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-floating);
+}
+
+.principle-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 8px 8px, rgba(0,0,0,0.18) 1.5px, rgba(255,255,255,0.3) 2px, transparent 3px),
+    radial-gradient(circle at calc(100% - 8px) 8px, rgba(0,0,0,0.18) 1.5px, rgba(255,255,255,0.3) 2px, transparent 3px);
+}
+
+/* About page bio card rows */
+.about-detail-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  background: var(--background);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--duration-fast);
+}
+
+.about-detail-row:hover {
+  box-shadow: var(--shadow-card);
 }
 
 /* ==========================================================================
-   8. CONTACT PAGE & FORM
+   9. SKILLS PAGE — Stack Map
    ========================================================================== */
-.contact-layout {
+.skills-map-grid {
   display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  gap: 3.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.skill-category-card {
+  background: var(--background);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  transition: box-shadow var(--duration-base), transform var(--duration-base);
+}
+
+.skill-category-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 10px 10px, rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
+    radial-gradient(circle at calc(100% - 10px) 10px, rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
+    radial-gradient(circle at 10px calc(100% - 10px), rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
+    radial-gradient(circle at calc(100% - 10px) calc(100% - 10px), rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px);
+}
+
+.skill-category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-floating);
+}
+
+.skill-category-card h3 {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Compat: existing .skill-category class */
+.skill-category {
+  background: var(--background);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  transition: box-shadow var(--duration-base), transform var(--duration-base);
+}
+
+.skill-category:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-floating);
+}
+
+.skill-category h3 {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+.skill-items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.1rem 0.75rem;
+  background: var(--background);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-recessed);
+  cursor: pointer;
+  transition:
+    box-shadow var(--duration-fast) ease,
+    transform var(--duration-fast) ease;
+}
+
+.skill-item:hover {
+  box-shadow: var(--shadow-card);
+  transform: translateY(-2px);
+}
+
+.skill-item:active {
+  box-shadow: var(--shadow-pressed);
+  transform: translateY(1px);
+}
+
+.skill-item span {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  text-align: center;
+  line-height: 1.3;
+}
+
+.skill-item i {
+  font-size: 1.75rem;
+}
+
+/* Preserve devicon colors */
+.skill-item i.devicon-java-plain         { color: #f89820; }
+.skill-item i.devicon-spring-plain       { color: #6DB33F; }
+.skill-item i.devicon-mysql-plain        { color: #4479A1; }
+.skill-item i.devicon-postgresql-plain   { color: #336791; }
+.skill-item i.devicon-react-original     { color: #61DAFB; }
+.skill-item i.devicon-nodejs-plain       { color: #339933; }
+.skill-item i.devicon-express-original   { color: #2d3436; }
+.skill-item i.devicon-mongodb-plain      { color: #47A248; }
+.skill-item i.devicon-flutter-plain      { color: #02569B; }
+.skill-item i.devicon-firebase-plain     { color: #FFCA28; }
+.skill-item i.devicon-androidstudio-plain{ color: #3DDC84; }
+.skill-item i.devicon-kotlin-plain       { color: #7F52FF; }
+.skill-item i.devicon-git-plain          { color: #F05032; }
+.skill-item i.devicon-linux-plain        { color: #2d3436; }
+.skill-item i.devicon-docker-plain       { color: #2496ED; }
+
+/* ==========================================================================
+   10. EXPERIENCE PAGE — Technical Timeline
+   ========================================================================== */
+.timeline {
+  position: relative;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* Central pipeline spine */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-blue) 100%);
+  transform: translateX(-50%);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 8px rgba(255,71,87,0.3);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 3rem;
+  width: 50%;
+}
+
+.timeline-item:nth-child(odd) {
+  left: 0;
+  padding-right: 3rem;
+}
+
+.timeline-item:nth-child(even) {
+  left: 50%;
+  padding-left: 3rem;
+}
+
+/* Timeline dot — LED indicator */
+.timeline-dot {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: var(--accent);
+  border-radius: 50%;
+  top: 1.25rem;
+  z-index: 2;
+  box-shadow: 0 0 10px rgba(255,71,87,0.6);
+  border: 2px solid var(--background);
+}
+
+.timeline-item:nth-child(odd) .timeline-dot  { right: -8px; }
+.timeline-item:nth-child(even) .timeline-dot { left: -8px; }
+
+/* Timeline content card — neumorphic */
+.timeline-content {
+  background: var(--background);
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  transition: box-shadow var(--duration-base), transform var(--duration-base);
+}
+
+.timeline-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 8px 8px, rgba(0,0,0,0.18) 1.5px, rgba(255,255,255,0.3) 2px, transparent 3px),
+    radial-gradient(circle at calc(100% - 8px) 8px, rgba(0,0,0,0.18) 1.5px, rgba(255,255,255,0.3) 2px, transparent 3px);
+}
+
+.timeline-content:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-floating);
+}
+
+.timeline-content h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+
+.timeline-content h4 {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.timeline-date {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  background: var(--accent-blue-light);
+  color: var(--accent-blue);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 0.85rem;
+  box-shadow: 2px 2px 5px #babecc, -1px -1px 3px #ffffff;
+}
+
+/* ==========================================================================
+   11. CONTACT PAGE — Form & Contact Panel
+   ========================================================================== */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 3rem;
+  align-items: start;
 }
 
 .contact-info-panel {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-}
-
-.contact-detail-card {
-  background: var(--bg-card);
-  border: 2px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-sm);
-  box-shadow: var(--shadow-sm);
-  padding: 1.25rem 1.5rem;
-  display: flex;
-  align-items: center;
   gap: 1.25rem;
 }
 
-.contact-icon-box {
-  width: 46px;
-  height: 46px;
-  border: 2px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-sm);
-  background: var(--bg-paper);
+/* Contact detail item — neumorphic recessed slot */
+.contact-item {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 1.25rem;
-  color: var(--accent-blue);
-  box-shadow: var(--shadow-sm);
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  background: var(--background);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--duration-base), transform var(--duration-base);
+}
+
+.contact-item:hover {
+  box-shadow: var(--shadow-floating);
+  transform: translateX(4px);
+}
+
+.contact-item i,
+.contact-item svg {
+  color: var(--accent);
   flex-shrink: 0;
 }
 
-.contact-label {
+.contact-item h4 {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.65rem;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
   color: var(--text-muted);
+  margin-bottom: 0.2rem;
 }
 
-.contact-val {
-  font-family: var(--font-mono);
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--text-ink);
+.contact-item p {
+  font-size: 0.875rem;
+  color: var(--text);
+  font-weight: 500;
+  margin: 0;
 }
 
-.sketch-form-card {
-  background: var(--bg-card);
-  border: 2.5px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-md);
-  box-shadow: var(--shadow-lg);
-  padding: 2.25rem;
+/* Form card */
+.contact-form-card {
+  background: var(--background);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-card);
   position: relative;
 }
 
+.contact-form-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12px 12px, rgba(0,0,0,0.18) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
+    radial-gradient(circle at calc(100% - 12px) 12px, rgba(0,0,0,0.18) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
+    radial-gradient(circle at 12px calc(100% - 12px), rgba(0,0,0,0.18) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
+    radial-gradient(circle at calc(100% - 12px) calc(100% - 12px), rgba(0,0,0,0.18) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px);
+}
+
+/* Recessed input wells */
+.form-input,
+.form-textarea,
+.contact-form input,
+.contact-form textarea,
+.contact-form select,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+textarea,
+select {
+  width: 100%;
+  background: var(--background);
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.1rem;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--text);
+  box-shadow: var(--shadow-recessed);
+  min-height: 52px;
+  outline: none;
+  transition:
+    box-shadow var(--duration-fast) ease,
+    color var(--duration-fast) ease;
+  resize: none;
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder,
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.55;
+  font-family: var(--font-mono);
+}
+
+/* Focus: LED accent glow appears — like backlight activating */
+.form-input:focus,
+.form-textarea:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  box-shadow: var(--shadow-recessed), 0 0 0 2px var(--accent), 0 0 12px rgba(255,71,87,0.15);
+  color: var(--text);
+}
+
+.form-textarea,
+textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
 
 .form-label {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-ink);
-  margin-bottom: 0.45rem;
-}
-
-.form-input, .form-textarea {
-  width: 100%;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  padding: 0.85rem 1rem;
-  background: var(--bg-paper);
-  border: 2px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-sm);
-  box-shadow: 2px 2px 0px var(--border-ink);
-  color: var(--text-ink);
-  transition: box-shadow 0.15s ease, background 0.15s ease;
-}
-
-.form-input:focus, .form-textarea:focus {
-  background: #FFF;
-  outline: none;
-  border-color: var(--accent-blue);
-  box-shadow: 3px 3px 0px var(--accent-blue);
-}
-
-.form-textarea {
-  resize: vertical;
-  min-height: 140px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
 }
 
 /* ==========================================================================
-   9. CASE STUDY & PROJECT DETAIL VIEW
+   12. RESUME PAGE — Engineering Document
+   ========================================================================== */
+.resume-container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.resume-section-title {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--muted);
+}
+
+.resume-card {
+  background: var(--background);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 1rem;
+  transition: box-shadow var(--duration-base), transform var(--duration-base);
+  position: relative;
+}
+
+.resume-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 8px 8px, rgba(0,0,0,0.18) 1.5px, rgba(255,255,255,0.3) 2px, transparent 3px),
+    radial-gradient(circle at calc(100% - 8px) 8px, rgba(0,0,0,0.18) 1.5px, rgba(255,255,255,0.3) 2px, transparent 3px);
+}
+
+.resume-card:hover {
+  box-shadow: var(--shadow-floating);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   13. PROJECT DETAIL / CASE STUDY PAGE
    ========================================================================== */
 .case-study-hero {
-  background: var(--bg-card-muted);
-  border-bottom: 2.5px solid var(--border-ink);
-  padding: 4rem 0 3rem 0;
-}
-
-.case-study-header {
-  max-width: 900px;
-}
-
-.case-study-body {
-  padding: 4rem 0;
-}
-
-.case-study-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 3rem;
-}
-
-.study-section {
-  margin-bottom: 3rem;
-}
-
-.study-section h3 {
-  font-size: 1.85rem;
-  margin-bottom: 1rem;
-  border-bottom: 2px dashed var(--grid-line);
-  padding-bottom: 0.45rem;
-}
-
-.study-section p {
-  color: var(--text-muted);
-  font-size: 1rem;
-  line-height: 1.7;
-  margin-bottom: 1.25rem;
-}
-
-.study-sidebar-card {
-  background: var(--bg-card);
-  border: 2.5px solid var(--border-ink);
-  border-radius: var(--radius-wobbly-sm);
-  box-shadow: var(--shadow-md);
-  padding: 1.75rem;
+  background: var(--background);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-card);
   margin-bottom: 2rem;
+  position: relative;
+}
+
+.case-study-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 16px 16px, rgba(0,0,0,0.2) 3px, rgba(255,255,255,0.4) 3.5px, transparent 5px),
+    radial-gradient(circle at calc(100% - 16px) 16px, rgba(0,0,0,0.2) 3px, rgba(255,255,255,0.4) 3.5px, transparent 5px),
+    radial-gradient(circle at 16px calc(100% - 16px), rgba(0,0,0,0.2) 3px, rgba(255,255,255,0.4) 3.5px, transparent 5px),
+    radial-gradient(circle at calc(100% - 16px) calc(100% - 16px), rgba(0,0,0,0.2) 3px, rgba(255,255,255,0.4) 3.5px, transparent 5px);
+}
+
+.case-study-img {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-recessed);
+  filter: grayscale(0.1);
+  transition: filter var(--duration-slow);
+}
+
+.case-study-img:hover {
+  filter: grayscale(0);
+}
+
+/* Code blocks in case studies */
+.code-block {
+  background: var(--dark-surface);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--dark-text);
+  box-shadow: var(--shadow-recessed);
+  overflow-x: auto;
+  position: relative;
+}
+
+.code-block::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 2px,
+    rgba(0,0,0,0.06) 2px,
+    rgba(0,0,0,0.06) 4px
+  );
+  pointer-events: none;
 }
 
 /* ==========================================================================
-   10. RESPONSIVE MEDIA QUERIES & MOBILE OPTIMIZATION
+   14. PROJECTS FILTER PAGE
    ========================================================================== */
-@media (max-width: 992px) {
-  .hero-grid {
-    grid-template-columns: 1fr;
-    gap: 2.75rem;
-  }
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+  padding: 1.25rem;
+  background: var(--background);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-recessed);
+}
 
-  .lifecycle-stages {
+.filter-btn {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-md);
+  background: var(--background);
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition:
+    box-shadow var(--duration-fast),
+    color var(--duration-fast),
+    transform var(--duration-fast);
+  min-height: 36px;
+}
+
+.filter-btn:hover {
+  color: var(--text);
+  box-shadow: var(--shadow-card);
+}
+
+.filter-btn.active,
+.filter-btn[aria-pressed="true"] {
+  color: var(--accent);
+  box-shadow: var(--shadow-pressed);
+}
+
+.filter-btn:active {
+  transform: translateY(1px);
+  box-shadow: var(--shadow-pressed);
+}
+
+/* ==========================================================================
+   15. RESPONSIVE — Page Components
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .focus-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.25rem;
   }
 
   .tech-snapshot-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .stack-map-diagram {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  .lifecycle-stages {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .map-connector {
-    transform: none;
-    padding: 0.65rem 0;
-    font-size: 1.1rem;
+  .lifecycle-stages::before {
+    display: none;
+  }
+
+  .lifecycle-stage::before {
+    display: none;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .skills-map-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .hero-visual-board {
+    order: -1;
+  }
+
+  .hero-title {
+    font-size: clamp(1.85rem, 6vw, 2.5rem);
   }
 
   .about-intro-grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
   }
 
-  .contact-layout {
+  .contact-grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
   }
 
-  .case-study-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  .timeline::before {
+    left: 16px;
   }
 
-  .metrics-grid {
+  .timeline-item {
+    width: 100%;
+    left: 0 !important;
+    padding-left: 3rem !important;
+    padding-right: 0 !important;
+  }
+
+  .timeline-dot {
+    left: 8px !important;
+    right: auto !important;
+  }
+
+  .about-stats {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lifecycle-stages {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }
 
 @media (max-width: 640px) {
-  /* Hero Section */
-  .hero-title {
-    font-size: clamp(2rem, 6.8vw, 2.5rem);
-    line-height: 1.2;
+  .hero-section {
+    padding: 3rem 0 3.5rem;
+  }
+
+  .hero-badge-group {
+    margin-bottom: 1rem;
   }
 
   .hero-desc {
-    font-size: 1rem;
-    line-height: 1.65;
+    font-size: 0.95rem;
   }
 
   .hero-actions {
     flex-direction: column;
-    width: 100%;
     align-items: stretch;
-    gap: 0.75rem;
   }
 
   .hero-actions .btn {
     width: 100%;
+    justify-content: center;
   }
 
-  .hero-badge-group {
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .hero-role-badge, .status-indicator {
-    font-size: 0.75rem;
-    padding: 0.25rem 0.65rem;
-  }
-
-  .sticky-note {
-    top: -12px;
-    right: 6px;
-    transform: rotate(2deg);
-    max-width: 135px;
-    font-size: 0.85rem;
-    padding: 0.4rem 0.65rem;
-  }
-
-  .architecture-board {
-    padding: 1.25rem 1rem;
-  }
-
-  .pipeline-step {
-    padding: 0.6rem 0.75rem;
-    font-size: 0.8rem;
-  }
-
-  .terminal-snippet {
-    font-size: 0.72rem;
-    padding: 0.75rem;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Engineering Focus & Tech Snapshots */
   .focus-grid {
     grid-template-columns: 1fr;
-    gap: 1.25rem;
-  }
-
-  .focus-card {
-    padding: 1.35rem 1.1rem;
   }
 
   .tech-snapshot-grid {
     grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .snapshot-category {
-    padding: 1.25rem 1rem;
-  }
-
-  /* DevOps Lifecycle Stages */
-  .lifecycle-stages {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .lifecycle-stage {
-    padding: 1rem;
-  }
-
-  .lifecycle-card {
-    padding: 1.5rem 1.15rem;
-  }
-
-  /* Stack Map */
-  .stack-map-container {
-    padding: 1.75rem 1.1rem;
-    margin-bottom: 2.5rem;
-  }
-
-  .map-node {
-    padding: 1.25rem 1rem;
-  }
-
-  /* Projects Grid & Horizontal Swipe Filter Bar */
-  .projects-filter-bar {
-    justify-content: flex-start;
-    overflow-x: auto;
-    flex-wrap: nowrap;
-    padding: 0.25rem 0.25rem 0.85rem 0.25rem;
-    gap: 0.5rem;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    margin-bottom: 2rem;
-    width: 100%;
-  }
-
-  .projects-filter-bar::-webkit-scrollbar {
-    display: none;
-  }
-
-  .filter-btn {
-    white-space: nowrap;
-    flex-shrink: 0;
-    padding: 0.5rem 1rem;
-    font-size: 0.825rem;
   }
 
   .projects-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
   }
 
-  .project-img-wrapper {
-    height: 190px;
-  }
-
-  .project-body {
-    padding: 1.25rem 1.1rem;
-  }
-
-  .project-title {
-    font-size: 1.3rem;
-  }
-
-  /* Engineering Timeline */
-  .timeline-tree {
-    padding-left: 1.65rem;
-  }
-
-  .timeline-tree::before {
-    left: 6px;
-    width: 2.5px;
-  }
-
-  .timeline-dot {
-    left: -1.65rem;
-    width: 15px;
-    height: 15px;
-    top: 16px;
-  }
-
-  .timeline-card {
-    padding: 1.35rem 1.1rem;
-  }
-
-  .timeline-role {
-    font-size: 1.25rem;
-  }
-
-  .timeline-meta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.35rem;
-  }
-
-  /* About Page */
-  .about-intro-grid {
+  .skills-map-grid {
     grid-template-columns: 1fr;
-    gap: 1.75rem;
   }
 
-  .about-photo-card {
-    padding: 1.5rem 1.15rem;
+  .skill-items {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .about-stats {
     grid-template-columns: 1fr;
-    gap: 0.75rem;
   }
 
-  /* Contact Page */
-  .contact-layout {
+  .about-photo-card {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .architecture-board {
+    padding: 1.25rem;
+  }
+
+  .lifecycle-diagram {
+    padding: 1.5rem 1rem;
+  }
+
+  .contact-form-card {
+    padding: 1.5rem;
+  }
+
+  .footer-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .contact-info-panel {
-    gap: 0.75rem;
-  }
-
-  .contact-detail-card {
-    padding: 0.85rem 1rem;
-  }
-
-  .sketch-form-card {
-    padding: 1.5rem 1.15rem;
-  }
-
-  /* Metrics Grid */
-  .metrics-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .metric-card {
-    padding: 1.25rem 1.1rem;
-  }
-
-  .metric-num {
-    font-size: 2.2rem;
-  }
-
-  /* Case Study Detail */
-  .case-study-hero {
-    padding: 1.75rem 1.15rem;
-  }
-
-  .case-study-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .spec-sheet {
-    padding: 1.25rem 1.1rem;
-  }
-
-  /* Resume Page Overrides */
-  .resume-paper {
-    padding: 1.5rem 1.15rem !important;
-  }
-
-  .resume-skills-grid {
-    grid-template-columns: 1fr !important;
-    gap: 0.35rem 0 !important;
-  }
-
-  .resume-header-flex {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .resume-contact-info {
-    text-align: left !important;
-    margin-top: 0.75rem;
-  }
-
-  .resume-actions {
-    flex-direction: column;
-    align-items: stretch !important;
-    gap: 0.75rem;
-  }
-
-  .resume-actions > div {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .resume-actions .btn {
-    width: 100%;
-  }
-
-  /* Admin Console Responsive */
-  .admin-table-container {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    border: 1.5px solid var(--border-ink);
-    border-radius: var(--radius-wobbly-sm);
-  }
-
-  .admin-table {
-    min-width: 600px;
-  }
-
-  .admin-header-actions {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.75rem;
-  }
-
-  .admin-header-actions .btn {
-    width: 100%;
   }
 }
 
-@media (max-width: 380px) {
-  .timeline-tree {
-    padding-left: 1.25rem;
+@media (max-width: 480px) {
+  .skill-items {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .timeline-dot {
-    left: -1.25rem;
-    width: 14px;
-    height: 14px;
-  }
-
-  .timeline-card {
-    padding: 1.15rem 0.85rem;
-  }
-
-  .hero-role-badge {
-    font-size: 0.7rem;
-  }
-
-  .hero-title {
-    font-size: 1.85rem;
+  .focus-card::after {
+    display: none; /* Hide vent slots on very small screens */
   }
 }
