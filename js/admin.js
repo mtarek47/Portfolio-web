@@ -179,11 +179,14 @@ function initCredentialsModal() {
 }
 
 /**
- * Load and render projects in Admin table
+ * Load and render projects in Admin table with Priority Sorting & Drag-and-Drop
  */
+let draggedItemIndex = null;
+
 function loadProjectsTable() {
   const listContainer = document.getElementById('admin-projects-list');
   const countBadge = document.getElementById('admin-project-count');
+  const sortSelect = document.getElementById('admin-quick-sort');
   if (!listContainer) return;
 
   const projects = window.ProjectsStore ? window.ProjectsStore.getProjects() : [];
@@ -194,22 +197,43 @@ function loadProjectsTable() {
     return;
   }
 
-  listContainer.innerHTML = projects.map(p => {
+  listContainer.innerHTML = projects.map((p, index) => {
     const tags = Array.isArray(p.techStack) ? p.techStack.slice(0, 3).join(', ') : '';
+    const isFirst = index === 0;
+    const isLast = index === projects.length - 1;
+
     return `
-      <div class="sketch-card" style="margin-bottom: 1rem; padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
-        <div style="flex: 1; min-width: 260px;">
-          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
-            <strong style="font-size: 1.15rem;">${p.title}</strong>
-            <span class="tech-tag ${p.featured ? 'coral' : ''}" style="font-size: 0.7rem;">${p.categoryLabel || p.category}</span>
-            ${p.featured ? '<span class="tech-tag green" style="font-size: 0.65rem;">★ Featured</span>' : ''}
-          </div>
-          <div style="font-family: var(--font-mono); font-size: 0.775rem; color: var(--text-muted);">
-            ID: <code>${p.id}</code> | Stack: ${tags} | Timeline: ${p.timeline || '2025'}
+      <div class="sketch-card admin-project-row" draggable="true" data-index="${index}" data-id="${p.id}" style="margin-bottom: 0.85rem; padding: 1.15rem 1.35rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.85rem; transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease; cursor: default;">
+        
+        <!-- Drag Handle & Priority Rank -->
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <span class="drag-handle" style="cursor: grab; font-size: 1.35rem; color: var(--text-muted); padding: 0 4px; user-select: none;" title="Drag to reorder priority">⠿</span>
+          <span class="tech-tag" style="background: var(--bg-card-muted); border: 1.5px solid var(--border-ink); font-family: var(--font-mono); font-weight: 700; font-size: 0.75rem; min-width: 32px; text-align: center;">#${index + 1}</span>
+          
+          <div style="display: flex; flex-direction: column; gap: 2px;">
+            <button class="btn btn-secondary btn-sm btn-move-up" data-id="${p.id}" ${isFirst ? 'disabled style="opacity: 0.3; cursor: not-allowed; padding: 2px 7px; font-size: 0.7rem;"' : 'style="padding: 2px 7px; font-size: 0.7rem;"'} title="Move Up in Priority">
+              ▲
+            </button>
+            <button class="btn btn-secondary btn-sm btn-move-down" data-id="${p.id}" ${isLast ? 'disabled style="opacity: 0.3; cursor: not-allowed; padding: 2px 7px; font-size: 0.7rem;"' : 'style="padding: 2px 7px; font-size: 0.7rem;"'} title="Move Down in Priority">
+              ▼
+            </button>
           </div>
         </div>
 
-        <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+        <!-- Project Details -->
+        <div style="flex: 1; min-width: 240px;">
+          <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem; flex-wrap: wrap;">
+            <strong style="font-size: 1.1rem;">${p.title}</strong>
+            <span class="tech-tag ${p.featured ? 'coral' : ''}" style="font-size: 0.7rem;">${p.categoryLabel || p.category}</span>
+            ${p.featured ? '<span class="tech-tag green" style="font-size: 0.65rem;">★ Featured</span>' : ''}
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">
+            ID: <code>${p.id}</code> | Stack: ${tags} | Timeline: ${p.timeline || '2026'}
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div style="display: flex; align-items: center; gap: 0.45rem; flex-wrap: wrap;">
           <a href="project-detail.html?id=${encodeURIComponent(p.id)}" target="_blank" class="btn btn-secondary btn-sm" title="Preview Case Study">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
             Preview
@@ -227,6 +251,76 @@ function loadProjectsTable() {
     `;
   }).join('');
 
+  // Move Up Button Event
+  document.querySelectorAll('.btn-move-up:not([disabled])').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-id');
+      window.ProjectsStore.moveProject(id, 'up');
+      loadProjectsTable();
+      showNotification('Priority order updated! (Mirrored to portfolio page)');
+    });
+  });
+
+  // Move Down Button Event
+  document.querySelectorAll('.btn-move-down:not([disabled])').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-id');
+      window.ProjectsStore.moveProject(id, 'down');
+      loadProjectsTable();
+      showNotification('Priority order updated! (Mirrored to portfolio page)');
+    });
+  });
+
+  // Drag & Drop Listeners
+  const rows = listContainer.querySelectorAll('.admin-project-row');
+  rows.forEach(row => {
+    row.addEventListener('dragstart', (e) => {
+      draggedItemIndex = parseInt(row.getAttribute('data-index'), 10);
+      row.style.opacity = '0.4';
+      e.dataTransfer.effectAllowed = 'move';
+    });
+
+    row.addEventListener('dragend', () => {
+      row.style.opacity = '1';
+      rows.forEach(r => {
+        r.style.borderTop = '';
+        r.style.borderBottom = '';
+      });
+    });
+
+    row.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      const targetIndex = parseInt(row.getAttribute('data-index'), 10);
+      if (targetIndex !== draggedItemIndex) {
+        if (targetIndex < draggedItemIndex) {
+          row.style.borderTop = '3px solid var(--accent-coral)';
+          row.style.borderBottom = '';
+        } else {
+          row.style.borderBottom = '3px solid var(--accent-coral)';
+          row.style.borderTop = '';
+        }
+      }
+    });
+
+    row.addEventListener('dragleave', () => {
+      row.style.borderTop = '';
+      row.style.borderBottom = '';
+    });
+
+    row.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const targetIndex = parseInt(row.getAttribute('data-index'), 10);
+      if (draggedItemIndex !== null && targetIndex !== draggedItemIndex) {
+        window.ProjectsStore.reorder(draggedItemIndex, targetIndex);
+        loadProjectsTable();
+        showNotification('Priority sequence updated & saved!');
+      }
+      draggedItemIndex = null;
+    });
+  });
+
+  // Edit Button Event
   document.querySelectorAll('.btn-edit-project').forEach(btn => {
     btn.addEventListener('click', () => {
       const id = btn.getAttribute('data-id');
@@ -234,6 +328,7 @@ function loadProjectsTable() {
     });
   });
 
+  // Delete Button Event
   document.querySelectorAll('.btn-delete-project').forEach(btn => {
     btn.addEventListener('click', () => {
       const id = btn.getAttribute('data-id');
@@ -244,6 +339,32 @@ function loadProjectsTable() {
       }
     });
   });
+
+  // Quick Sort Dropdown
+  if (sortSelect && !sortSelect.hasAttribute('data-bound')) {
+    sortSelect.setAttribute('data-bound', 'true');
+    sortSelect.addEventListener('change', () => {
+      const val = sortSelect.value;
+      let current = [...window.ProjectsStore.getProjects()];
+
+      if (val === 'featured') {
+        current.sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
+        window.ProjectsStore.setProjects(current);
+        loadProjectsTable();
+        showNotification('Sorted by Featured First!');
+      } else if (val === 'newest') {
+        current.sort((a, b) => (parseInt(b.timeline || '0', 10) || 0) - (parseInt(a.timeline || '0', 10) || 0));
+        window.ProjectsStore.setProjects(current);
+        loadProjectsTable();
+        showNotification('Sorted by Newest First!');
+      } else if (val === 'az') {
+        current.sort((a, b) => a.title.localeCompare(b.title));
+        window.ProjectsStore.setProjects(current);
+        loadProjectsTable();
+        showNotification('Sorted Alphabetically (A-Z)!');
+      }
+    });
+  }
 }
 
 /**

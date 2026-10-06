@@ -283,9 +283,22 @@
 
         <!-- Existing Projects List -->
         <div>
-          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
-            <h2 style="font-size: 1.85rem; margin: 0;">Currently Published Projects</h2>
-            <span id="admin-project-count" class="tech-tag blue">0 Total</span>
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.5rem;">
+            <div>
+              <h2 style="font-size: 1.85rem; margin: 0;">Currently Published Projects</h2>
+              <p style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin: 0.25rem 0 0 0;">
+                Priority Ranking: Reorder projects using <strong>↑ / ↓</strong> buttons or <strong>Drag & Drop</strong>. The portfolio page mirrors this exact priority order!
+              </p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+              <select id="admin-quick-sort" class="form-input" style="padding: 0.35rem 0.65rem; font-size: 0.8rem; width: auto; font-family: var(--font-mono); cursor: pointer;">
+                <option value="custom">Sort: Custom Priority</option>
+                <option value="featured">Sort: Featured First</option>
+                <option value="newest">Sort: Newest First</option>
+                <option value="az">Sort: Alphabetical (A-Z)</option>
+              </select>
+              <span id="admin-project-count" class="tech-tag blue">0 Total</span>
+            </div>
           </div>
 
           <div id="admin-projects-list">

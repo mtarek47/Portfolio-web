@@ -458,6 +458,39 @@ const ProjectsStore = {
     return projects;
   },
 
+  setProjects(projects) {
+    if (Array.isArray(projects)) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(projects));
+      return projects;
+    }
+    return this.getProjects();
+  },
+
+  moveProject(id, direction) {
+    const projects = [...this.getProjects()];
+    const index = projects.findIndex(p => p.id === id);
+    if (index === -1) return projects;
+
+    const targetIndex = direction === 'up' ? index - 1 : index + 1;
+    if (targetIndex < 0 || targetIndex >= projects.length) return projects;
+
+    const temp = projects[index];
+    projects[index] = projects[targetIndex];
+    projects[targetIndex] = temp;
+
+    this.setProjects(projects);
+    return projects;
+  },
+
+  reorder(fromIndex, toIndex) {
+    const projects = [...this.getProjects()];
+    if (fromIndex < 0 || fromIndex >= projects.length || toIndex < 0 || toIndex >= projects.length) return projects;
+    const [moved] = projects.splice(fromIndex, 1);
+    projects.splice(toIndex, 0, moved);
+    this.setProjects(projects);
+    return projects;
+  },
+
   resetDefaults() {
     localStorage.removeItem(STORAGE_KEY);
     return DEFAULT_PROJECTS;
