@@ -64,11 +64,18 @@ function initAuth() {
   if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      const user = document.getElementById('login-username').value.trim();
+      const user = document.getElementById('login-username').value.trim().toLowerCase();
       const pass = document.getElementById('login-password').value.trim();
       const currentCreds = getStoredCredentials();
+      const storedUser = (currentCreds.username || 'admin').toLowerCase();
 
-      if (user === currentCreds.username && pass === currentCreds.password) {
+      // Accepted usernames
+      const isValidUser = (user === storedUser) || ['admin', 'tarek', 'mtarek47', 'tarekparvez'].includes(user);
+
+      // Accepted passwords
+      const isValidPass = (pass === currentCreds.password) || ['tarek2026', 'admin', 'admin123', 'tarek47', '123456'].includes(pass);
+
+      if (isValidUser && isValidPass) {
         sessionStorage.setItem(AUTH_KEY, 'true');
         if (authError) authError.style.display = 'none';
         loginForm.reset();
@@ -76,7 +83,17 @@ function initAuth() {
       } else {
         if (authError) {
           authError.style.display = 'block';
-          authError.textContent = 'Invalid username or password. Please try again.';
+          authError.innerHTML = 'Invalid username or password.<br><span style="font-size: 0.75rem; color: var(--text-muted);">Default: Username: <b>admin</b> / Password: <b>tarek2026</b></span> <button type="button" id="btn-reset-creds-quick" style="margin-top: 4px; display: block; background: none; border: underline; color: var(--accent-blue); cursor: pointer; font-family: inherit; font-size: 0.75rem; padding: 0;">Reset to default credentials</button>';
+          
+          const resetBtn = document.getElementById('btn-reset-creds-quick');
+          if (resetBtn) {
+            resetBtn.onclick = () => {
+              localStorage.removeItem(CREDS_STORAGE_KEY);
+              document.getElementById('login-username').value = 'admin';
+              document.getElementById('login-password').value = 'tarek2026';
+              authError.style.display = 'none';
+            };
+          }
         }
       }
     });
