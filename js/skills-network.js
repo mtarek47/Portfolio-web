@@ -10,12 +10,12 @@
 
   const SKILLS_DATA = {
     clusters: {
-      backend: { id: 'backend', name: 'Backend & APIs', color: '#2563eb', lightColor: 'rgba(37, 99, 235, 0.16)', cx: 0.25, cy: 0.32 },
-      devops:  { id: 'devops',  name: 'DevOps & Infra', color: '#f97316', lightColor: 'rgba(249, 115, 22, 0.16)', cx: 0.75, cy: 0.26 },
-      data:    { id: 'data',    name: 'Databases & Storage', color: '#eab308', lightColor: 'rgba(234, 179, 8, 0.16)', cx: 0.78, cy: 0.74 },
-      frontend:{ id: 'frontend',name: 'Web & Mobile', color: '#06b6d4', lightColor: 'rgba(6, 182, 212, 0.16)', cx: 0.22, cy: 0.70 },
-      arch:    { id: 'arch',    name: 'Architecture & Systems', color: '#8b5cf6', lightColor: 'rgba(139, 92, 246, 0.16)', cx: 0.50, cy: 0.36 },
-      security:{ id: 'security',name: 'Security & Protocols', color: '#ec4899', lightColor: 'rgba(236, 72, 153, 0.16)', cx: 0.48, cy: 0.76 }
+      devops:  { id: 'devops',  name: 'DevOps & Infra',       color: '#f97316', lightColor: 'rgba(249, 115, 22, 0.16)', cx: 0.52, cy: 0.22 },
+      backend: { id: 'backend', name: 'Backend & APIs',       color: '#2563eb', lightColor: 'rgba(37, 99, 235, 0.16)', cx: 0.70, cy: 0.44 },
+      data:    { id: 'data',    name: 'Databases & Storage',  color: '#eab308', lightColor: 'rgba(234, 179, 8, 0.16)', cx: 0.72, cy: 0.74 },
+      security:{ id: 'security',name: 'Security & Protocols', color: '#ec4899', lightColor: 'rgba(236, 72, 153, 0.16)', cx: 0.50, cy: 0.62 },
+      frontend:{ id: 'frontend',name: 'Web & Mobile UI',      color: '#06b6d4', lightColor: 'rgba(6, 182, 212, 0.16)', cx: 0.24, cy: 0.58 },
+      arch:    { id: 'arch',    name: 'Architecture & SOLID', color: '#8b5cf6', lightColor: 'rgba(139, 92, 246, 0.16)', cx: 0.26, cy: 0.30 }
     },
     nodes: [
       // DevOps Cluster (Orange)
@@ -77,7 +77,7 @@
       { source: 'docker', target: 'cicd', weight: 4 },
       { source: 'docker', target: 'gh_actions', weight: 3 },
       { source: 'docker', target: 'nginx', weight: 3 },
-      { source: 'docker', target: 'nodejs', weight: 2 },
+      { source: 'docker', target: 'sys_design', weight: 3 },
       { source: 'cicd', target: 'gh_actions', weight: 4 },
       { source: 'cicd', target: 'git', weight: 3 },
       { source: 'linux', target: 'bash', weight: 3 },
@@ -127,7 +127,7 @@
       this.mousePos = { x: -1000, y: -1000 };
       this.isMouseDown = false;
 
-      // Energy pulses traveling along edges
+      // Energy pulses traveling along edges (only on explicit user trigger)
       this.pulses = [];
 
       // Time tracker for floating animation
@@ -139,12 +139,7 @@
       this.animate = this.animate.bind(this);
       requestAnimationFrame(this.animate);
 
-      // Periodically trigger ambient pulses
-      setInterval(() => {
-        if (this.links.length > 0 && Math.random() > 0.3) {
-          this.triggerRandomPulse();
-        }
-      }, 1400);
+      // Automated continuous pulse loop has been REMOVED per user request
     }
 
     initData() {
@@ -159,8 +154,8 @@
           clusterName: cluster.name || 'General',
           x: 0,
           y: 0,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: (Math.random() - 0.5) * 0.4,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
           pinned: false,
           baseRadius: n.radius,
           currentRadius: n.radius,
@@ -180,7 +175,7 @@
     resize() {
       const rect = this.container.getBoundingClientRect();
       this.width = rect.width;
-      this.height = Math.max(560, Math.min(window.innerHeight * 0.72, 640));
+      this.height = Math.max(540, Math.min(window.innerHeight * 0.70, 620));
 
       this.canvas.width = this.width * this.dpr;
       this.canvas.height = this.height * this.dpr;
@@ -195,7 +190,7 @@
         if (n.x === 0 && n.y === 0) {
           const cx = (c.cx || 0.5) * this.width;
           const cy = (c.cy || 0.5) * this.height;
-          const jitter = 70;
+          const jitter = 60;
           n.x = cx + (Math.random() - 0.5) * jitter;
           n.y = cy + (Math.random() - 0.5) * jitter;
         }
@@ -375,18 +370,6 @@
       });
     }
 
-    triggerRandomPulse() {
-      if (this.links.length === 0) return;
-      const randLink = this.links[Math.floor(Math.random() * this.links.length)];
-      this.pulses.push({
-        source: randLink.source,
-        target: randLink.target,
-        progress: 0,
-        speed: 0.02 + Math.random() * 0.02,
-        color: randLink.source.color
-      });
-    }
-
     resetPhysics() {
       const { clusters } = SKILLS_DATA;
       this.nodes.forEach(n => {
@@ -403,10 +386,10 @@
 
     updatePhysics() {
       const { clusters } = SKILLS_DATA;
-      const damping = 0.85;
+      const damping = 0.86;
       const chargeStrength = 2200; // Strong repulsion prevents clustering & collisions
       const centerGravity = 0.007; // Gentle cluster anchoring
-      const springLength = 110;    // Generous spring spacing
+      const springLength = 105;    // Balanced spring spacing
       const springStiffness = 0.035;
 
       this.time += 0.02;
@@ -423,8 +406,8 @@
         n.vy += (targetY - n.y) * centerGravity;
 
         // Subtle organic float
-        n.vx += Math.sin(this.time + n.radius * 0.3) * 0.07;
-        n.vy += Math.cos(this.time + n.radius * 0.3) * 0.07;
+        n.vx += Math.sin(this.time + n.radius * 0.3) * 0.06;
+        n.vy += Math.cos(this.time + n.radius * 0.3) * 0.06;
       });
 
       // 2. Node-to-Node Coulomb Repulsion (Generous distance keeps nodes apart)
@@ -435,7 +418,7 @@
           const dx = n2.x - n1.x;
           const dy = n2.y - n1.y;
           const distSq = dx * dx + dy * dy || 1;
-          const minDist = n1.radius + n2.radius + 40;
+          const minDist = n1.radius + n2.radius + 36;
 
           if (distSq < minDist * minDist * 4) {
             const dist = Math.sqrt(distSq);
@@ -457,8 +440,7 @@
         const dy = t.y - s.y;
         const dist = Math.sqrt(dx * dx + dy * dy) || 1;
         
-        // Give inter-cluster links longer rest length
-        const targetLen = s.cluster === t.cluster ? springLength : springLength * 1.45;
+        const targetLen = s.cluster === t.cluster ? springLength : springLength * 1.4;
         const force = (dist - targetLen) * springStiffness * (link.weight * 0.25 + 0.75);
 
         const fx = (dx / dist) * force;
@@ -469,7 +451,7 @@
       });
 
       // 4. Boundary Collision & Velocity Integration
-      const pad = 42;
+      const pad = 48;
       this.nodes.forEach(n => {
         if (!n.pinned) {
           n.vx *= damping;
@@ -519,12 +501,12 @@
         const isConnected = isHovering && (s.id === hoveredId || t.id === hoveredId);
         const matchesFilter = this.activeCluster === 'all' || s.cluster === this.activeCluster || t.cluster === this.activeCluster;
 
-        let alpha = 0.20;
+        let alpha = 0.22;
         let lineWidth = l.weight * 0.95;
 
         if (isHovering) {
           if (isConnected) {
-            alpha = 0.88;
+            alpha = 0.90;
             lineWidth = l.weight * 1.8 + 1.2;
           } else {
             alpha = 0.05;
@@ -650,7 +632,7 @@
           const textWidth = ctx.measureText(n.label).width;
 
           // Apple Frosted Glass Pill Badge
-          ctx.fillStyle = 'rgba(255, 255, 255, 0.92)';
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.94)';
           ctx.beginPath();
           if (typeof ctx.roundRect === 'function') {
             ctx.roundRect(n.x - textWidth / 2 - 6, textY - 1, textWidth + 12, 17, 5);
@@ -659,7 +641,7 @@
           }
           ctx.fill();
 
-          ctx.strokeStyle = isSelf ? n.color : 'rgba(203, 213, 225, 0.8)';
+          ctx.strokeStyle = isSelf ? n.color : 'rgba(203, 213, 225, 0.85)';
           ctx.lineWidth = isSelf ? 1.5 : 1;
           ctx.stroke();
 

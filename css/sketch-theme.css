@@ -278,10 +278,12 @@ code, pre, .mono-text {
    ========================================================================== */
 .paper-tape {
   position: absolute;
-  top: -12px;
+  top: 14px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--dark-surface);
+  background: rgba(15, 23, 42, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: #ffffff;
   padding: 4px 14px;
   font-family: var(--font-mono);
@@ -290,20 +292,28 @@ code, pre, .mono-text {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   border-radius: var(--radius-full);
-  z-index: 2;
-  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.15);
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
   white-space: nowrap;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+
+.sketch-card:has(.paper-tape),
+.timeline-card:has(.paper-tape),
+.about-photo-card:has(.paper-tape) {
+  padding-top: 2.85rem !important;
 }
 
 .paper-tape.left {
-  left: 20px;
+  left: 18px;
+  right: auto;
   transform: none;
 }
 
 .paper-tape.right {
   left: auto;
-  right: 20px;
+  right: 18px;
   transform: none;
 }
 
@@ -500,25 +510,51 @@ code, pre, .mono-text {
 }
 
 .section-title {
-  font-size: clamp(2rem, 3.8vw, 2.75rem);
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 4.2vw, 3.25rem);
   font-weight: 800;
   margin-bottom: 0.85rem;
-  color: var(--text);
-  letter-spacing: -0.03em;
-  line-height: 1.2;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
   position: relative;
   display: inline-block;
+  /* Apple Signature Chromatic Glass Rainbow */
+  background: linear-gradient(
+    135deg,
+    #38bdf8 0%,    /* Sky Blue */
+    #34d399 20%,   /* Mint Emerald */
+    #facc15 40%,   /* Sunny Yellow */
+    #fb923c 60%,   /* Peach Orange */
+    #f472b6 80%,   /* Bubblegum Pink */
+    #a78bfa 100%   /* Lavender Violet */
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* 3D Specular depth & luminous ambient glow */
+  filter: 
+    drop-shadow(0 2px 4px rgba(15, 23, 42, 0.12))
+    drop-shadow(0 10px 28px rgba(129, 140, 248, 0.35));
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-title:hover {
+  filter: 
+    drop-shadow(0 4px 8px rgba(15, 23, 42, 0.16))
+    drop-shadow(0 16px 36px rgba(129, 140, 248, 0.5));
+  transform: translateY(-2px) scale(1.015);
 }
 
 .section-title .underline-sketch {
   position: absolute;
-  bottom: -6px;
+  bottom: -8px;
   left: 50%;
   transform: translateX(-50%);
-  width: 48px;
-  height: 3px;
-  background: var(--accent);
+  width: 72px;
+  height: 4.5px;
+  background: linear-gradient(90deg, #38bdf8, #34d399, #facc15, #fb923c, #f472b6, #a78bfa);
   border-radius: var(--radius-full);
+  box-shadow: 0 2px 14px rgba(99, 102, 241, 0.5);
 }
 
 .section-subtitle {
@@ -620,6 +656,7 @@ code, pre, .mono-text {
   }
 
   .paper-tape {
+    top: 12px;
     font-size: 0.6rem;
     padding: 3px 10px;
     max-width: calc(100% - 24px);
@@ -635,7 +672,7 @@ code, pre, .mono-text {
   }
 
   .section-title {
-    font-size: clamp(1.75rem, 6vw, 2.15rem);
+    font-size: clamp(1.75rem, 5.5vw, 2.35rem);
   }
 
   .section-header {
