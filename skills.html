@@ -25,10 +25,10 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
 
   <!-- CSS Design System -->
-  <link rel="stylesheet" href="css/sketch-theme.css?v=11.0">
-  <link rel="stylesheet" href="css/layout.css?v=11.0">
-  <link rel="stylesheet" href="css/pages.css?v=11.0">
-  <link rel="stylesheet" href="css/supplement.css?v=11.0">
+  <link rel="stylesheet" href="css/sketch-theme.css?v=12.0">
+  <link rel="stylesheet" href="css/layout.css?v=12.0">
+  <link rel="stylesheet" href="css/pages.css?v=12.0">
+  <link rel="stylesheet" href="css/supplement.css?v=12.0">
 </head>
 <body>
 
@@ -114,9 +114,9 @@
             </div>
           </div>
 
-          <!-- Canvas Viewport -->
+          <!-- Interactive SVG Viewport (D3 Force-Directed Architecture Graph) -->
           <div class="graph-canvas-wrapper">
-            <canvas id="skills-canvas"></canvas>
+            <svg id="skills-network-svg" width="100%" height="600"></svg>
             <div id="skills-graph-tooltip" role="tooltip"></div>
           </div>
 
@@ -355,7 +355,8 @@
   </footer>
 
   <!-- Scripts -->
-  <script src="js/main.js?v=11.0"></script>
-  <script src="js/skills-network.js?v=11.0"></script>
+  <script src="js/main.js?v=12.0"></script>
+  <script src="js/d3.v7.min.js?v=12.0"></script>
+  <script src="js/skills-network.js?v=12.0"></script>
 </body>
 </html>
