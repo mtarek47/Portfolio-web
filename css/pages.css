@@ -725,21 +725,44 @@
 }
 
 .project-card {
-  background: var(--foreground);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--glass-shadow);
   position: relative;
-  transition: all var(--duration-fast) ease;
+  transition: 
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
 }
 
 .project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-floating);
-  border-color: var(--border-dark);
+  transform: translateY(-6px) scale(1.008);
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+.project-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle 300px at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(255, 255, 255, 0.65), transparent 75%);
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 2;
+}
+
+.project-card:hover::after {
+  opacity: 1;
 }
 
 /* Corner screws on project cards */
@@ -874,8 +897,9 @@
 
 /* Existing sketch-card.accent-coral used for CTA — override with physical look */
 .sketch-card.accent-coral {
-  box-shadow: var(--shadow-floating);
+  box-shadow: var(--glass-shadow);
   border-radius: var(--radius-2xl);
+  border-left: 1px solid var(--glass-border) !important;
 }
 
 /* ==========================================================================
@@ -890,14 +914,20 @@
 
 /* Photo card — neumorphic frame */
 .about-photo-card {
-  background: var(--foreground);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-xl);
-  padding: 1.75rem;
-  box-shadow: var(--shadow-card);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-2xl);
+  padding: 1.85rem;
+  box-shadow: var(--glass-shadow);
   text-align: center;
   position: relative;
-  transition: all var(--duration-base) var(--ease-smooth);
+  overflow: hidden;
+  transition: 
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .about-photo-card::before {
@@ -905,9 +935,10 @@
 }
 
 .about-photo-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-floating);
-  border-color: var(--border-dark);
+  transform: translateY(-5px) scale(1.008);
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-shadow-hover);
 }
 
 .about-photo-card img {

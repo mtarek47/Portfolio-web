@@ -9,7 +9,140 @@ document.addEventListener('DOMContentLoaded', () => {
   initCopyButtons();
   initPipelineInteractions();
   initHomeFeaturedProjects();
+  initScrollProgressBar();
+  initNavbarScrollEffect();
+  initScrollReveal();
+  initLiquidGlassMouseEffect();
 });
+
+/**
+ * Apple Liquid Scroll Progress Bar
+ */
+function initScrollProgressBar() {
+  let bar = document.getElementById('scroll-progress');
+  if (!bar) {
+    bar = document.createElement('div');
+    bar.id = 'scroll-progress';
+    document.body.prepend(bar);
+  }
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = totalHeight > 0 ? (window.scrollY / totalHeight) * 100 : 0;
+        bar.style.width = Math.min(100, Math.max(0, progress)) + '%';
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+}
+
+/**
+ * Sticky Navbar Elevation & Blur Effect on Scroll
+ */
+function initNavbarScrollEffect() {
+  const nav = document.querySelector('.notebook-nav');
+  if (!nav) return;
+
+  const onScroll = () => {
+    if (window.scrollY > 15) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
+/**
+ * Intersection Observer Scroll Reveal Animation
+ */
+function initScrollReveal() {
+  const revealSelectors = [
+    '.sketch-card',
+    '.project-card',
+    '.focus-card',
+    '.timeline-card',
+    '.about-photo-card',
+    '.about-story',
+    '.section-header',
+    '.study-sidebar-card',
+    '.contact-form-card',
+    '.contact-detail-card',
+    '.map-node',
+    '.resume-paper',
+    '.cta-panel',
+    '.architecture-board',
+    '.lifecycle-diagram'
+  ];
+
+  const elements = document.querySelectorAll(revealSelectors.join(', '));
+  if (!elements.length) return;
+
+  // Stagger siblings in grid containers
+  const gridContainers = document.querySelectorAll('.projects-grid, .focus-grid, .stack-map-diagram, .timeline-tree, .about-intro-grid');
+  gridContainers.forEach(grid => {
+    grid.classList.add('reveal-stagger');
+  });
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-revealed');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.08,
+    rootMargin: '0px 0px -40px 0px'
+  });
+
+  elements.forEach(el => {
+    el.classList.add('scroll-reveal');
+    observer.observe(el);
+  });
+}
+
+// Expose globally for dynamic page re-renders
+window.initScrollReveal = initScrollReveal;
+window.initLiquidGlassMouseEffect = initLiquidGlassMouseEffect;
+
+/**
+ * Interactive Liquid Glass Specular Spotlight (Tracks mouse on glass cards)
+ */
+function initLiquidGlassMouseEffect() {
+  const cards = document.querySelectorAll(`
+    .sketch-card,
+    .project-card,
+    .focus-card,
+    .timeline-card,
+    .about-photo-card,
+    .study-sidebar-card,
+    .contact-detail-card,
+    .map-node,
+    .resume-paper
+  `);
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.setProperty('--mouse-x', `-500px`);
+      card.style.setProperty('--mouse-y', `-500px`);
+    });
+  });
+}
 
 /**
  * Highlights active navigation link based on current page URL
@@ -185,4 +318,8 @@ function initHomeFeaturedProjects() {
       </div>
     `;
   }).join('');
+
+  // Re-observe newly inserted featured cards for scroll reveal & liquid glass
+  if (typeof initScrollReveal === 'function') initScrollReveal();
+  if (typeof initLiquidGlassMouseEffect === 'function') initLiquidGlassMouseEffect();
 }

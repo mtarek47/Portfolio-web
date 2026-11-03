@@ -71,6 +71,14 @@ function renderProjectsGrid() {
   if (allBtn) {
     allBtn.textContent = `All Projects (${projects.length})`;
   }
+
+  // Connect liquid glass & scroll reveal to dynamic cards
+  if (typeof window.initScrollReveal === 'function') {
+    window.initScrollReveal();
+  }
+  if (typeof window.initLiquidGlassMouseEffect === 'function') {
+    window.initLiquidGlassMouseEffect();
+  }
 }
 
 function initProjectFilters() {

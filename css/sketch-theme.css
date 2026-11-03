@@ -12,6 +12,15 @@
    DESIGN TOKENS — Modern Tech & Architecture Palette
    ========================================================================== */
 :root {
+  /* --- Apple Liquid Glass Tokens --- */
+  --glass-bg:          rgba(255, 255, 255, 0.72);
+  --glass-bg-hover:    rgba(255, 255, 255, 0.88);
+  --glass-border:      rgba(255, 255, 255, 0.82);
+  --glass-border-hover:rgba(255, 255, 255, 0.98);
+  --glass-blur:        blur(24px) saturate(190%);
+  --glass-shadow:      0 12px 32px -4px rgba(15, 23, 42, 0.05), 0 4px 12px -2px rgba(15, 23, 42, 0.03), inset 0 1px 1px 0 rgba(255, 255, 255, 0.95), inset 0 -1px 1px 0 rgba(0, 0, 0, 0.02);
+  --glass-shadow-hover:0 24px 48px -8px rgba(15, 23, 42, 0.09), 0 8px 20px -4px rgba(15, 23, 42, 0.04), inset 0 1px 2px 0 rgba(255, 255, 255, 1);
+
   /* --- Canvas & Surfaces --- */
   --background:       #f8fafc;   /* Slate-50: Crisp, clean, modern canvas */
   --foreground:       #ffffff;   /* Pure white card and panel surface */
@@ -128,12 +137,14 @@ body {
   font-size: 1rem;
   line-height: 1.65;
   color: var(--text);
-  background-color: var(--background);
-  /* Modern clean ambient lighting aura */
+  background-color: #f8fafc;
+  /* Apple Ambient Fluid Mesh — provides luminous refraction through liquid glass */
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(37, 99, 235, 0.06), transparent 60%),
-    radial-gradient(circle 600px at 100% 20%, rgba(99, 102, 241, 0.03), transparent 50%),
-    radial-gradient(circle 600px at 0% 60%, rgba(16, 185, 129, 0.02), transparent 50%);
+    radial-gradient(at 0% 0%, rgba(219, 234, 254, 0.55) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(224, 231, 255, 0.45) 0px, transparent 50%),
+    radial-gradient(at 50% 50%, rgba(241, 245, 249, 0.6) 0px, transparent 60%),
+    radial-gradient(at 100% 100%, rgba(219, 234, 254, 0.45) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(204, 251, 241, 0.35) 0px, transparent 50%);
   background-attachment: fixed;
   min-height: 100vh;
   display: flex;
@@ -203,35 +214,61 @@ code, pre, .mono-text {
    MODERN CARD BASE (.sketch-card)
    Clean, refined, white card with subtle 1px border and soft drop shadow
    ========================================================================== */
+/* ==========================================================================
+   APPLE LIQUID GLASS CARD SYSTEM (.sketch-card)
+   Ultra-refined glassmorphism, specular highlights, dynamic refraction
+   ========================================================================== */
 .sketch-card {
-  background: var(--foreground);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-card);
-  padding: 1.75rem;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--glass-shadow);
+  padding: 1.85rem;
   position: relative;
-  transition: transform var(--duration-base) var(--ease-smooth),
-              box-shadow var(--duration-base) var(--ease-smooth),
-              border-color var(--duration-base) var(--ease-smooth);
+  overflow: hidden;
+  transition: 
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Remove all legacy pseudo-element screws */
+/* Legacy pseudo-element screws completely disabled */
 .sketch-card::before {
   display: none !important;
 }
 
+/* Liquid Glass Hover: subtle spring lift, heightened specular luminescence */
 .sketch-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-floating);
-  border-color: var(--border-dark);
+  transform: translateY(-5px) scale(1.008);
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-shadow-hover);
 }
 
-.sketch-card.accent-coral {
-  border-left: 3px solid var(--accent-coral);
+/* Dynamic Interactive Mouse Spotlight (Liquid Glass Specular Reflection) */
+.sketch-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle 320px at var(--mouse-x, -500px) var(--mouse-y, -500px), rgba(255, 255, 255, 0.7), transparent 75%);
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 1;
 }
 
+.sketch-card:hover::after {
+  opacity: 1;
+}
+
+/* Symmetrical clean borders — cartoonish side borders completely removed */
+.sketch-card.accent-coral,
 .sketch-card.accent-blue {
-  border-left: 3px solid var(--accent-blue);
+  border-left: 1px solid var(--glass-border);
 }
 
 /* ==========================================================================
@@ -520,20 +557,24 @@ code, pre, .mono-text {
 /* Form controls */
 .form-input, .form-textarea, select {
   width: 100%;
-  background: #ffffff;
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.75);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(203, 213, 225, 0.85);
   border-radius: var(--radius-md);
-  padding: 0.65rem 0.9rem;
+  padding: 0.75rem 1rem;
   font-family: var(--font-body);
   font-size: 0.925rem;
   color: var(--text);
-  transition: border-color var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   outline: none;
 }
 
 .form-input:focus, .form-textarea:focus, select:focus {
+  background: rgba(255, 255, 255, 0.95);
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14), inset 0 1px 1px rgba(0, 0, 0, 0.02);
 }
 
 .form-label {
@@ -599,4 +640,46 @@ code, pre, .mono-text {
   .section-header {
     margin-bottom: 2.25rem;
   }
+}
+
+/* ==========================================================================
+   SCROLLING & INTERACTIVE REVEAL ANIMATIONS
+   Apple-style fluid entrance, stagger delays, smooth progress
+   ========================================================================== */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: 
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.scroll-reveal.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered entrance for sibling cards in grids */
+.reveal-stagger > *:nth-child(1) { transition-delay: 50ms; }
+.reveal-stagger > *:nth-child(2) { transition-delay: 120ms; }
+.reveal-stagger > *:nth-child(3) { transition-delay: 190ms; }
+.reveal-stagger > *:nth-child(4) { transition-delay: 260ms; }
+.reveal-stagger > *:nth-child(5) { transition-delay: 330ms; }
+.reveal-stagger > *:nth-child(6) { transition-delay: 400ms; }
+.reveal-stagger > *:nth-child(7) { transition-delay: 470ms; }
+.reveal-stagger > *:nth-child(8) { transition-delay: 540ms; }
+
+/* Apple Liquid Scroll Progress Bar */
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, #2563eb, #60a5fa, #818cf8, #a855f7);
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.6);
+  z-index: 10000;
+  transition: width 0.1s ease-out;
+  pointer-events: none;
 }
