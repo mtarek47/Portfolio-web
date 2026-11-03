@@ -550,8 +550,7 @@
 }
 
 .devops-lifecycle-section .section-title {
-  color: var(--dark-text);
-  /* text-shadow removed */
+  /* Inherits global Apple Liquid Glass styling */
 }
 
 .devops-lifecycle-section .section-subtitle {
