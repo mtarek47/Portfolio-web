@@ -111,8 +111,8 @@ section {
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--text-muted);
-  padding: 0.5rem 0.85rem;
-  border-radius: var(--radius-md);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
   position: relative;
   text-decoration: none;
   letter-spacing: -0.01em;
@@ -145,11 +145,11 @@ section {
   background: var(--foreground);
   color: var(--text);
   border: 1px solid var(--border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-full);
   box-shadow: var(--shadow-xs);
   font-size: 0.8rem;
   font-weight: 600;
-  padding: 0.45rem 0.95rem;
+  padding: 0.45rem 1.25rem;
   min-height: 36px;
   display: inline-flex;
   align-items: center;
@@ -335,10 +335,13 @@ section {
 
 /* System status box */
 .footer-status-box {
-  background: rgba(30, 41, 59, 0.6);
-  border-radius: var(--radius-lg);
-  padding: 1.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(30, 41, 59, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 26px;
+  padding: 1.35rem 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .footer-status-title {

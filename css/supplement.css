@@ -293,8 +293,8 @@
   color: var(--accent-blue);
   background: var(--accent-blue-light);
   border: 1px solid var(--accent-blue-border);
-  padding: 0.2rem 0.65rem;
-  border-radius: var(--radius-sm);
+  padding: 0.25rem 0.85rem;
+  border-radius: var(--radius-full);
 }
 
 .timeline-commit-hash {
@@ -456,15 +456,15 @@
 .graph-action-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
+  gap: 0.4rem;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 600;
   color: var(--text);
-  background: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.85);
   border: 1px solid rgba(226, 232, 240, 0.9);
-  border-radius: var(--radius-md);
-  padding: 0.38rem 0.75rem;
+  border-radius: var(--radius-full);
+  padding: 0.4rem 1rem;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -579,8 +579,8 @@
   font-size: 0.65rem;
   background: var(--muted);
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 0.15rem 0.4rem;
+  border-radius: var(--radius-full);
+  padding: 0.2rem 0.6rem;
   color: var(--text);
 }
 
@@ -653,42 +653,54 @@
 }
 
 /* ==========================================================================
-   PROJECTS FILTER BAR
+   PROJECTS FILTER BAR — Ultra-Curvy Liquid Glass Capsule (Matches Reference Image)
    ========================================================================== */
 .projects-filter-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-bottom: 2.25rem;
-  padding: 0.85rem;
-  background: var(--foreground);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 2.75rem;
+  padding: 0.65rem 0.85rem;
+  background: rgba(255, 255, 255, 0.42);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: var(--radius-full);
+  box-shadow: 
+    0 10px 30px rgba(15, 23, 42, 0.04),
+    inset 0 1px 1px rgba(255, 255, 255, 0.85);
 }
 
 .filter-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--font-body);
-  font-size: 0.825rem;
-  font-weight: 600;
-  padding: 0.5rem 1rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.55rem 1.35rem;
   background: transparent;
-  border: 1px solid transparent;
-  border-radius: var(--radius-md);
-  color: var(--text-muted);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-full);
+  color: #64748b;
   cursor: pointer;
-  transition: all var(--duration-fast) ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
 }
 
 .filter-btn:hover {
-  color: var(--text);
-  background: var(--muted);
+  color: #0f172a;
+  background: rgba(255, 255, 255, 0.55);
 }
 
 .filter-btn.active {
-  background: var(--accent-blue-light);
-  border-color: var(--accent-blue-border);
-  color: var(--accent-blue);
+  background: rgba(255, 255, 255, 0.95);
+  border-color: #3b82f6;
+  color: #2563eb;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.16);
 }
 
 /* Project highlights bullet list */

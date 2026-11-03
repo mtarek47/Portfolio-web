@@ -194,11 +194,11 @@
   gap: 0.65rem;
 }
 
-/* Neumorphic floating social icon housing */
+/* Floating circular social icon housing */
 .social-btn {
   width: 42px;
   height: 42px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-full);
   background: var(--foreground);
   border: 1px solid var(--border);
   box-shadow: var(--shadow-xs);
@@ -825,9 +825,9 @@
   letter-spacing: 0.08em;
   background: var(--dark-surface);
   color: var(--accent);
-  padding: 0.25rem 0.7rem;
-  border-radius: var(--radius-sm);
-  box-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+  padding: 0.3rem 0.85rem;
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
   z-index: 2;
 }
 
@@ -1390,10 +1390,10 @@
 
 .timeline-date {
   display: inline-block;
-  padding: 0.2rem 0.7rem;
+  padding: 0.25rem 0.85rem;
   background: var(--accent-blue-light);
   color: var(--accent-blue);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-full);
   font-family: var(--font-mono);
   font-size: 0.65rem;
   font-weight: 700;
@@ -1659,30 +1659,29 @@ textarea {
   flex-wrap: wrap;
   gap: 0.6rem;
   margin-bottom: 2rem;
-  padding: 1.25rem;
-  background: var(--background);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-recessed);
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: var(--radius-full);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04);
 }
 
 .filter-btn {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
-  padding: 0.45rem 1rem;
-  border-radius: var(--radius-md);
-  background: var(--background);
-  border: none;
+  letter-spacing: 0.04em;
+  padding: 0.55rem 1.35rem;
+  border-radius: var(--radius-full);
+  background: transparent;
+  border: 1.5px solid transparent;
   color: var(--text-muted);
   cursor: pointer;
-  box-shadow: var(--shadow-sm);
-  transition:
-    box-shadow var(--duration-fast),
-    color var(--duration-fast),
-    transform var(--duration-fast);
-  min-height: 36px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 38px;
 }
 
 .filter-btn:hover {
