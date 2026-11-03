@@ -435,15 +435,23 @@
 
 /* Focus card — bolted panel module */
 .focus-card {
-  background: var(--background);
-  border-radius: var(--radius-lg);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
   padding: 1.75rem 1.5rem;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--glass-shadow);
   position: relative;
-  transition:
-    transform var(--duration-base) var(--ease-smooth),
-    box-shadow var(--duration-base) var(--ease-smooth);
-  overflow: visible;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.focus-card:hover {
+  transform: translateY(-5px) scale(1.008);
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: var(--glass-shadow-hover);
 }
 
 /* Corner screws — radial gradient bolts */
@@ -875,14 +883,24 @@
    7. CALL TO ACTION BANNER — Physical Panel CTA
    ========================================================================== */
 .cta-panel {
-  background: var(--background);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-2xl);
   padding: 3rem 2.5rem;
   text-align: center;
   max-width: 860px;
   margin: 0 auto;
-  box-shadow: var(--shadow-floating);
+  box-shadow: var(--glass-shadow);
   position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cta-panel:hover {
+  box-shadow: var(--glass-shadow-hover);
+  background: var(--glass-bg-hover);
 }
 
 /* Large corner screws on CTA */
@@ -996,13 +1014,22 @@
 }
 
 .stat-card {
-  background: var(--background);
-  border-radius: var(--radius-lg);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
   padding: 1.5rem;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--glass-shadow);
   text-align: center;
   position: relative;
-  transition: box-shadow var(--duration-base), transform var(--duration-base);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stat-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  background: var(--glass-bg-hover);
+  box-shadow: var(--glass-shadow-hover);
 }
 
 .stat-card:hover {
@@ -1032,12 +1059,21 @@
 
 /* Generic .stat class compat */
 .stat {
-  background: var(--background);
-  border-radius: var(--radius-lg);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
   padding: 1.5rem;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--glass-shadow);
   text-align: center;
-  transition: box-shadow var(--duration-base), transform var(--duration-base);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stat:hover {
+  transform: translateY(-4px) scale(1.01);
+  background: var(--glass-bg-hover);
+  box-shadow: var(--glass-shadow-hover);
 }
 
 .stat:hover {
@@ -1064,12 +1100,21 @@
 
 /* Philosophy/principle cards */
 .principle-card {
-  background: var(--background);
-  border-radius: var(--radius-lg);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
   padding: 1.5rem;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--glass-shadow);
   position: relative;
-  transition: box-shadow var(--duration-base), transform var(--duration-base);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.principle-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  background: var(--glass-bg-hover);
+  box-shadow: var(--glass-shadow-hover);
 }
 
 .principle-card:hover {
@@ -1112,12 +1157,21 @@
 }
 
 .skill-category-card {
-  background: var(--background);
-  border-radius: var(--radius-lg);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
   padding: 1.75rem;
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--glass-shadow);
   position: relative;
-  transition: box-shadow var(--duration-base), transform var(--duration-base);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.skill-category-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  background: var(--glass-bg-hover);
+  box-shadow: var(--glass-shadow-hover);
 }
 
 .skill-category-card::before {
