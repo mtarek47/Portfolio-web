@@ -502,18 +502,7 @@ code, pre, .mono-text {
 }
 
 .section-label {
-  display: inline-block;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--accent-blue);
-  background: var(--accent-blue-light);
-  border: 1px solid var(--accent-blue-border);
-  border-radius: var(--radius-full);
-  padding: 0.25rem 0.85rem;
-  margin-bottom: 0.85rem;
+  display: none !important; /* Disabled: section headers now feature one single clean Apple Liquid Glass title */
 }
 
 .section-title,
