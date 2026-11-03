@@ -847,7 +847,12 @@ textarea {
 }
 
 /* 7. Inner Media & Img Wrappers */
-.about-photo-card img,
+.about-photo-card img {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
 .case-study-img,
 .hero-avatar-wrapper {
   border-radius: 26px !important;
