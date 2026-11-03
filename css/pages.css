@@ -7,6 +7,112 @@
 /* ==========================================================================
    1. HERO SECTION — Engineering Control Console
    ========================================================================== */
+
+/* ==========================================================================
+   MODERN HERO PROFILE SHOWCASE (Executive Portrait)
+   ========================================================================== */
+.hero-profile-card {
+  position: relative;
+  background: var(--foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-floating);
+  margin-bottom: 1.75rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: all var(--duration-base) var(--ease-smooth);
+}
+
+.hero-profile-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-dark);
+}
+
+.hero-profile-card::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: -40%;
+  width: 180%;
+  height: 180%;
+  background: radial-gradient(circle at 50% 30%, rgba(37, 99, 235, 0.08), transparent 60%);
+  pointer-events: none;
+}
+
+.hero-avatar-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  height: 360px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(180deg, #eff6ff 0%, #e2e8f0 100%);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.hero-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.4s var(--ease-smooth);
+}
+
+.hero-profile-card:hover .hero-avatar-img {
+  transform: scale(1.03);
+}
+
+.hero-floating-pill {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  z-index: 3;
+}
+
+.hero-floating-pill.top-right {
+  top: 14px;
+  right: 14px;
+  color: #047857;
+}
+
+.hero-floating-pill.bottom-left {
+  bottom: 14px;
+  left: 14px;
+  color: #1d4ed8;
+}
+
+.hero-profile-meta {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-light);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
 .hero-section {
   padding: 4.5rem 0 5rem 0;
   position: relative;
@@ -38,7 +144,7 @@
   padding: 0.25rem 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  box-shadow: 2px 2px 5px #babecc, -1px -1px 3px #ffffff;
+  box-shadow: var(--shadow-sm);
 }
 
 /* --- Hero Heading --- */
@@ -50,13 +156,13 @@
   color: var(--text);
   letter-spacing: -0.03em;
   /* Embossed 3D stamp effect */
-  text-shadow: 0 1px 0 rgba(255,255,255,0.85);
+  /* text-shadow removed */
 }
 
 .hero-title .highlight-coral {
   color: var(--accent);
   /* Glowing accent text */
-  text-shadow: 0 0 20px rgba(255,71,87,0.18), 0 1px 0 rgba(255,255,255,0.5);
+  /* text-shadow removed */
 }
 
 .hero-title .highlight-blue {
@@ -90,98 +196,79 @@
 
 /* Neumorphic floating social icon housing */
 .social-btn {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: var(--radius-md);
-  background: var(--background);
-  box-shadow: var(--shadow-card);
+  background: var(--foreground);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-xs);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   color: var(--text-muted);
-  transition:
-    box-shadow var(--duration-fast) var(--ease-mechanical),
-    color var(--duration-fast) ease,
-    transform var(--duration-fast) var(--ease-mechanical);
+  transition: all var(--duration-fast) ease;
 }
 
 .social-btn:hover {
   color: var(--accent);
-  box-shadow: var(--shadow-floating), 0 0 10px rgba(255,71,87,0.15);
+  background: #f8fafc;
+  border-color: var(--border-dark);
+  box-shadow: var(--shadow-sm);
   transform: translateY(-2px);
 }
 
 .social-btn:active {
   transform: translateY(1px);
-  box-shadow: var(--shadow-pressed);
 }
 
 /* ==========================================================================
-   2. ARCHITECTURE BOARD — The "Control Panel" Hero Visual
-   Inspired by spacecraft control panels and Braun synthesizers.
+   2. ARCHITECTURE BOARD — Modern Tech Console Visual
    ========================================================================== */
 .hero-visual-board {
   position: relative;
 }
 
-/* Sticky note — now a dark sticker card */
 .sticky-note {
-  background: var(--dark-surface);
-  color: var(--accent-green);
+  background: var(--foreground);
+  color: #047857;
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 0.6rem 1rem;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-card);
+  letter-spacing: 0.02em;
+  padding: 0.45rem 0.95rem;
+  border-radius: var(--radius-full);
+  border: 1px solid #a7f3d0;
+  box-shadow: var(--shadow-xs);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 1.25rem;
-  /* Push-pin effect at top center */
   position: relative;
 }
 
 .sticky-note::before {
   content: '';
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: var(--accent-green);
-  box-shadow: 0 0 6px 2px rgba(34,197,94,0.5);
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
   flex-shrink: 0;
-  animation: led-pulse 2.2s ease-in-out infinite;
+  animation: led-pulse 2s ease-in-out infinite;
 }
 
 /* The main architecture control panel */
 .architecture-board {
   background: var(--dark-surface);
+  border: 1px solid var(--dark-surface-2);
   border-radius: var(--radius-xl);
   padding: 1.5rem;
   position: relative;
-  /* Outer neumorphic — the device sits on the chassis */
-  box-shadow:
-    12px 12px 28px #a3b1c6,
-    -6px -6px 16px #ffffff,
-    inset 0 1px 0 rgba(255,255,255,0.08);
-  /* Carbon fiber texture on dark bezel */
-  background-image:
-    radial-gradient(ellipse at 0% 0%, rgba(255,255,255,0.05) 0%, transparent 40%),
-    url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
-  background-size: cover, auto;
-  background-blend-mode: normal, overlay;
+  box-shadow: 0 12px 30px -5px rgba(15, 23, 42, 0.25);
 }
 
-/* 4px physical border/bezel rim */
 .architecture-board::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  border: 3px solid rgba(255,255,255,0.06);
-  pointer-events: none;
+  display: none !important;
 }
 
 /* Board header — window chrome bar */
@@ -334,7 +421,7 @@
 .terminal-success {
   color: var(--accent-green);
   display: block;
-  text-shadow: 0 0 8px rgba(34,197,94,0.4);
+  /* text-shadow removed */
 }
 
 /* ==========================================================================
@@ -366,35 +453,11 @@
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 10px 10px, rgba(0,0,0,0.22) 2px, rgba(255,255,255,0.4) 2.5px, transparent 4px),
-    radial-gradient(circle at calc(100% - 10px) 10px, rgba(0,0,0,0.22) 2px, rgba(255,255,255,0.4) 2.5px, transparent 4px),
-    radial-gradient(circle at 10px calc(100% - 10px), rgba(0,0,0,0.22) 2px, rgba(255,255,255,0.4) 2.5px, transparent 4px),
-    radial-gradient(circle at calc(100% - 10px) calc(100% - 10px), rgba(0,0,0,0.22) 2px, rgba(255,255,255,0.4) 2.5px, transparent 4px);
+  display: none !important;
   z-index: 1;
 }
 
-/* Vent slots — top-right industrial ventilation */
-.focus-card::after {
-  content: '';
-  position: absolute;
-  top: 12px;
-  right: 28px;
-  width: 18px;
-  height: 8px;
-  /* 3 vertical pill slots */
-  background:
-    linear-gradient(90deg,
-      var(--muted) 0px,   var(--muted) 3px,
-      transparent 3px,   transparent 6px,
-      var(--muted) 6px,  var(--muted) 9px,
-      transparent 9px,   transparent 12px,
-      var(--muted) 12px, var(--muted) 15px,
-      transparent 15px,  transparent 18px
-    );
-  border-radius: var(--radius-full);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.15);
-}
+/* Vent slot removed */
 
 .focus-card:hover {
   transform: translateY(-4px);
@@ -410,20 +473,23 @@
 
 /* Icon housing — circular recessed well */
 .focus-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: var(--background);
-  box-shadow: var(--shadow-recessed);
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radius-md);
+  background: var(--accent-blue-light);
+  border: 1px solid var(--accent-blue-border);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
-  transition: box-shadow var(--duration-base);
+  font-size: 1.4rem;
+  color: var(--accent-blue);
+  transition: all var(--duration-fast) ease;
 }
 
 .focus-card:hover .focus-icon {
-  box-shadow: var(--shadow-card);
+  background: var(--accent-blue);
+  color: #ffffff;
+  transform: scale(1.05);
 }
 
 .focus-num {
@@ -463,7 +529,7 @@
   background: var(--dark-surface);
   background-image:
     radial-gradient(ellipse at 0% 0%, rgba(255,255,255,0.04) 0%, transparent 40%),
-    url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+    
   background-size: cover, auto;
   background-blend-mode: normal, overlay;
 }
@@ -477,7 +543,7 @@
 
 .devops-lifecycle-section .section-title {
   color: var(--dark-text);
-  text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+  /* text-shadow removed */
 }
 
 .devops-lifecycle-section .section-subtitle {
@@ -618,9 +684,7 @@
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 8px 8px, rgba(0,0,0,0.18) 1.5px, rgba(255,255,255,0.3) 2px, transparent 3px),
-    radial-gradient(circle at calc(100% - 8px) 8px, rgba(0,0,0,0.18) 1.5px, rgba(255,255,255,0.3) 2px, transparent 3px);
+  display: none !important;
 }
 
 .snapshot-category:hover {
@@ -661,16 +725,21 @@
 }
 
 .project-card {
-  background: var(--background);
+  background: var(--foreground);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-card);
   position: relative;
-  transition:
-    transform var(--duration-base) var(--ease-smooth),
-    box-shadow var(--duration-base) var(--ease-smooth);
+  transition: all var(--duration-fast) ease;
   display: flex;
   flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-floating);
+  border-color: var(--border-dark);
 }
 
 /* Corner screws on project cards */
@@ -680,9 +749,7 @@
   inset: 0;
   pointer-events: none;
   z-index: 3;
-  background:
-    radial-gradient(circle at 10px 10px, rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.4) 2.5px, transparent 4px),
-    radial-gradient(circle at calc(100% - 10px) 10px, rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.4) 2.5px, transparent 4px);
+  display: none !important;
   border-radius: inherit;
 }
 
@@ -706,7 +773,7 @@
   height: 100%;
   object-fit: cover;
   /* Grayscale treatment — color activates on hover */
-  filter: grayscale(0.6) contrast(1.05);
+  filter: none;
   transition: filter var(--duration-slow) ease, transform var(--duration-slow) ease;
 }
 
@@ -802,11 +869,7 @@
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 20px 20px, rgba(0,0,0,0.2) 3px, rgba(255,255,255,0.4) 3.5px, transparent 5px),
-    radial-gradient(circle at calc(100% - 20px) 20px, rgba(0,0,0,0.2) 3px, rgba(255,255,255,0.4) 3.5px, transparent 5px),
-    radial-gradient(circle at 20px calc(100% - 20px), rgba(0,0,0,0.2) 3px, rgba(255,255,255,0.4) 3.5px, transparent 5px),
-    radial-gradient(circle at calc(100% - 20px) calc(100% - 20px), rgba(0,0,0,0.2) 3px, rgba(255,255,255,0.4) 3.5px, transparent 5px);
+  display: none !important;
 }
 
 /* Existing sketch-card.accent-coral used for CTA — override with physical look */
@@ -827,45 +890,41 @@
 
 /* Photo card — neumorphic frame */
 .about-photo-card {
-  background: var(--background);
+  background: var(--foreground);
+  border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   padding: 1.75rem;
   box-shadow: var(--shadow-card);
   text-align: center;
   position: relative;
-  transition: box-shadow var(--duration-base);
+  transition: all var(--duration-base) var(--ease-smooth);
 }
 
 .about-photo-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 12px 12px, rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.4) 2.5px, transparent 4px),
-    radial-gradient(circle at calc(100% - 12px) 12px, rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.4) 2.5px, transparent 4px),
-    radial-gradient(circle at 12px calc(100% - 12px), rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.4) 2.5px, transparent 4px),
-    radial-gradient(circle at calc(100% - 12px) calc(100% - 12px), rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.4) 2.5px, transparent 4px);
+  display: none !important;
 }
 
 .about-photo-card:hover {
+  transform: translateY(-2px);
   box-shadow: var(--shadow-floating);
+  border-color: var(--border-dark);
 }
 
 .about-photo-card img {
   width: 100%;
-  aspect-ratio: 1;
+  max-height: 440px;
   object-fit: cover;
+  object-position: top center;
   border-radius: var(--radius-lg);
-  /* Recessed image well */
-  box-shadow: var(--shadow-recessed);
-  filter: grayscale(0.15);
-  transition: filter var(--duration-slow);
+  background: linear-gradient(180deg, #eff6ff 0%, #e2e8f0 100%);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--duration-base) var(--ease-smooth);
+  margin-bottom: 1.25rem;
 }
 
 .about-photo-card:hover img {
-  filter: grayscale(0);
+  transform: scale(1.02);
 }
 
 /* About text block */
@@ -881,7 +940,7 @@
   font-weight: 700;
   color: var(--text);
   letter-spacing: -0.02em;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.7);
+  /* text-shadow removed */
 }
 
 .about-text-block p {
@@ -927,7 +986,7 @@
   font-weight: 700;
   color: var(--accent);
   margin-bottom: 0.35rem;
-  text-shadow: 0 0 16px rgba(255,71,87,0.2);
+  /* text-shadow removed */
 }
 
 .stat-card p,
@@ -993,9 +1052,7 @@
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 8px 8px, rgba(0,0,0,0.18) 1.5px, rgba(255,255,255,0.3) 2px, transparent 3px),
-    radial-gradient(circle at calc(100% - 8px) 8px, rgba(0,0,0,0.18) 1.5px, rgba(255,255,255,0.3) 2px, transparent 3px);
+  display: none !important;
 }
 
 /* About page bio card rows */
@@ -1038,11 +1095,7 @@
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 10px 10px, rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
-    radial-gradient(circle at calc(100% - 10px) 10px, rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
-    radial-gradient(circle at 10px calc(100% - 10px), rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
-    radial-gradient(circle at calc(100% - 10px) calc(100% - 10px), rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px);
+  display: none !important;
 }
 
 .skill-category-card:hover {
@@ -1225,9 +1278,7 @@
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 8px 8px, rgba(0,0,0,0.18) 1.5px, rgba(255,255,255,0.3) 2px, transparent 3px),
-    radial-gradient(circle at calc(100% - 8px) 8px, rgba(0,0,0,0.18) 1.5px, rgba(255,255,255,0.3) 2px, transparent 3px);
+  display: none !important;
 }
 
 .timeline-content:hover {
@@ -1264,7 +1315,7 @@
   text-transform: uppercase;
   letter-spacing: 0.07em;
   margin-bottom: 0.85rem;
-  box-shadow: 2px 2px 5px #babecc, -1px -1px 3px #ffffff;
+  box-shadow: var(--shadow-sm);
 }
 
 /* ==========================================================================
@@ -1338,11 +1389,7 @@
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 12px 12px, rgba(0,0,0,0.18) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
-    radial-gradient(circle at calc(100% - 12px) 12px, rgba(0,0,0,0.18) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
-    radial-gradient(circle at 12px calc(100% - 12px), rgba(0,0,0,0.18) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
-    radial-gradient(circle at calc(100% - 12px) calc(100% - 12px), rgba(0,0,0,0.18) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px);
+  display: none !important;
 }
 
 /* Recessed input wells */
@@ -1450,9 +1497,7 @@ textarea {
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 8px 8px, rgba(0,0,0,0.18) 1.5px, rgba(255,255,255,0.3) 2px, transparent 3px),
-    radial-gradient(circle at calc(100% - 8px) 8px, rgba(0,0,0,0.18) 1.5px, rgba(255,255,255,0.3) 2px, transparent 3px);
+  display: none !important;
 }
 
 .resume-card:hover {
@@ -1478,11 +1523,7 @@ textarea {
   inset: 0;
   border-radius: inherit;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 16px 16px, rgba(0,0,0,0.2) 3px, rgba(255,255,255,0.4) 3.5px, transparent 5px),
-    radial-gradient(circle at calc(100% - 16px) 16px, rgba(0,0,0,0.2) 3px, rgba(255,255,255,0.4) 3.5px, transparent 5px),
-    radial-gradient(circle at 16px calc(100% - 16px), rgba(0,0,0,0.2) 3px, rgba(255,255,255,0.4) 3.5px, transparent 5px),
-    radial-gradient(circle at calc(100% - 16px) calc(100% - 16px), rgba(0,0,0,0.2) 3px, rgba(255,255,255,0.4) 3.5px, transparent 5px);
+  display: none !important;
 }
 
 .case-study-img {
@@ -1704,7 +1745,8 @@ textarea {
   }
 
   .about-photo-card {
-    max-width: 280px;
+    max-width: 360px;
+    width: 100%;
     margin: 0 auto;
   }
 

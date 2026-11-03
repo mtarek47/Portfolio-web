@@ -1,30 +1,23 @@
 /* ==========================================================================
-   SUPPLEMENTAL — Missing classes from HTML audit
-   Contact, Timeline-tree, Principles, Resume, Stack Map components
+   SUPPLEMENTAL — Modern Professional Components
+   Case Study, Contact, Timeline, Principles, Resume & Stack Map
    ========================================================================== */
 
 /* ==========================================================================
-   CASE STUDY PAGE — Layout classes (rendered by case-study.js)
+   CASE STUDY DETAIL PAGE
    ========================================================================== */
-
-/* The main content area — needs top padding since there's no section wrapper */
 #case-study-content {
   padding-top: 3.5rem;
 }
 
-/* The hero card — already has margin-bottom: 2rem in pages.css, good */
-
-/* Outer wrapper — gives breathing room between content and footer */
 .case-study-body {
   padding: 2rem 0 5.5rem 0;
 }
 
-/* Hero section at top of case study */
 .case-study-header {
   max-width: 860px;
 }
 
-/* Two-column layout: main content + sidebar */
 .case-study-grid {
   display: grid;
   grid-template-columns: 1fr 320px;
@@ -32,106 +25,87 @@
   align-items: start;
 }
 
-/* Main content column */
 .case-study-main {
   display: flex;
   flex-direction: column;
   gap: 0;
 }
 
-/* Each content section block */
 .study-section {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .study-section h3 {
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: var(--text);
-  letter-spacing: -0.01em;
-  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.85rem;
 }
 
 .study-section p {
-  font-size: 0.925rem;
+  font-size: 0.975rem;
   color: var(--text-muted);
-  line-height: 1.75;
+  line-height: 1.8;
   margin-bottom: 0;
 }
 
-/* Sidebar column — sticky on desktop */
 .case-study-sidebar {
   position: sticky;
   top: calc(var(--nav-height) + 1.5rem);
 }
 
-/* Sidebar card — neumorphic panel with corner screws */
 .study-sidebar-card {
-  background: var(--background);
+  background: var(--foreground);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 1.75rem;
   box-shadow: var(--shadow-card);
   position: relative;
-  /* Bottom padding ensures button doesn't crowd the card edge */
   padding-bottom: 2rem;
 }
 
 .study-sidebar-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 10px 10px, rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
-    radial-gradient(circle at calc(100% - 10px) 10px, rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
-    radial-gradient(circle at 10px calc(100% - 10px), rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
-    radial-gradient(circle at calc(100% - 10px) calc(100% - 10px), rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px);
+  display: none !important;
 }
 
-/* The divider above the CTA button — override the dashed style */
 .study-sidebar-card [style*="border-top"] {
   border-top: 1px solid var(--border) !important;
   padding-top: 1.25rem !important;
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
 }
 
-/* The "Discuss Similar Project" button — full-width accent key */
 .study-sidebar-card .btn-primary {
   width: 100%;
   justify-content: center;
   margin-bottom: 0;
 }
 
-/* Responsive — collapse sidebar below main on tablet/mobile */
 @media (max-width: 900px) {
   .case-study-grid {
     grid-template-columns: 1fr;
   }
-
   .case-study-sidebar {
     position: static;
-    order: -1; /* Move sidebar above main on mobile */
+    order: -1;
   }
-
   .case-study-body {
-    padding: 2.5rem 0 4rem 0;
+    padding: 2rem 0 4rem 0;
   }
 }
 
 @media (max-width: 640px) {
   .case-study-body {
-    padding: 2rem 0 3.5rem 0;
+    padding: 1.5rem 0 3rem 0;
   }
-
   .study-sidebar-card {
     padding: 1.35rem 1.25rem 1.75rem;
   }
 }
 
-
-
-/* Contact page 2-column layout */
+/* ==========================================================================
+   CONTACT PAGE COMPONENTS
+   ========================================================================== */
 .contact-layout {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
@@ -139,75 +113,90 @@
   align-items: start;
 }
 
-/* Contact detail card — neumorphic floating row */
 .contact-detail-card {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem 1.25rem;
-  background: var(--background);
+  gap: 1.15rem;
+  padding: 1.1rem 1.35rem;
+  background: var(--foreground);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
   cursor: default;
-  transition: box-shadow var(--duration-base), transform var(--duration-base);
+  transition: all var(--duration-fast) ease;
 }
-.contact-detail-card[data-copy] { cursor: pointer; }
-.contact-detail-card:hover { box-shadow: var(--shadow-floating); transform: translateX(3px); }
 
-/* Icon housing for contact detail */
+.contact-detail-card[data-copy] {
+  cursor: pointer;
+}
+
+.contact-detail-card:hover {
+  box-shadow: var(--shadow-floating);
+  border-color: var(--border-dark);
+  transform: translateX(3px);
+}
+
 .contact-icon-box {
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  background: var(--background);
-  box-shadow: var(--shadow-recessed);
-  display: flex; align-items: center; justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: var(--accent-blue-light);
+  border: 1px solid var(--accent-blue-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--accent);
   flex-shrink: 0;
-  transition: box-shadow var(--duration-fast);
+  transition: all var(--duration-fast) ease;
 }
-.contact-detail-card:hover .contact-icon-box { box-shadow: var(--shadow-card); }
+
+.contact-detail-card:hover .contact-icon-box {
+  background: var(--accent);
+  color: #ffffff;
+}
 
 .contact-label {
   font-family: var(--font-mono);
-  font-size: 0.62rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--text-muted); margin-bottom: 0.2rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.2rem;
 }
+
 .contact-val {
   font-family: var(--font-mono);
-  font-size: 0.85rem; font-weight: 600;
+  font-size: 0.88rem;
+  font-weight: 600;
   color: var(--text);
 }
 
-/* Sketch form card — contact form container */
 .sketch-form-card {
-  background: var(--background);
+  background: var(--foreground);
+  border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   padding: 2.5rem;
   box-shadow: var(--shadow-card);
   position: relative;
 }
+
 .sketch-form-card::before {
-  content: '';
-  position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  background:
-    radial-gradient(circle at 12px 12px, rgba(0,0,0,0.18) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
-    radial-gradient(circle at calc(100% - 12px) 12px, rgba(0,0,0,0.18) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
-    radial-gradient(circle at 12px calc(100% - 12px), rgba(0,0,0,0.18) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
-    radial-gradient(circle at calc(100% - 12px) calc(100% - 12px), rgba(0,0,0,0.18) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px);
+  display: none !important;
 }
 
-/* Experience — Git-style timeline tree */
+/* ==========================================================================
+   EXPERIENCE — Git-Style Timeline Tree
+   ========================================================================== */
 .timeline-tree {
   position: relative;
   max-width: 860px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.25rem;
   padding-left: 2.75rem;
-  border-left: 3px solid linear-gradient(var(--accent), var(--accent-blue));
-  border-left: 3px solid var(--accent);
+  border-left: 2px solid var(--border-dark);
 }
 
 .timeline-node {
@@ -216,179 +205,360 @@
   flex-direction: column;
 }
 
-/* LED dot on spine */
 .timeline-node > .timeline-dot {
   position: absolute;
-  left: -3.15rem;
-  top: 1.35rem;
-  width: 14px; height: 14px;
+  left: -3.35rem;
+  top: 1.5rem;
+  width: 14px;
+  height: 14px;
   background: var(--accent);
   border-radius: 50%;
-  border: 2px solid var(--background);
-  box-shadow: 0 0 8px rgba(255,71,87,0.6);
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0 2px var(--accent-blue-border);
   z-index: 2;
 }
 
-/* Timeline card within each node */
 .timeline-card {
-  background: var(--background);
+  background: var(--foreground);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 1.75rem;
+  padding: 1.85rem;
   box-shadow: var(--shadow-card);
   position: relative;
-  transition: box-shadow var(--duration-base), transform var(--duration-base);
+  transition: all var(--duration-fast) ease;
 }
+
 .timeline-card::before {
-  content: '';
-  position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  background:
-    radial-gradient(circle at 10px 10px, rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
-    radial-gradient(circle at calc(100% - 10px) 10px, rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
-    radial-gradient(circle at 10px calc(100% - 10px), rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px),
-    radial-gradient(circle at calc(100% - 10px) calc(100% - 10px), rgba(0,0,0,0.2) 2px, rgba(255,255,255,0.35) 2.5px, transparent 4px);
+  display: none !important;
 }
-.timeline-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-floating); }
-.timeline-card.accent-coral { border-left: 3px solid var(--accent); }
-.timeline-card.accent-blue { border-left: 3px solid var(--accent-blue); }
+
+.timeline-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-floating);
+  border-color: var(--border-dark);
+}
+
+.timeline-card.accent-coral {
+  border-left: 3px solid var(--accent-coral);
+}
+
+.timeline-card.accent-blue {
+  border-left: 3px solid var(--accent-blue);
+}
 
 .timeline-meta {
-  display: flex; align-items: center; gap: 0.85rem; flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
   margin-bottom: 0.75rem;
 }
+
 .timeline-period {
   font-family: var(--font-mono);
-  font-size: 0.65rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.08em;
-  color: var(--accent);
-  background: var(--accent-coral-light);
-  padding: 0.2rem 0.6rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-blue);
+  background: var(--accent-blue-light);
+  border: 1px solid var(--accent-blue-border);
+  padding: 0.2rem 0.65rem;
   border-radius: var(--radius-sm);
-  box-shadow: 2px 2px 5px #babecc, -1px -1px 3px #ffffff;
 }
+
 .timeline-commit-hash {
   font-family: var(--font-mono);
-  font-size: 0.62rem;
-  color: var(--text-muted); opacity: 0.7;
+  font-size: 0.7rem;
+  color: var(--text-dim);
 }
+
 .timeline-role {
-  font-size: 1.05rem; font-weight: 700;
-  color: var(--text); letter-spacing: -0.01em;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.015em;
   margin-bottom: 0.35rem;
 }
+
 .timeline-org {
   font-family: var(--font-mono);
-  font-size: 0.72rem; font-weight: 600;
-  color: var(--accent-blue);
-  text-transform: uppercase; letter-spacing: 0.06em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
   margin-bottom: 1rem;
 }
+
 .timeline-duties {
   list-style: none;
-  display: flex; flex-direction: column; gap: 0.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
   margin-bottom: 1.25rem;
 }
+
 .timeline-duties li {
-  display: flex; align-items: flex-start; gap: 0.6rem;
-  font-size: 0.875rem; color: var(--text-muted); line-height: 1.65;
-}
-.timeline-duties li svg { color: var(--accent-green); flex-shrink: 0; margin-top: 2px; }
-
-/* About story section */
-.about-story { display: flex; flex-direction: column; gap: 2rem; }
-
-/* Principles grid */
-.principles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
-.principle-verb {
-  font-family: var(--font-mono);
-  font-size: 0.65rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--accent);
-  display: block; margin-bottom: 0.5rem;
-}
-.principle-title {
-  font-size: 1rem; font-weight: 700; color: var(--text);
-  margin-bottom: 0.35rem; letter-spacing: -0.01em;
-}
-.principle-desc { font-size: 0.875rem; color: var(--text-muted); line-height: 1.65; }
-
-/* Stack map */
-.stack-map-container { position: relative; }
-.stack-map-diagram { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; }
-.map-node {
-  background: var(--background); border-radius: var(--radius-lg);
-  padding: 1.5rem; box-shadow: var(--shadow-card);
-  position: relative; display: flex; flex-direction: column;
-  align-items: center; text-align: center; gap: 0.5rem;
-  transition: box-shadow var(--duration-base), transform var(--duration-base);
-}
-.map-node:hover { transform: translateY(-3px); box-shadow: var(--shadow-floating); }
-.map-connector { display: flex; align-items: center; justify-content: center; padding: 0.35rem 0; color: var(--accent); font-size: 0.85rem; opacity: 0.5; }
-
-/* Projects filter bar */
-.projects-filter-bar {
-  display: flex; flex-wrap: wrap; gap: 0.6rem;
-  margin-bottom: 2rem; padding: 1.25rem;
-  background: var(--background); border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-recessed);
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.925rem;
+  color: var(--text-muted);
+  line-height: 1.65;
 }
 
-/* Project highlights bullet list */
-.project-highlights { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin: 0.75rem 0; }
-.project-highlights li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.875rem; color: var(--text-muted); line-height: 1.65; }
-.project-highlights li::before { content: '›'; color: var(--accent); font-family: var(--font-mono); font-weight: 700; flex-shrink: 0; }
-
-/* Resume paper container */
-.resume-paper {
-  background: var(--background); border-radius: var(--radius-xl);
-  padding: 3rem; box-shadow: var(--shadow-card);
-  position: relative; max-width: 860px; margin: 0 auto;
-}
-.resume-paper::before {
-  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
-  background:
-    radial-gradient(circle at 16px 16px, rgba(0,0,0,0.2) 3px, rgba(255,255,255,0.4) 3.5px, transparent 5px),
-    radial-gradient(circle at calc(100% - 16px) 16px, rgba(0,0,0,0.2) 3px, rgba(255,255,255,0.4) 3.5px, transparent 5px),
-    radial-gradient(circle at 16px calc(100% - 16px), rgba(0,0,0,0.2) 3px, rgba(255,255,255,0.4) 3.5px, transparent 5px),
-    radial-gradient(circle at calc(100% - 16px) calc(100% - 16px), rgba(0,0,0,0.2) 3px, rgba(255,255,255,0.4) 3.5px, transparent 5px);
-}
-.resume-header-flex {
-  display: flex; align-items: flex-start; justify-content: space-between;
-  gap: 2rem; margin-bottom: 2rem; padding-bottom: 2rem;
-  border-bottom: 2px solid var(--muted); flex-wrap: wrap;
-}
-.resume-contact-info {
-  display: flex; flex-direction: column; gap: 0.4rem;
-  font-family: var(--font-mono); font-size: 0.75rem;
-  color: var(--text-muted); text-align: right;
-}
-.resume-contact-info a { color: var(--accent); }
-.resume-contact-info a:hover { opacity: 0.8; }
-.resume-skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.75rem; }
-.resume-actions { display: flex; align-items: center; gap: 0.85rem; flex-wrap: wrap; margin-top: 2rem; }
-
-/* Admin */
-.admin-grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-.admin-modal-backdrop {
-  position: fixed; inset: 0; background: rgba(45,52,54,0.75);
-  z-index: 200; display: flex; align-items: center; justify-content: center;
-  backdrop-filter: blur(4px);
+.timeline-duties li svg {
+  color: var(--accent-green);
+  flex-shrink: 0;
+  margin-top: 3px;
 }
 
 /* ==========================================================================
-   RESPONSIVE — Supplemental
+   PRINCIPLES GRID & ABOUT STORY
+   ========================================================================== */
+.about-story {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.principle-verb {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-blue);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.principle-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.01em;
+}
+
+.principle-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+/* ==========================================================================
+   STACK MAP & SKILLS
+   ========================================================================== */
+.stack-map-container {
+  position: relative;
+}
+
+.stack-map-diagram {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.map-node {
+  background: var(--foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.65rem;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.65rem;
+  transition: all var(--duration-fast) ease;
+}
+
+.map-node:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-floating);
+  border-color: var(--border-dark);
+}
+
+.map-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0;
+  color: var(--accent-blue);
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+/* ==========================================================================
+   PROJECTS FILTER BAR
+   ========================================================================== */
+.projects-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2.25rem;
+  padding: 0.85rem;
+  background: var(--foreground);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-btn {
+  font-family: var(--font-body);
+  font-size: 0.825rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--duration-fast) ease;
+}
+
+.filter-btn:hover {
+  color: var(--text);
+  background: var(--muted);
+}
+
+.filter-btn.active {
+  background: var(--accent-blue-light);
+  border-color: var(--accent-blue-border);
+  color: var(--accent-blue);
+}
+
+/* Project highlights bullet list */
+.project-highlights {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0.85rem 0;
+}
+
+.project-highlights li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.project-highlights li svg {
+  color: var(--accent-blue);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   RESUME PAPER — Clean Executive Document
+   ========================================================================== */
+.resume-paper {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 3.5rem;
+  box-shadow: var(--shadow-floating);
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.resume-paper::before {
+  display: none !important;
+}
+
+.resume-header-flex {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.resume-contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+.resume-contact-info a {
+  color: var(--accent-blue);
+}
+
+.resume-contact-info a:hover {
+  text-decoration: underline;
+}
+
+.resume-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.85rem;
+}
+
+.resume-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+/* ==========================================================================
+   ADMIN DASHBOARD COMPONENTS
+   ========================================================================== */
+.admin-grid-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.admin-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+
+/* ==========================================================================
+   RESPONSIVE OVERRIDES
    ========================================================================== */
 @media (max-width: 768px) {
   .contact-layout { grid-template-columns: 1fr; }
   .principles-grid { grid-template-columns: 1fr 1fr; }
   .timeline-tree { padding-left: 2rem; }
+  .timeline-node > .timeline-dot { left: -2.6rem; }
   .admin-grid-2col { grid-template-columns: 1fr; }
   .resume-header-flex { flex-direction: column; }
   .resume-contact-info { text-align: left; }
 }
+
 @media (max-width: 640px) {
   .sketch-form-card { padding: 1.5rem; }
-  .resume-paper { padding: 1.5rem 1.1rem; }
-  .resume-skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .resume-paper { padding: 1.75rem 1.25rem; }
+  .resume-skills-grid { grid-template-columns: 1fr; }
   .principles-grid { grid-template-columns: 1fr; }
   .stack-map-diagram { grid-template-columns: 1fr; }
 }
