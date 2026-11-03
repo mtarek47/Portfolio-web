@@ -88,58 +88,48 @@
           </p>
         </div>
 
-        <div class="stack-map-container">
-          <span class="paper-tape left">SYSTEM TOPOLOGY</span>
-          <div class="stack-map-diagram">
-            <!-- Node 1: Clients -->
-            <div class="map-node">
-              <div class="board-dots" style="justify-content: center; margin-bottom: 0.5rem;">
-                <div class="board-dot red"></div>
-                <div class="board-dot yellow"></div>
-                <div class="board-dot green"></div>
-              </div>
-              <h4>01. Client Tier</h4>
-              <p>User Interfaces & Native Apps</p>
-              <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-                <span class="tech-tag">React.js (Web)</span>
-                <span class="tech-tag green">Kotlin (Android)</span>
-                <span class="tech-tag blue">Flutter / Dart</span>
-              </div>
+        <!-- INTERACTIVE CONSTELLATION GRAPH (Apple Liquid Glass) -->
+        <div id="skills-graph-container" class="sketch-card">
+          <span class="paper-tape left">INTERACTIVE TOPOLOGY // FORCE-DIRECTED GRAPH</span>
+          
+          <div class="graph-header-bar">
+            <!-- Filter Pills -->
+            <div class="graph-filter-group" aria-label="Filter skill clusters">
+              <button class="graph-filter-btn active" data-cluster="all">All Domains (30)</button>
+              <button class="graph-filter-btn" data-cluster="backend">Backend &amp; APIs</button>
+              <button class="graph-filter-btn" data-cluster="devops">DevOps &amp; Infra</button>
+              <button class="graph-filter-btn" data-cluster="data">Databases</button>
+              <button class="graph-filter-btn" data-cluster="frontend">Web &amp; Mobile</button>
+              <button class="graph-filter-btn" data-cluster="arch">Architecture</button>
             </div>
 
-            <!-- Connector -->
-            <div class="map-connector">
-              <span>⇄ REST / JSON ⇄</span>
+            <!-- Controls -->
+            <div class="graph-controls-group">
+              <button id="btn-graph-pulse" class="graph-action-btn" title="Send animated pulse wave along connections">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                Pulse
+              </button>
+              <button id="btn-graph-reset" class="graph-action-btn" title="Reset node physics and positions">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+                Reset
+              </button>
             </div>
+          </div>
 
-            <!-- Node 2: Backend & Logic -->
-            <div class="map-node" style="border-color: var(--accent-blue);">
-              <span class="paper-tape" style="top: -10px; font-size: 0.65rem;">CORE LOGIC</span>
-              <h4 style="color: var(--accent-blue);">02. Backend Services</h4>
-              <p>Domain Rules, APIs & Auth</p>
-              <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-                <span class="tech-tag green">Java Spring Boot</span>
-                <span class="tech-tag">Node.js / Express</span>
-                <span class="tech-tag blue">JWT Security & RBAC</span>
-              </div>
-            </div>
+          <!-- Canvas Viewport -->
+          <div class="graph-canvas-wrapper">
+            <canvas id="skills-canvas"></canvas>
+            <div id="skills-graph-tooltip" role="tooltip"></div>
+          </div>
 
-            <!-- Connector -->
-            <div class="map-connector">
-              <span>⇄ SQL / Drivers ⇄</span>
-            </div>
-
-            <!-- Node 3: Persistence & Infra -->
-            <div class="map-node" style="border-color: var(--accent-coral);">
-              <span class="paper-tape" style="top: -10px; font-size: 0.65rem;">STORAGE & OPS</span>
-              <h4 style="color: var(--accent-coral);">03. Data & DevOps</h4>
-              <p>Persistence, Containers & Host</p>
-              <div style="display: flex; flex-direction: column; gap: 0.35rem;">
-                <span class="tech-tag">PostgreSQL / MySQL</span>
-                <span class="tech-tag coral">Docker Containers</span>
-                <span class="tech-tag">Linux Server Runtime</span>
-              </div>
-            </div>
+          <!-- Interactive Legend -->
+          <div class="graph-legend">
+            <div class="legend-item"><span class="legend-dot" style="background: #2563eb;"></span> Backend &amp; APIs</div>
+            <div class="legend-item"><span class="legend-dot" style="background: #f97316;"></span> DevOps &amp; Infra</div>
+            <div class="legend-item"><span class="legend-dot" style="background: #eab308;"></span> Databases &amp; Storage</div>
+            <div class="legend-item"><span class="legend-dot" style="background: #06b6d4;"></span> Web &amp; Mobile UI</div>
+            <div class="legend-item"><span class="legend-dot" style="background: #8b5cf6;"></span> Architecture &amp; SOLID</div>
+            <div class="legend-item"><span class="legend-dot" style="background: #ec4899;"></span> Security &amp; Protocols</div>
           </div>
         </div>
       </div>
@@ -156,7 +146,7 @@
 
         <div class="focus-grid">
           <!-- Cluster 1: DevOps & Infrastructure -->
-          <div class="sketch-card accent-coral">
+          <div class="sketch-card">
             <span class="paper-tape right">DEVOPS // INFRA</span>
             <h3 style="font-size: 1.45rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
               <i class="devicon-docker-plain colored"></i> DevOps & Infrastructure
@@ -165,15 +155,15 @@
               Containerization, server orchestration, shell scripting, and automated deployment pipelines.
             </p>
             <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+              <div style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.65rem 0.85rem;">
                 <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">Docker</div>
                 <div style="font-size: 0.8rem; color: var(--text-muted);">Multi-stage container builds, Docker Compose multi-container services.</div>
               </div>
-              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+              <div style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.65rem 0.85rem;">
                 <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">Linux System Administration</div>
                 <div style="font-size: 0.8rem; color: var(--text-muted);">Process management, permissions, systemd service units, cron automation.</div>
               </div>
-              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+              <div style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.65rem 0.85rem;">
                 <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">Git & CI/CD</div>
                 <div style="font-size: 0.8rem; color: var(--text-muted);">Branching strategies, automated test workflows, GitHub Actions pipelines.</div>
               </div>
@@ -181,7 +171,7 @@
           </div>
 
           <!-- Cluster 2: Backend Engineering -->
-          <div class="sketch-card accent-blue">
+          <div class="sketch-card">
             <span class="paper-tape right">BACKEND // API</span>
             <h3 style="font-size: 1.45rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
               <i class="devicon-spring-plain colored"></i> Software & Backend
@@ -190,15 +180,15 @@
               Enterprise Java backend architecture, REST API design, and asynchronous Node.js runtimes.
             </p>
             <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+              <div style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.65rem 0.85rem;">
                 <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">Java & Spring Boot</div>
                 <div style="font-size: 0.8rem; color: var(--text-muted);">Spring Data JPA, Hibernate, Spring Security, DTO mapping, REST controllers.</div>
               </div>
-              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+              <div style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.65rem 0.85rem;">
                 <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">Node.js & Express.js</div>
                 <div style="font-size: 0.8rem; color: var(--text-muted);">Non-blocking I/O event loops, custom middleware, REST endpoints.</div>
               </div>
-              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+              <div style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.65rem 0.85rem;">
                 <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">System Design & OOP</div>
                 <div style="font-size: 0.8rem; color: var(--text-muted);">Layered architecture, SOLID principles, clean domain modeling.</div>
               </div>
@@ -214,15 +204,15 @@
               Relational and document database schema modeling, ACID transactions, and query optimization.
             </p>
             <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+              <div style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.65rem 0.85rem;">
                 <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">PostgreSQL & MySQL</div>
                 <div style="font-size: 0.8rem; color: var(--text-muted);">Relational constraints, foreign keys, indexing, joins, stored procedures.</div>
               </div>
-              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+              <div style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.65rem 0.85rem;">
                 <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">MongoDB & NoSQL</div>
                 <div style="font-size: 0.8rem; color: var(--text-muted);">Mongoose ODM, flexible document schemas, aggregation pipelines.</div>
               </div>
-              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+              <div style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.65rem 0.85rem;">
                 <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">SQLite & Local Storage</div>
                 <div style="font-size: 0.8rem; color: var(--text-muted);">Embedded offline mobile persistence, ACID reliability on device.</div>
               </div>
@@ -238,15 +228,15 @@
               Modular component development, state management, and modern responsive layouts.
             </p>
             <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+              <div style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.65rem 0.85rem;">
                 <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">React.js & Hooks</div>
                 <div style="font-size: 0.8rem; color: var(--text-muted);">Functional components, custom hooks, context state management.</div>
               </div>
-              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+              <div style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.65rem 0.85rem;">
                 <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">JavaScript (ES6+)</div>
                 <div style="font-size: 0.8rem; color: var(--text-muted);">Async/Await, Promises, array methods, modules, fetch API.</div>
               </div>
-              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+              <div style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.65rem 0.85rem;">
                 <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">HTML5 & CSS3 Architecture</div>
                 <div style="font-size: 0.8rem; color: var(--text-muted);">Semantic elements, Flexbox, CSS Grid, mobile-first responsiveness.</div>
               </div>
@@ -262,15 +252,15 @@
               Native Android engineering with Kotlin and cross-platform apps with Flutter.
             </p>
             <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+              <div style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.65rem 0.85rem;">
                 <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">Kotlin & Jetpack Compose</div>
                 <div style="font-size: 0.8rem; color: var(--text-muted);">Declarative UI, StateFlow, Coroutines, MVVM architecture on Android.</div>
               </div>
-              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+              <div style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.65rem 0.85rem;">
                 <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">Flutter & Dart</div>
                 <div style="font-size: 0.8rem; color: var(--text-muted);">Cross-platform iOS and Android apps, Provider/BLoC state patterns.</div>
               </div>
-              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+              <div style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.65rem 0.85rem;">
                 <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">Firebase Suite</div>
                 <div style="font-size: 0.8rem; color: var(--text-muted);">Firebase Authentication, Firestore, Cloud Messaging push alerts.</div>
               </div>
@@ -287,15 +277,15 @@
               Developer tooling, profiling, debugging, and continuous improvement practices.
             </p>
             <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+              <div style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.65rem 0.85rem;">
                 <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">IntelliJ IDEA & Android Studio</div>
                 <div style="font-size: 0.8rem; color: var(--text-muted);">Advanced debugging, memory profiling, Gradle dependency resolution.</div>
               </div>
-              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+              <div style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.65rem 0.85rem;">
                 <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">Postman & API Testing</div>
                 <div style="font-size: 0.8rem; color: var(--text-muted);">Automated test collections, mock servers, payload contract validation.</div>
               </div>
-              <div style="background: var(--bg-paper); border: 1.5px solid var(--border-ink); border-radius: var(--radius-wobbly-sm); padding: 0.65rem 0.85rem;">
+              <div style="background: rgba(255, 255, 255, 0.65); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.65rem 0.85rem;">
                 <div style="font-family: var(--font-mono); font-size: 0.825rem; font-weight: 700; margin-bottom: 0.2rem;">Git CLI & Workflow</div>
                 <div style="font-size: 0.8rem; color: var(--text-muted);">Interactive rebase, bisect debugging, squash merges, semantic tags.</div>
               </div>
@@ -369,5 +359,6 @@
 
   <!-- Scripts -->
   <script src="js/main.js?v=5.0"></script>
+  <script src="js/skills-network.js?v=5.0"></script>
 </body>
 </html>
