@@ -1,0 +1,588 @@
+/* ==========================================================================
+   BYTE - APPLE FROSTED LIQUID GLASS THEME
+   Matches Tarek Parvez Portfolio Design System (Apple Liquid Glass Tokens)
+   ========================================================================== */
+
+:root {
+  --byte-size: 88px;
+  --byte-accent: #2563eb;
+  --byte-accent-hover: #1d4ed8;
+  --byte-green: #10b981;
+  --byte-text-main: #0f172a;
+  --byte-text-muted: #475569;
+  --byte-text-dim: #94a3b8;
+  
+  /* Apple Frosted Liquid Glass Surfaces */
+  --byte-frosted-surface: linear-gradient(135deg, rgba(255, 255, 255, 0.72) 0%, rgba(255, 255, 255, 0.42) 100%);
+  --byte-frosted-border: rgba(255, 255, 255, 0.85);
+  --byte-frosted-blur: blur(32px) saturate(220%);
+  --byte-frosted-shadow: 0 24px 60px -10px rgba(15, 23, 42, 0.12), 
+                         0 10px 24px -5px rgba(15, 23, 42, 0.06), 
+                         inset 0 1px 2px 0 rgba(255, 255, 255, 0.95), 
+                         inset 0 0 24px 0 rgba(255, 255, 255, 0.45);
+}
+
+/* --- Floating Mascot Wrapper --- */
+#byte-companion {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: var(--byte-size);
+  height: calc(var(--byte-size) + 16px);
+  z-index: 9999;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  cursor: grab;
+  filter: drop-shadow(0 14px 30px rgba(15, 23, 42, 0.22));
+  transition: transform 0.1s ease-out;
+}
+
+#byte-companion.is-dragging {
+  cursor: grabbing !important;
+  transition: none !important;
+  filter: drop-shadow(0 24px 40px rgba(37, 99, 235, 0.35));
+}
+
+/* Soft contact shadow beneath mascot */
+.byte-shadow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 64px;
+  height: 12px;
+  background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.28) 0%, rgba(15, 23, 42, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+#byte-companion.is-floating .byte-shadow {
+  animation: byteShadowPulse 3s ease-in-out infinite;
+}
+
+@keyframes byteShadowPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.6; }
+  50% { transform: translateX(-50%) scale(0.75); opacity: 0.25; }
+}
+
+/* Mascot Body Container */
+.byte-body-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--byte-size);
+  transform-origin: center bottom;
+}
+
+#byte-companion.is-floating .byte-body-wrap {
+  animation: byteBobbing 3s ease-in-out infinite;
+}
+
+@keyframes byteBobbing {
+  0%, 100% { transform: translateY(0) scale(1, 1); }
+  50% { transform: translateY(-10px) scale(0.98, 1.02); }
+}
+
+/* SVG Character */
+.byte-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Eye Pupils */
+.byte-pupil {
+  transition: transform 0.08s ease-out;
+  transform-origin: center;
+}
+
+/* Mood Classes */
+#byte-companion[data-mood="happy"] .byte-mouth-normal,
+#byte-companion[data-mood="laugh"] .byte-mouth-normal,
+#byte-companion[data-mood="think"] .byte-mouth-normal,
+#byte-companion[data-mood="sleep"] .byte-mouth-normal {
+  display: none;
+}
+
+#byte-companion[data-mood="happy"] .byte-mouth-happy,
+#byte-companion[data-mood="laugh"] .byte-mouth-laugh,
+#byte-companion[data-mood="think"] .byte-mouth-think,
+#byte-companion[data-mood="sleep"] .byte-mouth-sleep {
+  display: block !important;
+}
+
+/* Sleep Eyes */
+#byte-companion[data-mood="sleep"] .byte-eye-normal {
+  display: none;
+}
+#byte-companion[data-mood="sleep"] .byte-eye-sleep {
+  display: block !important;
+}
+
+/* Laugh / Squint Eyes */
+#byte-companion[data-mood="laugh"] .byte-eye-normal {
+  display: none;
+}
+#byte-companion[data-mood="laugh"] .byte-eye-laugh {
+  display: block !important;
+}
+
+/* Blinking Animation */
+.byte-eyelid {
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.08s ease-in-out;
+}
+.byte-blinking .byte-eyelid {
+  transform: scaleY(1);
+}
+
+/* Thought / Sleep Bubble (Apple Glass Capsule) */
+.byte-bubble {
+  position: absolute;
+  top: -24px;
+  right: -8px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  color: var(--byte-accent);
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 12px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(6px) scale(0.8);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+  white-space: nowrap;
+}
+
+.byte-bubble.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Hover Tooltip (Frosted Glass Pill) */
+.byte-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  color: var(--byte-text-main);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.2s ease;
+  box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.12), inset 0 1px 1px rgba(255, 255, 255, 1);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.byte-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 5px 5px 0 5px;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.85) transparent transparent transparent;
+}
+
+#byte-companion:hover .byte-tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================================================
+   BYTE CHAT MODAL WINDOW — APPLE FROSTED LIQUID GLASS
+   ========================================================================== */
+#byte-chat-modal {
+  position: fixed;
+  bottom: 126px;
+  right: 28px;
+  width: min(390px, calc(100vw - 36px));
+  height: 520px;
+  max-height: calc(100vh - 160px);
+  
+  /* Apple Liquid Glass Styling */
+  background: var(--byte-frosted-surface);
+  backdrop-filter: var(--byte-frosted-blur);
+  -webkit-backdrop-filter: var(--byte-frosted-blur);
+  border: 1px solid var(--byte-frosted-border);
+  border-radius: 24px;
+  box-shadow: var(--byte-frosted-shadow);
+  
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px) scale(0.96);
+  transform-origin: bottom right;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: var(--font-sans, 'Inter', -apple-system, BlinkMacSystemFont, sans-serif);
+}
+
+#byte-chat-modal.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+/* Frosted Glass Header */
+.byte-chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.45);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.byte-header-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.byte-avatar-mini {
+  width: 38px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08), inset 0 1px 1px #ffffff;
+  padding: 2px;
+  overflow: visible;
+}
+
+.byte-avatar-mini svg {
+  width: 32px;
+  height: 32px;
+}
+
+.byte-header-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.byte-header-title {
+  color: var(--byte-text-main);
+  font-size: 13.5px;
+  font-weight: 700;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: -0.01em;
+}
+
+.byte-status-indicator {
+  width: 7.5px;
+  height: 7.5px;
+  background: var(--byte-green);
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+  animation: bytePulse 2s infinite;
+}
+
+@keyframes bytePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+
+.byte-header-sub {
+  color: var(--byte-text-muted);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.byte-close-btn {
+  background: rgba(15, 23, 42, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  color: var(--byte-text-muted);
+  width: 28px;
+  height: 28px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.byte-close-btn:hover {
+  background: rgba(15, 23, 42, 0.1);
+  color: var(--byte-text-main);
+  transform: scale(1.04);
+}
+
+/* Chat Messages Stream */
+.byte-chat-messages {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scroll-behavior: smooth;
+}
+
+.byte-chat-messages::-webkit-scrollbar {
+  width: 5px;
+}
+.byte-chat-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+.byte-chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.15);
+  border-radius: 10px;
+}
+
+/* Message Bubbles — Frosted Apple Aesthetic */
+.byte-msg {
+  display: flex;
+  gap: 10px;
+  max-width: 88%;
+  font-size: 13px;
+  line-height: 1.55;
+  animation: msgFadeIn 0.25s ease-out;
+}
+
+@keyframes msgFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.byte-msg.bot {
+  align-self: flex-start;
+}
+
+.byte-msg.user {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.byte-msg-bubble {
+  padding: 11px 15px;
+  border-radius: 16px;
+  word-break: break-word;
+}
+
+/* Bot Message: Frosted White Pearl Glass */
+.byte-msg.bot .byte-msg-bubble {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  color: var(--byte-text-main);
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05), inset 0 1px 1px rgba(255, 255, 255, 1);
+}
+
+/* User Message: Apple Vibrant Electric Blue */
+.byte-msg.user .byte-msg-bubble {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.32);
+}
+
+/* Action Buttons inside Bot Message */
+.byte-action-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.byte-action-btn {
+  background: rgba(37, 99, 235, 0.07);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  color: #1d4ed8;
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: 9px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+}
+
+.byte-action-btn:hover {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Quick Suggestion Pills Bar */
+.byte-quick-pills {
+  padding: 8px 14px;
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.4);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.byte-quick-pills::-webkit-scrollbar {
+  display: none;
+}
+
+.byte-pill-btn {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  color: var(--byte-text-muted);
+  font-size: 11.5px;
+  font-weight: 500;
+  padding: 5px 11px;
+  border-radius: 20px;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  transition: all 0.15s ease;
+}
+
+.byte-pill-btn:hover {
+  background: rgba(37, 99, 235, 0.1);
+  border-color: rgba(37, 99, 235, 0.3);
+  color: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+/* Typing Indicator */
+.byte-typing-indicator {
+  display: none;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 14px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 14px;
+  width: fit-content;
+  margin-left: 16px;
+  margin-bottom: 8px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+}
+
+.byte-typing-indicator.is-typing {
+  display: flex;
+}
+
+.byte-typing-dot {
+  width: 5.5px;
+  height: 5.5px;
+  background: #64748b;
+  border-radius: 50%;
+  animation: byteTyping 1.2s infinite;
+}
+.byte-typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.byte-typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes byteTyping {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Frosted Input Bar */
+.byte-chat-input-bar {
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.6);
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.byte-chat-input {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(203, 213, 225, 0.8);
+  border-radius: 12px;
+  padding: 10px 14px;
+  color: var(--byte-text-main);
+  font-size: 13px;
+  outline: none;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.byte-chat-input:focus {
+  background: #ffffff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15), inset 0 1px 2px rgba(15, 23, 42, 0.02);
+}
+
+.byte-chat-input::placeholder {
+  color: #94a3b8;
+}
+
+.byte-send-btn {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.byte-send-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.45);
+}
+
+.byte-send-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  #byte-companion {
+    bottom: 20px;
+    right: 20px;
+    --byte-size: 76px;
+  }
+  #byte-chat-modal {
+    bottom: 110px;
+    right: 18px;
+    width: calc(100vw - 36px);
+    height: 480px;
+  }
+}

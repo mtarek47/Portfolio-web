@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Byte Companion Bot Demo — Tarek Parvez</title>
+  
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <link rel="stylesheet" href="css/sketch-theme.css?v=14.0">
+  <link rel="stylesheet" href="css/pet-bot.css">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background-color: #f1f5f9;
+      background-image:
+        radial-gradient(circle at 10% 15%, rgba(59, 130, 246, 0.32) 0px, transparent 45%),
+        radial-gradient(circle at 90% 12%, rgba(139, 92, 246, 0.30) 0px, transparent 45%),
+        radial-gradient(circle at 50% 45%, rgba(14, 165, 233, 0.24) 0px, transparent 55%),
+        radial-gradient(circle at 85% 85%, rgba(244, 63, 94, 0.20) 0px, transparent 50%),
+        radial-gradient(circle at 15% 85%, rgba(16, 185, 129, 0.22) 0px, transparent 50%);
+      color: #0f172a;
+      font-family: 'Inter', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .demo-container {
+      max-width: 720px;
+      width: 90%;
+      text-align: center;
+      z-index: 1;
+      padding: 40px 20px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(37, 99, 235, 0.08);
+      border: 1px solid rgba(37, 99, 235, 0.25);
+      color: #1d4ed8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      margin-bottom: 20px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #10b981;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0 0 16px 0;
+      color: #0f172a;
+    }
+
+    p.lead {
+      font-size: 1.1rem;
+      color: #475569;
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      text-align: left;
+      margin-bottom: 36px;
+    }
+
+    .feature-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.35) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 18px;
+      padding: 20px;
+      backdrop-filter: blur(24px) saturate(200%);
+      -webkit-backdrop-filter: blur(24px) saturate(200%);
+      box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.06), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+    }
+
+    .feature-icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .feature-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    .feature-desc {
+      font-size: 12.5px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    .btn-return {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #2563eb;
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 14px;
+      box-shadow: 0 4px 18px rgba(37, 99, 235, 0.35);
+      transition: all 0.2s ease;
+    }
+
+    .btn-return:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(37, 99, 235, 0.45);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="demo-container">
+    <div class="badge">
+      <span class="status-dot"></span> BYTE // INTERACTIVE COMPANION DEMO
+    </div>
+
+    <h1>Meet Byte — Your Interactive DevOps Companion</h1>
+    <p class="lead">
+      Look at the bottom right corner of your screen! Byte has eyes that track your cursor, physics to be tossed across the screen, and instant answers about your engineering portfolio.
+    </p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">👀</div>
+        <div class="feature-title">Eye & Gaze Tracking</div>
+        <div class="feature-desc">Move your cursor around the screen. Watch Byte's pupils follow you anywhere!</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <div class="feature-title">Drag & Momentum Toss</div>
+        <div class="feature-desc">Click & drag Byte. Throw him across the screen to see 60 FPS gravity and floor bouncing.</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <div class="feature-title">Instant AI Chat</div>
+        <div class="feature-desc">Click Byte to open the terminal modal. Ask questions or click quick pill buttons!</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">😴</div>
+        <div class="feature-title">Idle Sleep State</div>
+        <div class="feature-desc">Leave your mouse still for 20 seconds. Byte dozes off with a cute "Z z z" bubble.</div>
+      </div>
+    </div>
+
+    <div>
+      <a href="index.html" class="btn-return">
+        ← Open Full Portfolio Homepage (index.html)
+      </a>
+    </div>
+  </div>
+
+  <!-- Bot Script -->
+  <script src="js/pet-bot.js"></script>
+</body>
+</html>
