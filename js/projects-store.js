@@ -6,6 +6,31 @@
 
 const DEFAULT_PROJECTS = [
   {
+    id: 'neorek-pos',
+    title: 'NEOREK POS Solutions',
+    subtitle: 'Cloud & Retail Point of Sale with Offline Sync & Dual Thermal/Barcode Hardware Engine',
+    category: 'web enterprise backend',
+    categoryLabel: 'Full-Stack / Cloud POS / Hardware',
+    role: 'Lead Systems Architect & Full-Stack Developer',
+    timeline: '2026',
+    heroImage: 'assets/neorek-pos.png',
+    github: 'https://github.com/mtarek47/virtual-thermal-printer',
+    liveDemo: 'https://pos.neorek.com',
+    techStack: ['TypeScript', 'React / Next.js', 'Node.js', 'Offline-First DB', 'ESC/POS Socket (9100)', 'TSPL / ZPL (9101)', 'PostgreSQL', 'WebSockets', 'Hardware Barcode & Scale'],
+    architecture: 'Distributed Offline-First Reactive Architecture with TCP Socket & Web-Serial Hardware Integration Layer',
+    problem: 'Retail and grocery checkout environments in Bangladesh and emerging markets face frequent internet instability, complex multi-unit pricing (piece vs. fractional weight like grams/kg), slow desktop legacy software, and expensive proprietary receipt/barcode printing hardware.',
+    solution: 'Engineered NEOREK POS: an ultra-fast, keyboard-driven web Point-of-Sale platform featuring sub-second barcode/SKU scanning, live weight-scale metric computation, automatic profit-margin protection, offline-first database sync resilience, and an integrated virtual dual-printer suite supporting ESC/POS thermal receipts and TSPL/ZPL barcode labels over TCP and HTTP.',
+    keyFeatures: [
+      'Fast Billing Counter: Sub-second barcode/SKU lookup, quick unit presets (250g, 500g, 1kg, 2kg, 5kg, 1pc, 4pcs), and hotkey shortcuts (Hold [F4], Resume [F8], Pay & Print [F2], Clear [Esc])',
+      'Offline-First Database Synchronization: Seamless continuity during connectivity outages with instant local caching and conflict-free background reconciliation once back online',
+      'Dual Hardware Printer Engine: Emulates ESC/POS & Epson ePOS receipt streams on port 9100 and TSPL/ZPL II barcode sticker streams on port 9101, plus macOS CUPS driver integration',
+      'Dynamic Profit Margin & Buying Threshold Guard: Real-time calculation of buying cost threshold, potential profit margin (সম্ভাব্য লাভ), and customer loyalty discounts before settlement',
+      'Comprehensive Retail Telemetry: Integrated inventory, purchase orders (PO), multi-shift cash reconciliation, supplier ledger, staff RBAC access, and P&L analytics'
+    ],
+    infrastructure: 'Dockerized microservice deployment with automated CI/CD pipelines, WebSocket telemetry for live printer status, and multi-tenant cloud database partitioning.',
+    featured: true
+  },
+  {
     id: 'weather-prayer',
     title: 'Weather & Prayer Times System',
     subtitle: 'Native Android Application with Jetpack Compose & Real-time Sensor APIs',
@@ -62,7 +87,7 @@ const DEFAULT_PROJECTS = [
     categoryLabel: 'Python / Cryptography / CLI',
     role: 'Creator & Systems Engineer',
     timeline: '2026',
-    heroImage: 'assets/project-enterprise-1.jpg',
+    heroImage: 'assets/cryptimg.png',
     github: 'https://github.com/mtarek47/Cryptimg',
     liveDemo: '',
     techStack: ['Python', '2D-DCT QIM', 'Reed-Solomon FEC', 'Nostr Protocol', 'FastAPI', 'Cryptography'],
@@ -86,7 +111,7 @@ const DEFAULT_PROJECTS = [
     categoryLabel: 'AI / GIS / Computer Vision',
     role: 'GIS & ML Systems Architect',
     timeline: '2026',
-    heroImage: 'assets/project-enterprise-2.jpg',
+    heroImage: 'assets/ai-riverguard.png',
     github: 'https://github.com/mtarek47/Ai-RiverGurd',
     liveDemo: '',
     techStack: ['Python', 'FastAPI', 'PyTorch U-Net', 'Sentinel-1/2 SAR', 'PostgreSQL + PostGIS', 'React-Leaflet'],
@@ -110,9 +135,9 @@ const DEFAULT_PROJECTS = [
     categoryLabel: 'Android / Kotlin',
     role: 'Android Systems Developer',
     timeline: '2026',
-    heroImage: 'assets/project2.jpg',
+    heroImage: 'assets/reels-escape.jpg',
     github: 'https://github.com/mtarek47/Reels_Escape',
-    liveDemo: 'https://github.com/mtarek47/Smart-Escape',
+    liveDemo: '',
     techStack: ['Kotlin', 'Android Accessibility Service', 'Jetpack Compose', 'Room DB', 'Coroutines'],
     architecture: 'Low-Latency Android Accessibility Telemetry Engine with Zero-Network Privacy Shield',
     problem: 'Short-form addictive video feeds (YouTube Shorts, Instagram Reels, Facebook Reels) cause severe productivity loss and unconscious doom-scrolling habits.',
@@ -416,7 +441,7 @@ const DEFAULT_PROJECTS = [
   }
 ];
 
-const STORAGE_KEY = 'tarek_portfolio_projects_data_v4';
+const STORAGE_KEY = 'tarek_portfolio_projects_data_v8';
 
 const ProjectsStore = {
   getProjects() {

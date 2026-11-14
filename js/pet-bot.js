@@ -66,6 +66,14 @@
   // --- Comprehensive Knowledge Base for Tarek Parvez ---
   const KNOWLEDGE_BASE = [
     {
+      intents: ['activity', 'contribution', 'commit', 'graph', 'heatmap', 'calendar', 'active'],
+      reply: "Tarek's GitHub activity shows consistent engineering momentum with <strong>490+ verified contributions</strong>, open-source repositories, and active DevOps automation workflows!",
+      mood: 'laugh',
+      actions: [
+        { label: '🐙 View GitHub Profile', link: 'https://github.com/mtarek47', external: true }
+      ]
+    },
+    {
       intents: ['who', 'about', 'intro', 'identity', 'tarek', 'k', 'parvez', 'developer', 'engineer', 'kemon'],
       reply: "Hi there! I'm <strong>Byte</strong>, Tarek's personal DevOps companion. <strong>Tarek Parvez (M Tarek Rahman)</strong> is a DevOps & Software Engineer based in Dhaka, BD. He specializes in CI/CD automation, Docker, Linux, and Java Spring Boot architectures!",
       mood: 'laugh',
@@ -88,8 +96,8 @@
       reply: "Tarek's core tech arsenal spans:<br>• <strong>DevOps & Infra:</strong> Docker, CI/CD (GitHub Actions), Linux (Ubuntu/Debian), Nginx, Git.<br>• <strong>Backend:</strong> Java, Spring Boot, REST APIs, PostgreSQL, MySQL.<br>• <strong>Frontend:</strong> Modern HTML5, CSS3, JavaScript (ES6+), D3.js visualization.",
       mood: 'happy',
       actions: [
-        { label: '🛠️ Interactive Skills Graph', link: 'skills.html' },
-        { label: '📜 DevOps Pipeline Specs', selector: '#pipeline, .devops-lifecycle' }
+        { label: '🔮 Play with Tech Orbit', selector: '#tech-orbit' },
+        { label: '🛠️ Interactive Skills Graph', link: 'skills.html' }
       ]
     },
     {

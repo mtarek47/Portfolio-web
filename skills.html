@@ -29,6 +29,7 @@
   <link rel="stylesheet" href="css/layout.css?v=14.0">
   <link rel="stylesheet" href="css/pages.css?v=14.0">
   <link rel="stylesheet" href="css/supplement.css?v=14.0">
+  <link rel="stylesheet" href="css/pet-bot.css">
 </head>
 <body>
 
@@ -77,68 +78,12 @@
   </div>
 
   <main>
-    <!-- VISUAL ENGINEERING STACK MAP -->
+    <!-- DETAILED CATEGORIZED SKILLS -->
     <section style="padding: 3.5rem 0 5rem 0;">
       <div class="container">
         <div class="section-header" style="margin-bottom: 2.75rem;">
-          <h1 class="section-title">Skills & Architecture Map<span class="underline-sketch"></span></h1>
-          <p class="section-subtitle">
-            A comprehensive mapping of my technical toolkit, structured by domain and architectural layers—without arbitrary percentage ratings.
-          </p>
-        </div>
-
-        <!-- INTERACTIVE CONSTELLATION GRAPH (Frameless Apple Ambient Canvas) -->
-        <div id="skills-graph-container">
-          
-          <div class="graph-header-bar">
-            <!-- Filter Pills -->
-            <div class="graph-filter-group" aria-label="Filter skill clusters">
-              <button class="graph-filter-btn active" data-cluster="all">All Domains (30)</button>
-              <button class="graph-filter-btn" data-cluster="backend">Backend &amp; APIs</button>
-              <button class="graph-filter-btn" data-cluster="devops">DevOps &amp; Infra</button>
-              <button class="graph-filter-btn" data-cluster="data">Databases</button>
-              <button class="graph-filter-btn" data-cluster="frontend">Web &amp; Mobile</button>
-              <button class="graph-filter-btn" data-cluster="arch">Architecture</button>
-            </div>
-
-            <!-- Controls -->
-            <div class="graph-controls-group">
-              <button id="btn-graph-pulse" class="graph-action-btn" title="Send animated pulse wave along connections">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-                Pulse
-              </button>
-              <button id="btn-graph-reset" class="graph-action-btn" title="Reset node physics and positions">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
-                Reset
-              </button>
-            </div>
-          </div>
-
-          <!-- Interactive SVG Viewport (D3 Force-Directed Architecture Graph) -->
-          <div class="graph-canvas-wrapper">
-            <svg id="skills-network-svg" width="100%" height="600"></svg>
-            <div id="skills-graph-tooltip" role="tooltip"></div>
-          </div>
-
-          <!-- Interactive Legend -->
-          <div class="graph-legend">
-            <div class="legend-item"><span class="legend-dot" style="background: #2563eb;"></span> Backend &amp; APIs</div>
-            <div class="legend-item"><span class="legend-dot" style="background: #f97316;"></span> DevOps &amp; Infra</div>
-            <div class="legend-item"><span class="legend-dot" style="background: #eab308;"></span> Databases &amp; Storage</div>
-            <div class="legend-item"><span class="legend-dot" style="background: #06b6d4;"></span> Web &amp; Mobile UI</div>
-            <div class="legend-item"><span class="legend-dot" style="background: #8b5cf6;"></span> Architecture &amp; SOLID</div>
-            <div class="legend-item"><span class="legend-dot" style="background: #ec4899;"></span> Security &amp; Protocols</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- DETAILED CATEGORIZED SKILLS -->
-    <section style="border-top: 2px solid var(--border-ink); background: var(--bg-card-muted);">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Categorized Technical Skills<span class="underline-sketch"></span></h2>
-          <p class="section-subtitle">Detailed breakdown of languages, frameworks, and infrastructure tools.</p>
+          <h1 class="section-title">Categorized Technical Skills<span class="underline-sketch"></span></h1>
+          <p class="section-subtitle">Detailed breakdown of languages, frameworks, and infrastructure tools across domains.</p>
         </div>
 
         <div class="focus-grid">
@@ -356,7 +301,6 @@
 
   <!-- Scripts -->
   <script src="js/main.js?v=14.0"></script>
-  <script src="js/d3.v7.min.js?v=14.0"></script>
-  <script src="js/skills-network.js?v=14.0"></script>
+  <script src="js/pet-bot.js"></script>
 </body>
 </html>

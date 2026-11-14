@@ -89,7 +89,7 @@
 
         <!-- Client-Side Category Filter Bar -->
         <div class="projects-filter-bar">
-          <button class="filter-btn active" data-filter="all">All Projects (17)</button>
+          <button class="filter-btn active" data-filter="all">All Projects (21)</button>
           <button class="filter-btn" data-filter="backend">Backend & Systems</button>
           <button class="filter-btn" data-filter="mobile">Mobile (Android/Kotlin)</button>
           <button class="filter-btn" data-filter="web">Full-Stack Web</button>
@@ -98,7 +98,134 @@
 
         <!-- Project Cards Grid -->
         <div class="projects-grid">
-          <!-- 1. Weather & Prayer -->
+          <!-- 1. NEOREK POS Solutions -->
+          <div class="project-card" data-category="web enterprise backend">
+            <div class="project-img-wrapper">
+              <img src="assets/neorek-pos.png" alt="NEOREK POS Solutions" loading="lazy" style="object-position: top center;">
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">NEOREK POS Solutions</h3>
+              <div class="project-arch-tag">Architecture: TypeScript + Offline-First Sync + ESC/POS &amp; TSPL Engine</div>
+              <p class="project-summary">
+                High-speed cloud &amp; retail Point-of-Sale platform engineered with sub-second barcode/SKU scanning, live weight-scale metric computation, inventory/PO tracking, offline database sync, and virtual thermal printing.
+              </p>
+              <ul class="project-highlights">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Sub-second barcode/SKU scanning &amp; fractional weight computation</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Offline-first database resilience with seamless online sync</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Dual ESC/POS (receipt) &amp; TSPL/ZPL (label) hardware engine</li>
+              </ul>
+              <div class="project-tags">
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag green">React / Next.js</span>
+                <span class="tech-tag blue">Offline DB Sync</span>
+                <span class="tech-tag">ESC/POS &amp; TSPL</span>
+              </div>
+              <div class="project-footer-actions">
+                <a href="project-detail.html?id=neorek-pos" class="btn btn-secondary btn-sm">Case Study</a>
+                <a href="https://pos.neorek.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="vertical-align: -1px; margin-right: 3px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg> Live Demo
+                </a>
+                <a href="https://github.com/mtarek47/virtual-thermal-printer" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" title="Printer Engine on GitHub">
+                  <i class="devicon-github-original"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Cryptimg Steganographic Nostr Engine -->
+          <div class="project-card" data-category="backend enterprise">
+            <div class="project-img-wrapper">
+              <img src="assets/cryptimg.png" alt="Cryptimg Steganographic Nostr Engine" loading="lazy" style="object-position: top center;">
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Cryptimg: Steganographic Nostr Engine</h3>
+              <div class="project-arch-tag">Architecture: Python + 2D-DCT QIM + Reed-Solomon FEC + FastAPI</div>
+              <p class="project-summary">
+                Production-grade compression-resistant steganographic engine embedding cryptographically signed Nostr events into images using 2D-DCT frequency modulation and Reed-Solomon error correction to survive lossy social media pipelines.
+              </p>
+              <ul class="project-highlights">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 2D-DCT QIM frequency embedding resistant to JPEG/WebP lossy re-encoding</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Reed-Solomon FEC redundancy surviving aggressive social media transcoding</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Full ecosystem: High-performance CLI, FastAPI service, and Web terminal console</li>
+              </ul>
+              <div class="project-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag green">2D-DCT QIM</span>
+                <span class="tech-tag blue">Reed-Solomon FEC</span>
+                <span class="tech-tag">Nostr Protocol</span>
+              </div>
+              <div class="project-footer-actions">
+                <a href="project-detail.html?id=cryptimg" class="btn btn-secondary btn-sm">Case Study</a>
+                <a href="https://github.com/mtarek47/Cryptimg" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                  <i class="devicon-github-original"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Reels Escape: Focus & Wellbeing -->
+          <div class="project-card" data-category="mobile">
+            <div class="project-img-wrapper">
+              <img src="assets/reels-escape.jpg" alt="Reels Escape: Focus &amp; Digital Wellbeing" loading="lazy" style="object-position: top center;">
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Reels Escape: Focus &amp; Wellbeing</h3>
+              <div class="project-arch-tag">Architecture: Kotlin + Android Accessibility Service + Jetpack Compose</div>
+              <p class="project-summary">
+                Privacy-first Android utility engineered to break addictive doom-scrolling by detecting and auto-neutralizing short-form video traps (Reels, Shorts) with zero-network on-device telemetry.
+              </p>
+              <ul class="project-highlights">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Real-time automated detection and neutralization of Reels &amp; Shorts feeds</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> 100% On-device privacy architecture with zero internet permissions</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Low-latency Accessibility Service with minimal battery footprint</li>
+              </ul>
+              <div class="project-tags">
+                <span class="tech-tag">Kotlin</span>
+                <span class="tech-tag green">Android SDK</span>
+                <span class="tech-tag blue">Accessibility Service</span>
+                <span class="tech-tag">Jetpack Compose</span>
+              </div>
+              <div class="project-footer-actions">
+                <a href="project-detail.html?id=reels-escape" class="btn btn-secondary btn-sm">Case Study</a>
+                <a href="https://github.com/mtarek47/Reels_Escape" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                  <i class="devicon-github-original"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. AI RiverGuard -->
+          <div class="project-card" data-category="backend enterprise web">
+            <div class="project-img-wrapper">
+              <img src="assets/ai-riverguard.png" alt="AI RiverGuard Satellite &amp; ML Riverbank Erosion System" loading="lazy" style="object-position: top center;">
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">AI RiverGuard: Satellite &amp; ML System</h3>
+              <div class="project-arch-tag">Architecture: PyTorch U-Net + Sentinel-1/2 SAR + PostGIS + FastAPI</div>
+              <p class="project-summary">
+                Enterprise GovTech GIS and satellite remote sensing platform combining Sentinel-1/2 imagery, deep learning water segmentation, and PostGIS spatial indexing for real-time riverbank erosion and sand mining detection.
+              </p>
+              <ul class="project-highlights">
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> PyTorch U-Net deep learning water segmentation &amp; NDWI spectral analysis</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> UTM Zone 45N EPSG:32645 metric area calculations &amp; trend analytics</li>
+                <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg> Interactive React-Leaflet GIS dashboard with Esri and CartoDB layers</li>
+              </ul>
+              <div class="project-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag green">PyTorch U-Net</span>
+                <span class="tech-tag blue">PostGIS</span>
+                <span class="tech-tag">React-Leaflet</span>
+              </div>
+              <div class="project-footer-actions">
+                <a href="project-detail.html?id=ai-riverguard" class="btn btn-secondary btn-sm">Case Study</a>
+                <a href="https://github.com/mtarek47/Ai-RiverGurd" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+                  <i class="devicon-github-original"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. Weather & Prayer -->
           <div class="project-card" data-category="mobile">
             <div class="project-img-wrapper">
               <img src="assets/Weather and prayer.png" alt="Weather and Prayer Times App" loading="lazy">
